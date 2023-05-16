@@ -30,11 +30,10 @@ def valid_email(form, field):
 
 
 class SignUpForm(FlaskForm):
-    username = StringField(
-        'username', validators=[DataRequired(), username_exists])
+    username = StringField('username', validators=[DataRequired(), username_exists])
     password = StringField('password', validators=[DataRequired()])
     first_name = StringField('first_name', validators=[DataRequired()])
     last_name = StringField('last_name', validators=[DataRequired()])
     email = StringField('email', validators=[DataRequired(), user_exists, valid_email])
     about = StringField('about')
-    profile_picture = FileField("profile_picture", validators=[FileAllowed(list(ALLOWED_SONG_EXTENSIONS))])
+    profile_picture = FileField("profile_picture", validators=[FileAllowed(list(ALLOWED_IMAGE_EXTENSIONS))])

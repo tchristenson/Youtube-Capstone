@@ -1,0 +1,32 @@
+from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy.schema import ForeignKey, func
+
+class Video(db.Model):
+    __tablename__ = 'videos'
+
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    # playlist_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('playlists.id')), nullable=True) ## Placeholder until playlists implemented
+    name = db.Column(db.String(255), nullable=False, unique=True)
+    content = db.Column(db.String, nullable=False)
+    thumbnail = db.Column(db.String, nullable=False) ## Will be required for now, can possibly select frames from the video and make it automatic
+    created_at = db.Column(db.DateTime, server_default=func.now(), nullable=False)
+    updated_at = db.Column(db.DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+
+    user = db.relationship('User', back_populates='videos')
+
+
+    def to_dict(self):
+        return {
+          'id': self.id,
+          'userId': self.user_id,
+        #   'playlistId': self.playlist_id, ## Placeholder until playlists implemented
+          'name': self.name,
+          'content': self.content,
+          'thumbnail': self.thumbnail,
+          'createdAt': self.created_at,
+          'updatedAt': self.updated_at
+      }
