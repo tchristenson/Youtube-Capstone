@@ -1,5 +1,7 @@
 # MVP Feature List
 
+YoohooTube is a video sharing website where users can upload & view videos, comment on videos, create playlists, and like other user's videos
+
 ## MVP Feature List
 
 
@@ -35,9 +37,13 @@
 * Logged in users can edit and delete their playlists.
 * Logged in users can view their own playlists.
 
-### Likes
+### Video Likes
 
 * Logged in users can like their own videos and other user's videos.
+
+### Comment Likes
+
+* Logged in users can like their own comments and other user's comments.
 
 ### Search
 
@@ -46,3 +52,7 @@
 ### Subscribers
 
 * Logged in users can subscribe to other users.
+
+### Views
+
+* Videos would display the number of views they've received from logged-in users.
