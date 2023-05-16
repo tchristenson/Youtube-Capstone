@@ -41,10 +41,6 @@ YoohooTube is a video sharing website where users can upload & view videos, comm
 
 * Logged in users can like their own videos and other user's videos.
 
-### Comment Likes
-
-* Logged in users can like their own comments and other user's comments.
-
 ### Search
 
 * All users can search for videos on any page of the website.
@@ -52,6 +48,10 @@ YoohooTube is a video sharing website where users can upload & view videos, comm
 ### Subscribers
 
 * Logged in users can subscribe to other users.
+
+### Comment Likes
+
+* Logged in users can like their own comments and other user's comments.
 
 ### Views
 
