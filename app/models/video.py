@@ -18,15 +18,17 @@ class Video(db.Model):
 
     user = db.relationship('User', back_populates='videos')
 
+    comments = db.relationship('Comment', back_populates='video', cascade='all, delete-orphan')
+
 
     def to_dict(self):
         return {
-          'id': self.id,
-          'userId': self.user_id,
-        #   'playlistId': self.playlist_id, ## Placeholder until playlists implemented
-          'name': self.name,
-          'content': self.content,
-          'thumbnail': self.thumbnail,
-          'createdAt': self.created_at,
-          'updatedAt': self.updated_at
+            'id': self.id,
+            'userId': self.user_id,
+            #   'playlistId': self.playlist_id, ## Placeholder until playlists implemented
+            'name': self.name,
+            'content': self.content,
+            'thumbnail': self.thumbnail,
+            'createdAt': self.created_at,
+            'updatedAt': self.updated_at
       }
