@@ -46,10 +46,3 @@
 ### Subscribers
 
 * Logged in users can subscribe to other users.
-
-### Log Out
-
-* As a logged in user, I want to log out via an easy to find log out button on the navigation bar.
-  * While on any page of the site:
-    * I can log out of my account and be redirected to the home page excluding all non-user specific video recommendations, playlists, etc.
-      * So that I can easily log out to keep my information secure.
