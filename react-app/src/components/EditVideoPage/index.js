@@ -26,6 +26,13 @@ function EditVideoPage() {
         }
       }, [sessionUser, history, video, videoId])
 
+    useEffect(() => {
+        if (video) {
+            setName(video.name)
+            setDescription(video.description)
+        }
+    }, [video])
+
     const [name, setName] = useState(video ? video.name : '');
     const [description, setDescription] = useState(video ? video.description : '');
     const [thumbnail, setThumbnail] = useState('');
