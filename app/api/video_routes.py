@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Video, User
 from flask_login import current_user, login_required, current_user
 from ..forms.video_form import NewVideo
+from ..forms.edit_video_form import EditVideo
 from ..models import db
 from ..api.aws_video_helpers import get_unique_video_filename, upload_video_file_to_s3
 from ..api.aws_image_helpers import get_unique_image_filename, upload_image_file_to_s3
@@ -66,3 +67,35 @@ def get_all_videos():
 
     videos = Video.query.all()
     return {'Videos': [video.to_dict() for video in videos]}
+
+
+## ----------------------------------------  EDIT A VIDEO  ----------------------------------------
+@video_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_video(id):
+    """Allows the user to edit a video if the owner of the video is the logged in user"""
+
+    video = Video.query.get(id)
+    if not video:
+        return {'error': 'video not found'}
+
+    form = EditVideo()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        video.name = form.data['name']
+        video.description = form.data['description']
+
+        thumbnail = form.data['thumbnail']
+        print("thumbnail inside Edit Video route ======>>", thumbnail)
+        thumbnail.filename = get_unique_image_filename(thumbnail.filename)
+        print("thumbnail.filename inside Edit Video route ======>>", thumbnail.filename)
+        thumbnail_upload = upload_image_file_to_s3(thumbnail)
+        print("thumbnail_upload inside Edit Video route ======>>", thumbnail_upload)
+
+        video.thumbnail = thumbnail_upload['url']
+
+        db.session.commit()
+        return video.to_dict()
+
+    return { "errors": form.errors}

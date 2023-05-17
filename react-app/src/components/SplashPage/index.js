@@ -19,8 +19,8 @@ function SplashPage() {
     // console.log('videos', videos)
 
     const videoList = videosArr.map(video => (
-        <NavLink to={`/videos/${video.id}`}>
-            <div className="single-video" key={video.id}>
+        <NavLink key={video.id} to={`/videos/${video.id}`}>
+            <div className="single-video">
                 <img src={video.thumbnail}/>
             </div>
         </NavLink>

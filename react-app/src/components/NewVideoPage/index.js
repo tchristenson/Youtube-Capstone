@@ -98,7 +98,7 @@ function NewVideoPage() {
     }, [name, content, thumbnail])
 
     return (
-        <div className="newVideoForm">
+        <div className="new-video-form">
             <h2 className="form-header">Upload videos</h2>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
@@ -118,7 +118,6 @@ function NewVideoPage() {
                     <label>{'Title (required)'}</label>
                     <input
                         type="text"
-                        name="name"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
                         required={true}

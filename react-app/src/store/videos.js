@@ -4,6 +4,7 @@
 const UPLOAD_VIDEO = 'videos/UPLOAD_VIDEO'
 const GET_SINGLE_VIDEO = 'videos/GET_SINGLE_VIDEO'
 const GET_ALL_VIDEOS = 'videos/GET_ALL_VIDEOS'
+const EDIT_VIDEO = 'videos/EDIT_VIDEO'
 
 
 const uploadVideoAction = video => {
@@ -24,6 +25,13 @@ const getAllVideosAction = videos => {
     return {
         type: GET_ALL_VIDEOS,
         videos
+    }
+}
+
+const editVideoAction = video => {
+    return {
+        type: EDIT_VIDEO,
+        video
     }
 }
 
@@ -65,6 +73,20 @@ export const getAllVideosThunk = () => async (dispatch) => {
     }
 }
 
+export const editVideoThunk = video => async (dispatch) => {
+
+    const videoId = parseInt(video.get('id'))
+    const response = await fetch(`/api/videos/${videoId}/edit`, {
+        method: 'PUT',
+        body: video
+    })
+    if (response.ok) {
+        const video = await response.json()
+        dispatch(editVideoAction(video))
+        return video
+    }
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -82,6 +104,10 @@ const videoReducer = (state = {}, action) => {
         case GET_ALL_VIDEOS:
             newState = {...state}
             action.videos.Videos.forEach(video => newState[video.id] = video)
+            return newState
+        case EDIT_VIDEO:
+            newState = {...state}
+            newState[action.video.id] = action.video
             return newState
         default:
             return state

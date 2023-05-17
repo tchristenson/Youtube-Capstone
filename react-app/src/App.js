@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import NewVideoPage from './components/NewVideoPage'
 import SingleVideoPage from "./components/SingleVideoPage";
 import SplashPage from "./components/SplashPage";
+import EditVideoPage from "./components/EditVideoPage"
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/videos/:videoId">
             <SingleVideoPage />
+          </Route>
+          <Route exact path="/videos/:videoId/edit">
+            <EditVideoPage />
           </Route>
           <Route exact path="/">
             <SplashPage />
