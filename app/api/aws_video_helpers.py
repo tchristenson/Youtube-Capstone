@@ -5,7 +5,7 @@ import uuid
 
 BUCKET_NAME = os.environ.get("S3_VIDEO_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
-ALLOWED_EXTENSIONS = {"mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf",
+ALLOWED_VIDEO_EXTENSIONS = {"mp4", "mov", "wmv", "avi", "avchd", "flv", "f4v", "swf",
                       "mkv", "webm", "html5", "mpeg1", "mpeg2", "mpeg4", "3gp",
                       "ogg", "m4v", "mp4v", "webm"}
 

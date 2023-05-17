@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from sqlalchemy.schema import ForeignKey, func
+from sqlalchemy.schema import ForeignKey
+from sqlalchemy import func
 
 class Video(db.Model):
     __tablename__ = 'videos'
