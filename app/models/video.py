@@ -12,6 +12,7 @@ class Video(db.Model):
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     # playlist_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('playlists.id')), nullable=True) ## Placeholder until playlists implemented
     name = db.Column(db.String(255), nullable=False, unique=True)
+    description = db.Column(db.String(500))
     content = db.Column(db.String, nullable=False)
     thumbnail = db.Column(db.String, nullable=False) ## Will be required for now, can possibly select frames from the video and make it automatic
     created_at = db.Column(db.DateTime, server_default=func.now(), nullable=False)
@@ -28,6 +29,7 @@ class Video(db.Model):
             'userId': self.user_id,
             #   'playlistId': self.playlist_id, ## Placeholder until playlists implemented
             'name': self.name,
+            'description': self.description,
             'content': self.content,
             'thumbnail': self.thumbnail,
             'createdAt': self.created_at,
