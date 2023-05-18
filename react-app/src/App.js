@@ -9,6 +9,7 @@ import NewVideoPage from './components/NewVideoPage'
 import SingleVideoPage from "./components/SingleVideoPage";
 import SplashPage from "./components/SplashPage";
 import EditVideoPage from "./components/EditVideoPage"
+import UserProfilePage from "./components/UserProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/users/:userId">
+            <UserProfilePage />
           </Route>
           <Route exact path="/videos/new">
             <NewVideoPage />

@@ -99,3 +99,18 @@ def edit_video(id):
         return video.to_dict()
 
     return { "errors": form.errors}
+
+
+## ----------------------------------------  DELETE A VIDEO  ----------------------------------------
+@video_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_video(id):
+    """Allows the user to delete a video if the owner of the video is the logged in user"""
+
+    video = Video.query.get(id)
+    if video.user_id == current_user.id:
+        db.session.delete(video)
+        db.session.commit()
+        return 'Delete Successful'
+    else:
+        return 'Must be video owner to delete video'
