@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import videoReducer from './videos'
 import userReducer from './users';
+import commentReducer from './comments';
 
 const rootReducer = combineReducers({
   session,
   videos: videoReducer,
-  users: userReducer
+  users: userReducer,
+  comments: commentReducer
 });
 
 
