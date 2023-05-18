@@ -49,10 +49,10 @@ YoohooTube is a video sharing website where users can upload & view videos, comm
 
 * Logged in users can subscribe to other users.
 
-### Comment Likes
+### Comment Likes (Likely post-graduation)
 
 * Logged in users can like their own comments and other user's comments.
 
-### Views
+### Views (Likely post-graduation)
 
 * Videos would display the number of views they've received from logged-in users.
