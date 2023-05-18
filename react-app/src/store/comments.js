@@ -2,6 +2,7 @@
 // ----------------------------------------  ACTIONS  ----------------------------------------
 
 const ADD_COMMENT = 'videos/ADD_COMMENT'
+const GET_COMMENTS_BY_VIDEO_ID = 'videos/GET_COMMENTS_BY_VIDEO_ID'
 
 
 const addCommentAction = comment => {
@@ -11,10 +12,63 @@ const addCommentAction = comment => {
     }
 }
 
+const getCommentsByVideoIdAction = comments => {
+    return {
+        type: GET_COMMENTS_BY_VIDEO_ID,
+        comments
+    }
+}
+
 
 
 // ----------------------------------------  THUNKS  ----------------------------------------
 
 export const addCommentThunk = comment => async (dispatch) => {
-    // Need to make backend route
+    console.log('checking if I am inside the addCommentThunk')
+    for (let key of comment.entries()) {
+        console.log('formData inside thunk', key[0] + '----->' + key[1]);
+      }
+    const response = await fetch('/api/comments/new', {
+        method: 'POST',
+        body: comment
+    })
+    console.log('repsonse inside of thunk', response)
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(addCommentAction(comment))
+        return comment
+    }
 }
+
+export const getCommentsByVideoIdThunk = videoId => async (dispatch) => {
+    console.log('videoId inside getCommentsByVideoIdThunk', videoId)
+    const response = await fetch(`/api/comments/${videoId}`)
+    if (response.ok) {
+        const comments = await response.json()
+        console.log('response.json() inside getCommentsByVideoIdThunk', comments)
+        dispatch(getCommentsByVideoIdAction(comments))
+        return comments
+    }
+}
+
+
+
+// ----------------------------------------  REDUCER  ----------------------------------------
+
+const commentReducer = (state = {}, action) => {
+    let newState
+    switch(action.type) {
+        case ADD_COMMENT:
+            newState = {...state}
+            newState[action.comment.id] = action.comment
+            return newState
+        case GET_COMMENTS_BY_VIDEO_ID:
+            newState = {...state}
+            action.comments.Comments.forEach(comment => newState[comment.id] = comment)
+            return newState
+        default:
+            return state
+    }
+}
+
+export default commentReducer
