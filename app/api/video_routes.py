@@ -48,7 +48,7 @@ def add_video():
         db.session.commit()
         return video.to_dict()
 
-    return { "errors": form.errors}
+    return { "errors": form.errors }
 
 
 ## ----------------------------------------  GET SINGLE VIDEO BY ID  ----------------------------------------
