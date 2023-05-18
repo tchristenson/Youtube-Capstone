@@ -21,11 +21,11 @@ function DeleteVideoModal({videoId}) {
     }
 
     return (
-        <div className="delete-song-div">
+        <div>
             <h1 className="modalText">Delete forever</h1>
             <form onSubmit={handleDelete}>
-                <button className="confirm-song-delete" type="submit">Delete</button>
-                <button className="decline-song-delete" onClick={closeModal}>Cancel</button>
+                <button type="submit">Delete</button>
+                <button onClick={closeModal}>Cancel</button>
             </form>
         </div>
 
