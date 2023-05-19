@@ -20,22 +20,19 @@ function EditDeleteCommentModal({comment}) {
 
     return (
         <>
-        {sessionUser.id === comment.userId && (
-            <div>
-                <form onSubmit={handleEdit}>
-                    <button onClick={closeModal} type="submit">Edit</button>
-                </form>
-                <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
-            </div>
-        )}
-
-        {sessionUser.id !== comment.userId && (
-            <div>
-                <button className="unauthorized-icon" onClick={closeModal}>Report</button>
-            </div>
-        )}
-
-
+            {sessionUser && sessionUser.id === comment.userId && (
+                <div>
+                    <form onSubmit={handleEdit}>
+                        <button onClick={closeModal} type="submit">Edit</button>
+                    </form>
+                    <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
+                </div>
+            )}
+            {sessionUser && sessionUser.id !== comment.userId && (
+                <div>
+                    <button className="unauthorized-icon" onClick={closeModal}>Report</button>
+                </div>
+            )}
         </>
     )
 }

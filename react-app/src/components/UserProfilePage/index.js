@@ -17,7 +17,7 @@ function UserProfilePage() {
     const user = useSelector(state => state.users[userId])
     const allVideos = useSelector(state => state.videos)
 
-    useEffect(() => { // do i need this?
+    useEffect(() => {
         dispatch(getAllVideosThunk())
         dispatch(getSingleUserThunk(userId))
     }, [dispatch, userId])

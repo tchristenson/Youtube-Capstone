@@ -6,6 +6,7 @@ import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
 import EditDeleteCommentModal from "../EditDeleteCommentModal";
 import OpenModalIcon from "../OpenModalIcon";
+import LoginFormModal from "../LoginFormModal";
 
 function SingleVideoPage() {
 
@@ -19,6 +20,8 @@ function SingleVideoPage() {
 
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
+    const sessionUser = useSelector(state => state.session.user)
+
     if (!video) return null
 
     const commentsArr = Object.values(comments)
@@ -41,7 +44,12 @@ function SingleVideoPage() {
                     {commentsArr.map(comment => (
                         <div key={comment.id}>
                             <li>{comment.content}</li>
-                            <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                                {sessionUser && (
+                                <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                            )}
+                                {!sessionUser && (
+                                <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
+                            )}
                         </div>
                     ))}
                 </ul>
