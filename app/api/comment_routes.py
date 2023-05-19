@@ -37,12 +37,28 @@ def add_comment():
 def get_comments_by_video_id(id):
     """Returns all comments for a specific video"""
 
-    print('Checking if I am inside the get_comments_by_video_id route')
     print('id ==============>>>>>>>>>>>>>>>>>>>>', id)
-    comments = Comment.query.filter(Comment.video_id == Video.id).all()
+    video = Video.query.get(id)
+    comments = Comment.query.filter(Comment.video_id == video.id).all()
+    # comments = db.session.query(Comment).join(Video).filter(Comment.video_id == Video.id)
     print('comments ==============>>>>>>>>>>>>>>>>>>>>', comments)
 
     if comments is None or len(comments) == 0:
         return {'Comments': []}
 
     return {'Comments': [comment.to_dict() for comment in comments]}
+
+
+## ----------------------------------------  DELETE A COMMENT  ----------------------------------------
+@comment_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    """Allows the user to delete a comment if the owner of the comment is the logged in user"""
+
+    comment = Comment.query.get(id)
+    if comment.user_id == current_user.id:
+        db.session.delete(comment)
+        db.session.commit()
+        return 'Delete Successful'
+    else:
+        return 'Must be comment owner to delete comment'

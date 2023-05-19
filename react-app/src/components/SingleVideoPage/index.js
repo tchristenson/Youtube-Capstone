@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
+import EditDeleteCommentModal from "../EditDeleteCommentModal";
+import OpenModalIcon from "../OpenModalIcon";
 
 function SingleVideoPage() {
 
@@ -35,11 +37,14 @@ function SingleVideoPage() {
             </video>
             <NewComment video={video}/>
             <div className="all-comments-container">
-            <ul className="comment-container">
-                {commentsArr.map(comment => (
-                    <li key={comment.id}>{comment.content}</li>
-                ))}
-            </ul>
+                <ul className="comment-container">
+                    {commentsArr.map(comment => (
+                        <div key={comment.id}>
+                            <li>{comment.content}</li>
+                            <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                        </div>
+                    ))}
+                </ul>
             </div>
         </>
     )

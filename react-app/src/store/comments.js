@@ -1,8 +1,9 @@
 
 // ----------------------------------------  ACTIONS  ----------------------------------------
 
-const ADD_COMMENT = 'videos/ADD_COMMENT'
-const GET_COMMENTS_BY_VIDEO_ID = 'videos/GET_COMMENTS_BY_VIDEO_ID'
+const ADD_COMMENT = 'comments/ADD_COMMENT'
+const GET_COMMENTS_BY_VIDEO_ID = 'comments/GET_COMMENTS_BY_VIDEO_ID'
+const DELETE_COMMENT = 'comments/DELETE_COMMENT'
 
 
 const addCommentAction = comment => {
@@ -16,6 +17,13 @@ const getCommentsByVideoIdAction = comments => {
     return {
         type: GET_COMMENTS_BY_VIDEO_ID,
         comments
+    }
+}
+
+const deleteCommentAction = commentId => {
+    return {
+        type: DELETE_COMMENT,
+        commentId
     }
 }
 
@@ -51,6 +59,16 @@ export const getCommentsByVideoIdThunk = videoId => async (dispatch) => {
     }
 }
 
+export const deleteCommentThunk = commentId => async (dispatch) => {
+    const response = await fetch (`/api/comments/${commentId}/delete`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        dispatch(deleteCommentAction(commentId))
+        return {'message': 'delete successful'}
+    }
+}
+
 
 
 // ----------------------------------------  REDUCER  ----------------------------------------
@@ -65,6 +83,10 @@ const commentReducer = (state = {}, action) => {
         case GET_COMMENTS_BY_VIDEO_ID:
             newState = {...state}
             action.comments.Comments.forEach(comment => newState[comment.id] = comment)
+            return newState
+        case DELETE_COMMENT:
+            newState = {...state}
+            delete newState[action.commentId]
             return newState
         default:
             return state
