@@ -37,14 +37,14 @@ function SingleVideoPage() {
             </video>
             <NewComment video={video}/>
             <div className="all-comments-container">
-            <ul className="comment-container">
-                {commentsArr.map(comment => (
-                    <div key={comment.id}>
-                        <li>{comment.content}</li>
-                        <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
-                    </div>
-                ))}
-            </ul>
+                <ul className="comment-container">
+                    {commentsArr.map(comment => (
+                        <div key={comment.id}>
+                            <li>{comment.content}</li>
+                            <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                        </div>
+                    ))}
+                </ul>
             </div>
         </>
     )
