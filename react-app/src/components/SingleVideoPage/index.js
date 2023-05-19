@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
-import EditDeleteCommentModal from "../EditDeleteCommentModal";
-import OpenModalIcon from "../OpenModalIcon";
-import LoginFormModal from "../LoginFormModal";
+import CommentList from "../CommentList/CommentList";
 
 function SingleVideoPage() {
 
@@ -25,11 +23,9 @@ function SingleVideoPage() {
     if (!video) return null
 
     const commentsArr = Object.values(comments)
-    console.log('commentsArr inside SingleVideoPage', commentsArr)
-
-
-    console.log('video inside SingleVideoPage', video)
-    console.log('comments inside SingleVideoPage', comments)
+    // console.log('commentsArr inside SingleVideoPage', commentsArr)
+    // console.log('video inside SingleVideoPage', video)
+    // console.log('comments inside SingleVideoPage', comments)
 
     return (
         <>
@@ -40,19 +36,7 @@ function SingleVideoPage() {
             </video>
             <NewComment video={video}/>
             <div className="all-comments-container">
-                <ul className="comment-container">
-                    {commentsArr.map(comment => (
-                        <div key={comment.id}>
-                            <li>{comment.content}</li>
-                                {sessionUser && (
-                                <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
-                            )}
-                                {!sessionUser && (
-                                <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
-                            )}
-                        </div>
-                    ))}
-                </ul>
+                <CommentList video={video} commentsArr={commentsArr} sessionUser={sessionUser}/>
             </div>
         </>
     )

@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Comment, User, Video
 from flask_login import current_user, login_required, current_user
 from ..forms.comment_form import NewComment
+from ..forms.edit_comment_form import EditComment
 from ..models import db
 
 comment_routes = Blueprint('comments', __name__)
@@ -62,3 +63,25 @@ def delete_comment(id):
         return 'Delete Successful'
     else:
         return 'Must be comment owner to delete comment'
+
+
+## ----------------------------------------  EDIT A COMMENT  ----------------------------------------
+@comment_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_comment(id):
+    """Allows the user to edit a comment if the owner of the comment is the logged in user"""
+
+    comment = Comment.query.get(id)
+    if not comment:
+        return {'error': 'comment not found'}
+
+    form = EditComment()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        comment.content = form.data['content']
+
+        db.session.commit()
+        return comment.to_dict()
+
+    return { 'errors': form.errors }
