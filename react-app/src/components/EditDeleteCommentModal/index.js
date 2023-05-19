@@ -1,11 +1,16 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import DeleteCommentModal from "../DeleteCommentModal";
+import './EditDeleteCommentModal.css'
 
 
-function EditDeleteCommentModal() {
+
+function EditDeleteCommentModal({video, comment}) {
     const dispatch = useDispatch()
-
     const {closeModal} = useModal()
+
+    const sessionUser = useSelector(state => state.session.user)
 
     const handleEdit = async (e) => {
         e.preventDefault()
@@ -13,25 +18,24 @@ function EditDeleteCommentModal() {
 
     }
 
-    const handleDelete = async (e) => {
-        e.preventDefault()
-
-    }
-
-
     return (
         <>
+        {sessionUser.id === video.userId && (
             <div>
                 <form onSubmit={handleEdit}>
-                    <button type="submit">Edit</button>
+                    <button onClick={closeModal} type="submit">Edit</button>
                 </form>
+                <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
             </div>
+        )}
 
+        {sessionUser.id !== video.userId && (
             <div>
-                <form onSubmit={handleDelete}>
-                <button onClick={closeModal}>Delete</button>
-                </form>
+                <button className="unauthorized-icon" onClick={closeModal}>Report</button>
             </div>
+        )}
+
+
         </>
     )
 }

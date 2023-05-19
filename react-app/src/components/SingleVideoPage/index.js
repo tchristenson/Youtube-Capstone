@@ -39,10 +39,10 @@ function SingleVideoPage() {
             <div className="all-comments-container">
             <ul className="comment-container">
                 {commentsArr.map(comment => (
-                    <>
-                        <li key={comment.id}>{comment.content}</li>
-                        <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video}/>}></OpenModalIcon>
-                    </>
+                    <div key={comment.id}>
+                        <li>{comment.content}</li>
+                        <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                    </div>
                 ))}
             </ul>
             </div>
