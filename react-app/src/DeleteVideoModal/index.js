@@ -1,12 +1,10 @@
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useModal } from "../context/Modal";
 import { deleteVideoThunk } from "../store/videos";
 
 
 function DeleteVideoModal({videoId}) {
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const { closeModal } = useModal();
 

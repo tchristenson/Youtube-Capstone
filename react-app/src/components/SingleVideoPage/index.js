@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import EditDeleteCommentModal from "../EditDeleteCommentModal";
+import OpenModalIcon from "../OpenModalIcon";
 
 function SingleVideoPage() {
 
@@ -41,8 +41,7 @@ function SingleVideoPage() {
                 {commentsArr.map(comment => (
                     <>
                         <li key={comment.id}>{comment.content}</li>
-                        <i class="fa-solid fa-ellipsis-vertical"></i>
-
+                        <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video}/>}></OpenModalIcon>
                     </>
                 ))}
             </ul>
