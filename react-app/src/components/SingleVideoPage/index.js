@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 function SingleVideoPage() {
 
@@ -37,7 +39,11 @@ function SingleVideoPage() {
             <div className="all-comments-container">
             <ul className="comment-container">
                 {commentsArr.map(comment => (
-                    <li key={comment.id}>{comment.content}</li>
+                    <>
+                        <li key={comment.id}>{comment.content}</li>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+
+                    </>
                 ))}
             </ul>
             </div>
