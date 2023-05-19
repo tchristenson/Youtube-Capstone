@@ -46,3 +46,18 @@ def get_comments_by_video_id(id):
         return {'Comments': []}
 
     return {'Comments': [comment.to_dict() for comment in comments]}
+
+
+## ----------------------------------------  DELETE A COMMENT  ----------------------------------------
+@comment_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_comment(id):
+    """Allows the user to delete a comment if the owner of the comment is the logged in user"""
+
+    comment = Comment.query.get(id)
+    if comment.user_id == current_user.id:
+        db.session.delete(comment)
+        db.session.commit()
+        return 'Delete Successful'
+    else:
+        return 'Must be comment owner to delete comment'
