@@ -1,19 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentThunk } from "../../store/comments";
-import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from "../LoginFormModal";
 import { useModal } from "../../context/Modal";
 
 
 
-function NewComment({video}) {
+function EditCommentModal({comment}) {
 
     const dispatch = useDispatch()
+    const {closeModal} = useModal()
 
     const sessionUser = useSelector(state => state.session.user)
 
-    const [content, setContent] = useState('')
+    const [content, setContent] = useState(comment.content)
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleSubmit = async (e) => {
@@ -24,7 +23,6 @@ function NewComment({video}) {
         const formData = new FormData()
 
         formData.append('content', content)
-        formData.append('video_id', video.id)
 
         for (let key of formData.entries()) {
             console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
@@ -46,24 +44,15 @@ function NewComment({video}) {
                         type="textarea"
                         onChange={(e) => setContent(e.target.value)}
                         value={content}
-                        placeholder="Add a comment..."
                         >
                     </input>
                 </div>
 
-                {sessionUser && <button disabled={content? false : true} type="submit">Comment</button>}
-                {!sessionUser &&
-                    <OpenModalButton
-                        buttonText="Comment"
-                        disabled={content? false : true}
-                        modalComponent={<LoginFormModal />}
-                        onClick={(e) => { e.preventDefault() }}
-                    />}
-
-                <button onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
+                <button disabled={content? false : true} type="submit">Save</button>
+                <button onClick={closeModal}>Cancel</button>
             </form>
         </div>
     )
 }
 
-export default NewComment
+export default EditCommentModal

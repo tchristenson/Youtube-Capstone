@@ -10,20 +10,21 @@ function CommentList({video, commentsArr, sessionUser}) {
         {commentsArr.map(comment => (
             <div key={comment.id}>
                 <li>
-                    {comment.content}
+                    <div>
+                        {comment.content}
 
-                    {sessionUser && (
-                        <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
-                    )}
+                        {sessionUser && (
+                            <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                        )}
 
-                    {!sessionUser && (
-                        <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
-                    )}
+                        {!sessionUser && (
+                            <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
+                        )}
+                    </div>
                 </li>
             </div>
         ))}
     </ul>
-
     )
 }
 
