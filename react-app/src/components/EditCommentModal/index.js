@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCommentThunk } from "../../store/comments";
+import { editCommentThunk } from "../../store/comments";
 import { useModal } from "../../context/Modal";
 
 
@@ -23,15 +23,17 @@ function EditCommentModal({comment}) {
         const formData = new FormData()
 
         formData.append('content', content)
+        formData.append('id', comment.id)
 
         for (let key of formData.entries()) {
             console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
           }
 
-        await dispatch(addCommentThunk(formData))
+        await dispatch(editCommentThunk(formData))
 
         setContent('')
         setHasSubmitted(false)
+        closeModal()
     }
 
     return (
