@@ -81,9 +81,13 @@ const commentReducer = (state = {}, action) => {
             newState[action.comment.id] = action.comment
             return newState
         case GET_COMMENTS_BY_VIDEO_ID:
-            newState = {...state}
-            action.comments.Comments.forEach(comment => newState[comment.id] = comment)
-            return newState
+            const updatedComments = action.comments.Comments.reduce((acc, comment) => {
+                acc[comment.id] = comment;
+                return acc;
+              }, {});
+            return {
+            ...updatedComments
+            };
         case DELETE_COMMENT:
             newState = {...state}
             delete newState[action.commentId]

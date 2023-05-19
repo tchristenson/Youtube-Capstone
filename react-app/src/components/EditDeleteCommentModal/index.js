@@ -6,7 +6,7 @@ import './EditDeleteCommentModal.css'
 
 
 
-function EditDeleteCommentModal({video, comment}) {
+function EditDeleteCommentModal({comment}) {
     const dispatch = useDispatch()
     const {closeModal} = useModal()
 
@@ -20,7 +20,7 @@ function EditDeleteCommentModal({video, comment}) {
 
     return (
         <>
-        {sessionUser.id === video.userId && (
+        {sessionUser.id === comment.userId && (
             <div>
                 <form onSubmit={handleEdit}>
                     <button onClick={closeModal} type="submit">Edit</button>
@@ -29,7 +29,7 @@ function EditDeleteCommentModal({video, comment}) {
             </div>
         )}
 
-        {sessionUser.id !== video.userId && (
+        {sessionUser.id !== comment.userId && (
             <div>
                 <button className="unauthorized-icon" onClick={closeModal}>Report</button>
             </div>
