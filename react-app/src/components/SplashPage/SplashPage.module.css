@@ -1,3 +1,11 @@
+.all-videos-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
 .h3link {
     text-decoration: none;
     color: whitesmoke;
@@ -13,6 +21,25 @@
     color: whitesmoke
   }
 
+.thumbnail {
+    height: 185px;
+    border-radius: 7%;
+    width: 310px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+}
+
+.profile-picture {
+    border-radius: 100%;
+    padding-right: 10px;
+}
+
 .video {
-    margin: 20px
+    padding: 10px
+}
+
+.video-info {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 5px 5px 0px;
 }

@@ -1,5 +1,7 @@
 .profile-dropdown {
   position: absolute;
+  background-color: black;
+  list-style: none;
 }
 
 .hidden {
@@ -15,4 +17,35 @@
     background-color: #282828;
     padding: 10px;
     height: 60px;
+}
+
+.profile-button {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 3px;
+    background-color: whitesmoke;
+    border-radius: 100%;
+    color: #282828;
+    font-weight: bold;
+}
+
+.dropdown {
+    position: relative;
+  }
+
+.dropdown button {
+cursor: pointer;
+border: none;
+}
+
+.profile-dropdown button {
+    cursor: pointer;
+    border: none;
+
+}
+
+.dropdown ul {
+position: absolute;
+top: 100%;
+right: 0
 }
