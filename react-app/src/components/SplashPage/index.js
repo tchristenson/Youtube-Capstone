@@ -15,20 +15,21 @@ function SplashPage() {
     if (!videos) return null
 
     const videosArr = Object.values(videos)
-    // console.log('videosArr', videosArr)
-    // console.log('videos', videos)
 
     const videoList = videosArr.map(video => (
-        <NavLink key={video.id} to={`/videos/${video.id}`}>
-            <div className="single-video">
+        <div className="video">
+            <NavLink key={video.id} to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
+            </NavLink>
+            <div className="video-details">
+                <h3>{video.name}</h3>
+                <h5>{video.user.username}</h5>
             </div>
-        </NavLink>
+        </div>
     ))
 
     return (
         <>
-            <h1>Splash Page</h1>
             <div className="all-videos-container">
                 {videoList}
             </div>
