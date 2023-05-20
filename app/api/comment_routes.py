@@ -40,7 +40,7 @@ def get_comments_by_video_id(id):
 
     print('id ==============>>>>>>>>>>>>>>>>>>>>', id)
     video = Video.query.get(id)
-    comments = Comment.query.filter(Comment.video_id == video.id).all()
+    comments = Comment.query.join(User).filter(Comment.video_id == video.id).all()
     # comments = db.session.query(Comment).join(Video).filter(Comment.video_id == Video.id)
     print('comments ==============>>>>>>>>>>>>>>>>>>>>', comments)
 
