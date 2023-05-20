@@ -5,3 +5,18 @@
 .hidden {
   display: none;
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0px;
+    margin: 0;
+    background-color: gray;
+    padding: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0
+}

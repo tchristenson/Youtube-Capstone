@@ -1,12 +1,13 @@
 import EditDeleteCommentModal from "../EditDeleteCommentModal";
 import OpenModalIcon from "../OpenModalIcon";
 import LoginFormModal from "../LoginFormModal";
+import styles from './CommentList.module.css'
 
 
 function CommentList({video, commentsArr, sessionUser}) {
 
     return (
-        <ul className="comment-container">
+    <ul className={styles.container}>
         {commentsArr.map(comment => (
             <div key={comment.id}>
                 <li>

@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
-import CommentList from "../CommentList/CommentList";
+import CommentList from "../CommentList";
 
 function SingleVideoPage() {
 
