@@ -20,10 +20,13 @@ function SplashPage() {
         <div className="video">
             <NavLink key={video.id} to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
+                <h3>{video.name}</h3>
             </NavLink>
             <div className="video-details">
-                <h3>{video.name}</h3>
-                <h5>{video.user.username}</h5>
+                {'Need to make a user page'}
+                <NavLink key={video.user.id} to={`/channels/${video.user.id}`}>
+                    <h5>{video.user.username}</h5>
+                </NavLink>
             </div>
         </div>
     ))

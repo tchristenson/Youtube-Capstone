@@ -10,6 +10,7 @@ import SingleVideoPage from "./components/SingleVideoPage";
 import SplashPage from "./components/SplashPage";
 import EditVideoPage from "./components/EditVideoPage"
 import UserProfilePage from "./components/UserProfilePage";
+import ChannelPage from "./components/ChannelPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route exact path="/videos/:videoId/edit">
             <EditVideoPage />
+          </Route>
+          <Route exact path="/channels/:channelId">
+            <ChannelPage />
           </Route>
           <Route exact path="/">
             <SplashPage />
