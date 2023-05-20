@@ -1,0 +1,58 @@
+.comment-input-container img,
+.comment-input-container div {
+    display: inline-block;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.main-video-column {
+    width: 80%;
+
+}
+
+.main-video-column h3 {
+    padding: 5px 0 5px 0;
+
+}
+
+.profile-picture {
+    border-radius: 100%;
+}
+
+.secondary-column {
+    width: 20%
+}
+
+.session-user-profile-picture {
+    border-radius: 100%;
+}
+
+.video-owner-details {
+
+}
+
+.video-owner-details img,
+.video-owner-details h5 {
+  display: inline-block;
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 5px 10px 5px 0;
+}
+
+.video-description {
+    background-color: rgb(54, 54, 54);
+    padding: 5px 0 5px 0;
+    margin: 10px 0 10px 0;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.video-description h6,
+.video-description p {
+    padding: 5px;
+}

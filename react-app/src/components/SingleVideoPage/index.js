@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getSingleVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import NewComment from "../NewComment";
 import CommentList from "../CommentList";
+import styles from './SingleVideoPage.module.css'
 
 function SingleVideoPage() {
 
@@ -28,17 +29,37 @@ function SingleVideoPage() {
     // console.log('comments inside SingleVideoPage', comments)
 
     return (
-        <>
-            <h1>Single Video Page</h1>
+        <div className={styles['container']}>
+            <div className={styles['main-video-column']}>
+                <video controls width="800" height="600">
+                    <source src={video.content}/>
+                </video>
+                <h3>{video.name}</h3>
+                <div className={styles['video-owner-details']}>
+                    <NavLink key={video.user.id} to={`/channels/${video.user.id}`}>
+                        <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                        <h5>{video.user.username}</h5>
+                    </NavLink>
 
-            <video controls width="800" height="600">
-                <source src={video.content}/>
-            </video>
-            <NewComment video={video}/>
-            <div className="all-comments-container">
-                <CommentList video={video} commentsArr={commentsArr} sessionUser={sessionUser}/>
+                </div>
+                <div className={styles['video-description']}>
+                    <h6>{video.name}</h6>
+                    <p>{video.description}</p>
+                </div>
+                <div className={styles['comment-input-container']}>
+                    <img className={styles['session-user-profile-picture']} src={sessionUser?.profilePicture}/>
+                    <div><NewComment video={video}/></div>
+
+                </div>
+                <div className="all-comments-container">
+                    <CommentList video={video} commentsArr={commentsArr} sessionUser={sessionUser}/>
+                </div>
             </div>
-        </>
+            <div className={styles['secondary-column']}>
+                <h1>Other videos to go in this column</h1>
+
+            </div>
+        </div>
     )
 }
 
