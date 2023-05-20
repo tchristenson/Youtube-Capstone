@@ -1,0 +1,18 @@
+.h3link {
+    text-decoration: none;
+    color: whitesmoke;
+  }
+
+.h5link {
+    text-decoration: none;
+    color: grey;
+    font-weight: 400;
+  }
+
+.h5link:hover {
+    color: whitesmoke
+  }
+
+.video {
+    margin: 20px
+}
