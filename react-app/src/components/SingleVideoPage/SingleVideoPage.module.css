@@ -1,7 +1,7 @@
-.comment-input-container img,
-.comment-input-container div {
-    display: inline-block;
-
+.comment-input-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 25fr);
+    padding: 10px 0 10px 0;
 }
 
 .container {
@@ -12,12 +12,15 @@
 
 .main-video-column {
     width: 80%;
-
+    padding: 10px;
 }
 
 .main-video-column h3 {
     padding: 5px 0 5px 0;
+}
 
+.main-video-column video {
+    width: 100%;
 }
 
 .profile-picture {
@@ -25,7 +28,8 @@
 }
 
 .secondary-column {
-    width: 20%
+    width: 20%;
+    padding: 10px;
 }
 
 .session-user-profile-picture {

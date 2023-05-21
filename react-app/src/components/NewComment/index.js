@@ -52,16 +52,18 @@ function NewComment({video}) {
                     </input>
                 </div>
 
-                {sessionUser && <button disabled={content? false : true} type="submit">Comment</button>}
-                {!sessionUser &&
-                    <OpenModalButton
-                        buttonText="Comment"
-                        disabled={content? false : true}
-                        modalComponent={<LoginFormModal />}
-                        onClick={(e) => { e.preventDefault() }}
-                    />}
+                <div>
+                    {sessionUser && <button disabled={content? false : true} type="submit">Comment</button>}
+                    {!sessionUser &&
+                        <OpenModalButton
+                            buttonText="Comment"
+                            disabled={content? false : true}
+                            modalComponent={<LoginFormModal />}
+                            onClick={(e) => { e.preventDefault() }}
+                        />}
 
-                <button onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
+                    <button onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
+                </div>
             </form>
         </div>
     )

@@ -31,7 +31,7 @@ function SingleVideoPage() {
     return (
         <div className={styles['container']}>
             <div className={styles['main-video-column']}>
-                <video controls width="800" height="600">
+                <video controls >
                     <source src={video.content}/>
                 </video>
                 <h3>{video.name}</h3>

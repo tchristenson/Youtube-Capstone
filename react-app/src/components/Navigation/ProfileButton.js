@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
     <div className="dropdown">
       <button className="profile-button" onClick={openMenu}>
         {/* <i className="fa-sharp fa-solid fa-user" /> */}
-        {user.firstName[0]}
+        {user?.firstName[0]}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
