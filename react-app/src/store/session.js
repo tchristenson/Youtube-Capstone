@@ -67,19 +67,14 @@ export const logout = () => async (dispatch) => {
 	}
 };
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (formData) => async (dispatch) => {
+    for (let key of formData.entries()) {
+        console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
+      }
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({
-			username,
-			email,
-			password,
-		}),
+		body: formData
 	});
-
 	if (response.ok) {
 		const data = await response.json();
 		dispatch(setUser(data));
