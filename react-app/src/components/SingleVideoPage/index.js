@@ -14,9 +14,9 @@ function SingleVideoPage() {
     const {videoId} = useParams()
 
     useEffect(() => {
-        dispatch(getSingleVideoThunk(videoId))
-        dispatch(getCommentsByVideoIdThunk(videoId))
         dispatch(getAllVideosThunk())
+        // dispatch(getSingleVideoThunk(videoId))
+        dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
 
     const video = useSelector(state => state.videos[videoId])
@@ -31,21 +31,21 @@ function SingleVideoPage() {
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
     console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
-    // console.log('video inside SingleVideoPage', video)
+    console.log('video inside SingleVideoPage', video)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (
-        <div className={styles['sidebar-video']}>
+        <div key={video.id} className={styles['sidebar-video']}>
             <div className={styles['sidebar-thumbnail']}>
-                <NavLink key={video.user.id} to={`/videos/${video.id}`}>
-                    <img src={video.thumbnail}/>
+                <NavLink  to={`/videos/${video.id}`}>
+                    <img src={video.thumbnail} alt="Video Thumbnail"/>
                 </NavLink>
             </div>
             <div className={styles['sidebar-video-details']}>
-                <NavLink key={video.id} to={`/videos/${video.id}`}>
+                <NavLink to={`/videos/${video.id}`}>
                     <h3 className={styles['h3link']}>{video.name}</h3>
                 </NavLink>
-                <NavLink key={video.user.id} to={`/channels/${video.user.id}`}>
+                <NavLink to={`/channels/${video.user.id}`}>
                     <h5 className={styles['h5link']}>{video.user.username}</h5>
                 </NavLink>
             </div>
