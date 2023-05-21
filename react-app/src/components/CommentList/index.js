@@ -11,8 +11,12 @@ function CommentList({video, commentsArr, sessionUser}) {
         {commentsArr.map(comment => (
             <div key={comment.id}>
                 <li>
-                    <div>
-                        {comment.content}
+                    <div className={styles['single-comment-container']}>
+                        <img src={comment.user.profilePicture}/>
+                        <div className={styles['comment-owner-info']}>
+                            <p>{comment.user.username}</p>
+                            <p>{comment.content}</p>
+                        </div>
 
                         {sessionUser && (
                             <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>

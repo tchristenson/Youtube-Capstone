@@ -4,6 +4,7 @@ import { addCommentThunk } from "../../store/comments";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import { useModal } from "../../context/Modal";
+import styles from './NewComment.module.css'
 
 
 
@@ -37,7 +38,7 @@ function NewComment({video}) {
     }
 
     return (
-        <div className="comment-container">
+        <div className={styles['comment-container']}>
             <form
                 onSubmit={(e) => handleSubmit(e)}
             >
