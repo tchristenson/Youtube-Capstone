@@ -18,20 +18,20 @@ function SplashPage() {
     const videosArr = Object.values(videos)
 
     const videoList = videosArr.map(video => (
-        <div className={styles.video}>
-            <NavLink key={video.id} to={`/videos/${video.id}`}>
+        <div key={video.id} className={styles.video}>
+            <NavLink  to={`/videos/${video.id}`}>
                 <img className={styles.thumbnail} src={video.thumbnail}/>
             </NavLink>
             <div className={styles['video-info']}>
-                <NavLink key={video.user.id} to={`/channels/${video.user.id}`}>
+                <NavLink to={`/channels/${video.user.id}`}>
                     <img className={styles['profile-picture']} src={video.user.profilePicture}/>
                 </NavLink>
-                <NavLink key={video.id} to={`/videos/${video.id}`}>
+                <NavLink to={`/videos/${video.id}`}>
                     <h3 className={styles.h3link}>{video.name}</h3>
                 </NavLink>
             </div>
             <div>
-                <NavLink key={video.user.id} to={`/channels/${video.user.id}`}>
+                <NavLink to={`/channels/${video.user.id}`}>
                     <h5 className={styles.h5link}>{video.user.username}</h5>
                 </NavLink>
             </div>
