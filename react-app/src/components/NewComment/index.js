@@ -44,6 +44,7 @@ function NewComment({video}) {
             >
                 <div>
                     <input
+                        className={styles['comment-input-box']}
                         type="textarea"
                         onChange={(e) => setContent(e.target.value)}
                         value={content}
@@ -52,8 +53,10 @@ function NewComment({video}) {
                     </input>
                 </div>
 
-                <div>
-                    {sessionUser && <button disabled={content? false : true} type="submit">Comment</button>}
+                <div className={styles['buttons']}>
+                    <button className={styles['cancel-button']} onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
+
+                    {sessionUser && <button className={content ? styles['submit-button-active'] : styles['submit-button']} disabled={content? false : true} type="submit">Comment</button>}
                     {!sessionUser &&
                         <OpenModalButton
                             buttonText="Comment"
@@ -61,8 +64,6 @@ function NewComment({video}) {
                             modalComponent={<LoginFormModal />}
                             onClick={(e) => { e.preventDefault() }}
                         />}
-
-                    <button onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
                 </div>
             </form>
         </div>
