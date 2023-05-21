@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCommentThunk } from "../../store/comments";
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
+import { useModal } from "../../context/Modal";
+import styles from './NewComment.module.css'
 
 
 
@@ -11,14 +15,12 @@ function NewComment({video}) {
     const sessionUser = useSelector(state => state.session.user)
 
     const [content, setContent] = useState('')
-    // const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setHasSubmitted(true)
-        // if (validationErrors.length) return alert('Your Post has errors, cannot submit!')
 
         const formData = new FormData()
 
@@ -29,31 +31,20 @@ function NewComment({video}) {
             console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
           }
 
-
-        // dispatch create comment thunk
         await dispatch(addCommentThunk(formData))
 
         setContent('')
-        // setValidationErrors([])
         setHasSubmitted(false)
     }
 
-    // useEffect(() => {
-    //     const errors = [];
-    //     if (!content) errors.push('Text required')
-    //     setValidationErrors(errors)
-    // }, [content])
-
     return (
-        <div className="comment-container">
-            <h2 className="form-header">Add a comment</h2>
-
+        <div className={styles['comment-container']}>
             <form
                 onSubmit={(e) => handleSubmit(e)}
-                // encType="multipart/form-data"
             >
                 <div>
                     <input
+                        className={styles['comment-input-box']}
                         type="textarea"
                         onChange={(e) => setContent(e.target.value)}
                         value={content}
@@ -62,9 +53,18 @@ function NewComment({video}) {
                     </input>
                 </div>
 
-                <button disabled={content? false : true} type="submit">Comment</button>
-                <button onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
+                <div className={styles['buttons']}>
+                    <button className={styles['cancel-button']} onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
 
+                    {sessionUser && <button className={content ? styles['submit-button-active'] : styles['submit-button']} disabled={content? false : true} type="submit">Comment</button>}
+                    {!sessionUser &&
+                        <OpenModalButton
+                            buttonText="Comment"
+                            disabled={content? false : true}
+                            modalComponent={<LoginFormModal />}
+                            onClick={(e) => { e.preventDefault() }}
+                        />}
+                </div>
             </form>
         </div>
     )

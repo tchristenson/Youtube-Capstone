@@ -12,12 +12,13 @@ function UserProfilePage() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {userId} = useParams()
+    console.log('userId', userId)
 
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
     const allVideos = useSelector(state => state.videos)
 
-    useEffect(() => { // do i need this?
+    useEffect(() => {
         dispatch(getAllVideosThunk())
         dispatch(getSingleUserThunk(userId))
     }, [dispatch, userId])

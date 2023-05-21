@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
+import styles from './SplashPage.module.css'
 
 function SplashPage() {
 
@@ -15,21 +16,31 @@ function SplashPage() {
     if (!videos) return null
 
     const videosArr = Object.values(videos)
-    // console.log('videosArr', videosArr)
-    // console.log('videos', videos)
 
     const videoList = videosArr.map(video => (
-        <NavLink key={video.id} to={`/videos/${video.id}`}>
-            <div className="single-video">
-                <img src={video.thumbnail}/>
+        <div key={video.id} className={styles.video}>
+            <NavLink  to={`/videos/${video.id}`}>
+                <img className={styles.thumbnail} src={video.thumbnail}/>
+            </NavLink>
+            <div className={styles['video-info']}>
+                <NavLink to={`/channels/${video.user.id}`}>
+                    <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                </NavLink>
+                <NavLink to={`/videos/${video.id}`}>
+                    <h3 className={styles.h3link}>{video.name}</h3>
+                </NavLink>
             </div>
-        </NavLink>
+            <div>
+                <NavLink to={`/channels/${video.user.id}`}>
+                    <h5 className={styles.h5link}>{video.user.username}</h5>
+                </NavLink>
+            </div>
+        </div>
     ))
 
     return (
         <>
-            <h1>Splash Page</h1>
-            <div className="all-videos-container">
+            <div className={styles['all-videos-container']}>
                 {videoList}
             </div>
 

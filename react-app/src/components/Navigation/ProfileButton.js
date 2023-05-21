@@ -5,6 +5,8 @@ import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useHistory } from "react-router-dom";
+// import styles from './Navigation.module.css';
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,8 +44,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div className="dropdown">
+      <button className="profile-button" onClick={openMenu}>
+        {/* <i className="fa-sharp fa-solid fa-user" /> */}
+        {user && user.profilePicture ? (
+            <img className='session-user-profile-picture' src={user?.profilePicture}/>
+        ) : (
+            <div className="session-user-profile-icon">{user?.firstName[0]}</div>
+        )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
@@ -51,7 +59,7 @@ function ProfileButton({ user }) {
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button onClick={handleLogout}>Sign Out</button>
             </li>
           </>
         ) : (
@@ -70,6 +78,7 @@ function ProfileButton({ user }) {
           </>
         )}
       </ul>
+    </div>
     </>
   );
 }

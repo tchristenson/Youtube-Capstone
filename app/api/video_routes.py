@@ -65,7 +65,7 @@ def get_single_video(id):
 def get_all_videos():
     """Displays all videos"""
 
-    videos = Video.query.all()
+    videos = Video.query.join(User, Video.user_id == User.id).all()
     return {'Videos': [video.to_dict() for video in videos]}
 
 

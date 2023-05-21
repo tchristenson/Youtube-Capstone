@@ -1,0 +1,77 @@
+.cancel-button {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.buttons button {
+    align-content: flex-end;
+}
+
+.comment-container {
+    width: 100%;
+}
+
+.comment-input-box {
+    width: 100%;
+    border: none;
+    padding: 5px 0 5px 0;
+    background-color: transparent;
+    color: whitesmoke;
+    border-bottom: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.comment-input-box:focus {
+    border-color: whitesmoke;
+  }
+
+.submit-button {
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.submit-button-active {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223);
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.submit-button-active:hover {
+    cursor: pointer;
+    background-color: rgb(108, 205, 244);
+    border: none;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}

@@ -4,6 +4,7 @@
 const ADD_COMMENT = 'comments/ADD_COMMENT'
 const GET_COMMENTS_BY_VIDEO_ID = 'comments/GET_COMMENTS_BY_VIDEO_ID'
 const DELETE_COMMENT = 'comments/DELETE_COMMENT'
+const EDIT_COMMENT = 'comments/EDIT_COMMENT'
 
 
 const addCommentAction = comment => {
@@ -24,6 +25,13 @@ const deleteCommentAction = commentId => {
     return {
         type: DELETE_COMMENT,
         commentId
+    }
+}
+
+const editCommentAction = comment => {
+    return {
+        type: EDIT_COMMENT,
+        comment
     }
 }
 
@@ -69,6 +77,19 @@ export const deleteCommentThunk = commentId => async (dispatch) => {
     }
 }
 
+export const editCommentThunk = comment => async (dispatch) => {
+    const commentId = parseInt(comment.get('id'))
+    const response = await fetch(`/api/comments/${commentId}/edit`, {
+        method: 'PUT',
+        body: comment
+    })
+    if (response.ok) {
+        const comment = await response.json()
+        dispatch(editCommentAction(comment))
+        return comment
+    }
+}
+
 
 
 // ----------------------------------------  REDUCER  ----------------------------------------
@@ -81,12 +102,20 @@ const commentReducer = (state = {}, action) => {
             newState[action.comment.id] = action.comment
             return newState
         case GET_COMMENTS_BY_VIDEO_ID:
-            newState = {...state}
-            action.comments.Comments.forEach(comment => newState[comment.id] = comment)
-            return newState
+            const updatedComments = action.comments.Comments.reduce((acc, comment) => {
+                acc[comment.id] = comment;
+                return acc;
+              }, {});
+            return {
+            ...updatedComments
+            };
         case DELETE_COMMENT:
             newState = {...state}
             delete newState[action.commentId]
+            return newState
+        case EDIT_COMMENT:
+            newState = {...state}
+            newState[action.comment.id] = action.comment
             return newState
         default:
             return state

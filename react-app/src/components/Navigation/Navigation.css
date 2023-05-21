@@ -1,7 +1,60 @@
 .profile-dropdown {
   position: absolute;
+  background-color: black;
+  list-style: none;
 }
 
 .hidden {
   display: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    align-items: center;
+    padding-left: 0px;
+    background-color: #282828;
+    padding: 10px;
+    height: 60px;
+}
+
+.profile-button {
+    background-color: #282828;
+}
+
+.dropdown {
+    position: relative;
+  }
+
+.dropdown button {
+cursor: pointer;
+border: none;
+}
+
+.profile-dropdown button {
+    cursor: pointer;
+    border: none;
+
+}
+
+.dropdown ul {
+    position: absolute;
+    top: 100%;
+    right: 0
+}
+
+.session-user-profile-picture {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+}
+
+.session-user-profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: red;
 }

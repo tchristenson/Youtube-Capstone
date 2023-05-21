@@ -33,5 +33,14 @@ class Video(db.Model):
             'content': self.content,
             'thumbnail': self.thumbnail,
             'createdAt': self.created_at,
-            'updatedAt': self.updated_at
+            'updatedAt': self.updated_at,
+            'user': {
+                'id': self.user.id,
+                'username': self.user.username,
+                'firstName': self.user.first_name,
+                'lastName': self.user.last_name,
+                'email': self.user.email,
+                'about': self.user.about,
+                'profilePicture': self.user.profile_picture
+            }
       }
