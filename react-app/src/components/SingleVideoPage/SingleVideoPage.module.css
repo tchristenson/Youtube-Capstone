@@ -75,6 +75,11 @@ a {
 
 .session-user-profile-picture {
     border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+    margin-right: 10px;
 }
 
 .video-owner-details {

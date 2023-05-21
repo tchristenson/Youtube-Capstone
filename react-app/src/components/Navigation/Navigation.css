@@ -20,13 +20,7 @@
 }
 
 .profile-button {
-    cursor: pointer;
-    font-size: 18px;
-    padding: 3px;
-    background-color: whitesmoke;
-    border-radius: 100%;
-    color: #282828;
-    font-weight: bold;
+    background-color: #282828;
 }
 
 .dropdown {
@@ -45,7 +39,22 @@ border: none;
 }
 
 .dropdown ul {
-position: absolute;
-top: 100%;
-right: 0
+    position: absolute;
+    top: 100%;
+    right: 0
+}
+
+.session-user-profile-picture {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+}
+
+.session-user-profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    background-color: red;
 }

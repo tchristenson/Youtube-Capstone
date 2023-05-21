@@ -47,7 +47,11 @@ function ProfileButton({ user }) {
     <div className="dropdown">
       <button className="profile-button" onClick={openMenu}>
         {/* <i className="fa-sharp fa-solid fa-user" /> */}
-        {user?.firstName[0]}
+        {user && user.profilePicture ? (
+            <img className='session-user-profile-picture' src={user?.profilePicture}/>
+        ) : (
+            <div className="session-user-profile-icon">{user?.firstName[0]}</div>
+        )}
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
