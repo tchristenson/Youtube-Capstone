@@ -27,7 +27,7 @@
     font-weight: bold;
 }
 
-.cancel-song {
+.cancel-video {
     cursor: pointer;
     margin-left: 10px;
     background-color: transparent;
@@ -36,7 +36,7 @@
     padding: 5px;
 }
 
-.cancel-song:hover {
+.cancel-video:hover {
     cursor: pointer;
     margin-right: 10px;
     background-color: rgb(65, 64, 64);
@@ -45,7 +45,6 @@
     color: whitesmoke;
     padding: 5px;
     font-weight: bold;
-
 }
 
 .dropzone {

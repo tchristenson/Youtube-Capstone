@@ -116,7 +116,7 @@ function EditVideoPage({video}) {
                 </div>
 
                 <div className={styles["thumbnail"]}>
-                    <label>Thumbnail</label>
+                    <label>{`Thumbnail (required):`}</label>
                     <input
                         type="file"
                         accept="image/*"

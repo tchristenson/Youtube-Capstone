@@ -88,6 +88,8 @@ function NewVideoPage() {
         setHasSubmitted(false)
         setFiles([])
 
+        closeModal()
+
         // history.push(`/videos/${newVideo.id}`)
     }
 
@@ -157,7 +159,7 @@ function NewVideoPage() {
                     onDrop={handleDrop}
                     >
 
-                    <label className={styles["dropzone-text"]}>{files ? 'File to be uploaded:' : 'Drag and drop a video file to upload'}</label>
+                    <label className={styles["dropzone-text"]}>{files.length ? 'File to be uploaded:' : 'Drag and drop a video file to upload'}</label>
                         {files && (
                             <>
                             <div className={styles["uploads"]}>
@@ -165,7 +167,7 @@ function NewVideoPage() {
                                 {Array.from(files).map((file, idx) =>
                                     <li key={idx}>
                                     {file.name}
-                                    <button className={styles["cancel-song"]} onClick={() => handleCancel(file)}>Cancel</button>
+                                    <button className={styles["cancel-video"]} onClick={() => handleCancel(file)}>Cancel</button>
                                     </li>)}
                                 </ul>
                             </div>

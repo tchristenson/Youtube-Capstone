@@ -11,6 +11,15 @@
     border: solid gray 1px;
 }
 
+button:hover {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+}
+
 .profile-information {
     display: grid;
     grid-template-columns: repeat(1, 2fr 10fr 2fr);
