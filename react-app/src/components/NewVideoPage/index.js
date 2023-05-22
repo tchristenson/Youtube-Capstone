@@ -88,7 +88,7 @@ function NewVideoPage() {
         setHasSubmitted(false)
         setFiles([])
 
-        history.push(`/videos/${newVideo.id}`)
+        // history.push(`/videos/${newVideo.id}`)
     }
 
     useEffect(() => {
