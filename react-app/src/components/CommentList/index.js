@@ -12,7 +12,7 @@ function CommentList({video, commentsArr, sessionUser}) {
             <div key={comment.id}>
                 <li>
                     <div className={styles['single-comment-container']}>
-                        <img src={comment.user.profilePicture}/>
+                        <img className={styles['profile-picture']} src={comment.user.profilePicture}/>
                         <div className={styles['comment-owner-info']}>
                             <p>{comment.user.username}</p>
                             <p>{comment.content}</p>

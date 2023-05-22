@@ -52,6 +52,8 @@
     width: 625px;
     height: 400px;
     margin: 20px 0 20px 0;
+    text-align: center;
+    align-items: center;
 }
 
 .dropzone-text {
@@ -122,4 +124,16 @@
 
 .uploads li {
     padding: 10px;
+}
+
+.upload-icon {
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+}
+
+.upload-icon i {
+    height: 50px;
 }

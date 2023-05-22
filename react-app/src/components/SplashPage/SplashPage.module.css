@@ -5,7 +5,6 @@ a {
 .all-videos-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     flex-wrap: wrap;
     margin: 20px;
 }
@@ -35,7 +34,11 @@ a {
 
 .profile-picture {
     border-radius: 100%;
-    padding-right: 10px;
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
 }
 
 .video {
