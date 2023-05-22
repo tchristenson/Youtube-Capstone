@@ -55,8 +55,8 @@ function SingleVideoPage() {
 
     return (
         <div className={styles['container']}>
-            <div className={styles['main-video-column']}>
-                <video controls >
+            <div key={video.id} className={styles['main-video-column']}>
+                <video  controls >
                     <source src={video.content}/>
                 </video>
                 <h3>{video.name}</h3>
