@@ -1,0 +1,42 @@
+.profile-information {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 10fr);
+}
+
+.profile-page-container {
+
+}
+
+.profile-videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.single-video {
+    padding: 10px;
+}
+
+.single-video img {
+    max-width: 100%;
+    height: 105px;
+    border-radius: 15px;
+    width: 190px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+
+}
+
+.single-video-details {
+    display: grid;
+    grid-template-columns: repeat(1, 25fr 1fr);
+    max-width: 100%;
+    padding-top: 5px;
+}
+
+.user-info-container h5 {
+    color: gray;
+    font-weight: normal;
+
+
+}

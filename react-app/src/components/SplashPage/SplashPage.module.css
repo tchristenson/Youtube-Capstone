@@ -27,7 +27,7 @@ a {
 
 .thumbnail {
     height: 185px;
-    border-radius: 7%;
+    border-radius: 20px;
     width: 310px;
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;

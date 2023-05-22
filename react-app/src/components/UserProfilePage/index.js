@@ -4,7 +4,10 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
 import OpenModalButton from "../OpenModalButton";
-import DeleteVideoModal from "../../DeleteVideoModal";
+import DeleteVideoModal from "../DeleteVideoModal";
+import styles from './UserProfilePage.module.css'
+import OpenModalIcon from "../OpenModalIcon";
+import EditDeleteVideoModal from "../EditDeleteVideoModal";
 
 
 function UserProfilePage() {
@@ -40,23 +43,52 @@ function UserProfilePage() {
     const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
 
     const userVideoList = userVideos.map(video => (
-        <>
-        <NavLink key={video.id} to={`/videos/${video.id}`}>
-            <div className="single-video">
+
+        <div key={video.id} className={styles["single-video"]}>
+            <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
+            </NavLink>
+            <div className={styles["single-video-details"]}>
+                <NavLink to={`/videos/${video.id}`}>
+                    <h3>{video.name}</h3>
+                </NavLink>
+                <OpenModalIcon modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
             </div>
-        </NavLink>
-        <OpenModalButton buttonText='Delete Video' modalComponent={<DeleteVideoModal videoId = {video.id}/>}></OpenModalButton>
-        </>
+        </div>
+
     ))
 
     return (
-        <>
-            <h1>User Profile Page</h1>
-            <div className="user-videos-container">
+
+
+        <div className={styles['profile-page-container']}>
+            <div className={styles['profile-information']}>
+                <div className={styles['profile-picture-container']}>
+                    <img className={styles['profile-picture']} src={sessionUser.profilePicture}/>
+
+                </div>
+                <div className={styles['user-info-container']}>
+                    <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
+                    <h5>{`${sessionUser.username}`}</h5>
+                    <h5>{`${userVideoList.length} videos`}</h5>
+                </div>
+            </div>
+
+            <div className={styles['profile-videos']}>
                 {userVideoList}
             </div>
-        </>
+
+            <div className={styles['profile-playlists']}>
+                <h2>Placeholder for Playlists</h2>
+
+            </div>
+
+            <div className={styles['profile-subscriptions']}>
+                <h2>Placeholder for Subscriptions</h2>
+
+            </div>
+        </div>
+
     )
 }
 

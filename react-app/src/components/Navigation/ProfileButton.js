@@ -4,8 +4,7 @@ import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
-import { useHistory } from "react-router-dom";
-// import styles from './Navigation.module.css';
+import { useHistory, NavLink } from "react-router-dom";
 
 
 function ProfileButton({ user }) {
@@ -58,6 +57,9 @@ function ProfileButton({ user }) {
           <>
             <li>{user.username}</li>
             <li>{user.email}</li>
+            <li>
+              <NavLink to={`/users/${user.id}`}>Your Channel</NavLink>
+            </li>
             <li>
               <button onClick={handleLogout}>Sign Out</button>
             </li>

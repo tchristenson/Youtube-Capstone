@@ -4,7 +4,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
 import OpenModalButton from "../OpenModalButton";
-import DeleteVideoModal from "../../DeleteVideoModal";
+import DeleteVideoModal from "../DeleteVideoModal";
 
 
 function ChannelPage() {

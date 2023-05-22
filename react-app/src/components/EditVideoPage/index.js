@@ -3,20 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editVideoThunk } from "../../store/videos";
 import { getSingleVideoThunk } from "../../store/videos";
+import styles from './EditVideoPage.module.css'
 
 
-function EditVideoPage() {
+function EditVideoPage({video}) {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const {videoId} = useParams()
+    // const {videoId} = useParams()
 
     const sessionUser = useSelector(state => state.session.user)
-    const video = useSelector(state => state.videos[videoId])
+    // const video = useSelector(state => state.videos[videoId])
 
-    useEffect(() => {
-        dispatch(getSingleVideoThunk(videoId))
-    }, [dispatch, videoId])
+    // useEffect(() => {
+    //     dispatch(getSingleVideoThunk(videoId))
+    // }, [dispatch, videoId])
 
     useEffect(() => {
         if (video) {
@@ -24,7 +25,7 @@ function EditVideoPage() {
               history.push('/')
             }
         }
-      }, [sessionUser, history, video, videoId])
+      }, [sessionUser, history, video])
 
     useEffect(() => {
         if (video) {
@@ -75,7 +76,7 @@ function EditVideoPage() {
     }, [name, thumbnail])
 
     return (
-        <div className="edit-video-form">
+        <div className={styles['edit-video-form']}>
             <h2 className="form-header">Video details</h2>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
