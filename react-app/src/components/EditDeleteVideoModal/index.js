@@ -21,14 +21,10 @@ function EditDeleteVideoModal({video}) {
     }
 
     return (
-        <>
-            {sessionUser && sessionUser.id === video.id && (
-                <div>
-                    <OpenModalButton buttonText='Edit' modalComponent={<EditVideoPage video={video}/>}></OpenModalButton>
-                    <OpenModalButton buttonText='Delete' modalComponent={<DeleteVideoModal video={video}/>}></OpenModalButton>
-                </div>
-            )}
-        </>
+        <div>
+            <OpenModalButton buttonText='Edit' modalComponent={<EditVideoPage video={video}/>}></OpenModalButton>
+            <OpenModalButton buttonText='Delete' modalComponent={<DeleteVideoModal video={video}/>}></OpenModalButton>
+        </div>
     )
 }
 

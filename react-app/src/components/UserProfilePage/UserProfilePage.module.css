@@ -11,7 +11,7 @@
     border: solid gray 1px;
 }
 
-button:hover {
+.buttons-container button:hover {
     background-color: transparent;
     padding: 12px;
     font-weight: bold;
