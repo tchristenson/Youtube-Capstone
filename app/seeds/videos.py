@@ -44,6 +44,20 @@ def seed_videos():
         content = 'http://capstone-video-bucket.s3.amazonaws.com/f3a5f6d7adf64ba5b29c8a2b03af821d.mov',
         thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/fc24945cabc342cd93b1ee14e85fa0b2.jpg'
     )
+    video7 = Video(
+        user_id = 1,
+        name = 'video7',
+        description = 'Here is a short description of video7',
+        content = 'http://capstone-video-bucket.s3.amazonaws.com/2ff58445a57f48b5958c6a4d0ead7b30.mov',
+        thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/7a700c3896c9443d8442918d30041313.jpg'
+    )
+    video8 = Video(
+        user_id = 2,
+        name = 'video8',
+        description = 'Here is a short description of video8',
+        content = 'http://capstone-video-bucket.s3.amazonaws.com/52d90cf5b54648d891272b18d24a3302.mov',
+        thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/1889641622b04a67b84338925579d892.jpg'
+    )
 
     db.session.add(video1)
     db.session.add(video2)
@@ -51,6 +65,8 @@ def seed_videos():
     db.session.add(video4)
     db.session.add(video5)
     db.session.add(video6)
+    db.session.add(video7)
+    db.session.add(video8)
     db.session.commit()
 
 

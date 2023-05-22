@@ -5,11 +5,32 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name='Demo', last_name='Lition', about='whatever', profile_picture='picture')
+        username='Demo',
+        email='demo@aa.io',
+        password='password',
+        first_name='Demo',
+        last_name='Lition',
+        about='A lover of all things art and culture. Embracing anonymity to freely express my thoughts and creativity. Join me on a journey of inspiration and exploration.',
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/ceecae0c93384ac8b5fb2356065239da.jpg'
+    )
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name='Marnie', last_name='Morning', about='whatever', profile_picture='picture')
+        username='marnie',
+        email='marnie@aa.io',
+        password='password',
+        first_name='Marnie',
+        last_name='Morning',
+        about='A passionate adventurer with an insatiable wanderlust. Finding joy in the unknown, I navigate twists and turns with an open mind. Join me as we embrace the thrill of discovery together.',
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/05fb17c6ef0846d0b28ee929665daf6d.jpg'
+    )
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name='Bobbie', last_name='Rickie', about='whatever', profile_picture='picture')
+        username='bobbie',
+        email='bobbie@aa.io',
+        password='password',
+        first_name='Bobbie',
+        last_name='Rickie',
+        about='Avid reader, writer, and thinker. Seeking solace in the digital realm, I share my musings on life, love, and the human experience. Join me in unraveling the intricacies of our existence through the power of words.',
+        profile_picture=''
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
