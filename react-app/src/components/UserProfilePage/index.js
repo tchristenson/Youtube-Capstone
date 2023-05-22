@@ -4,10 +4,10 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
 import OpenModalButton from "../OpenModalButton";
-import DeleteVideoModal from "../DeleteVideoModal";
 import styles from './UserProfilePage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
 import EditDeleteVideoModal from "../EditDeleteVideoModal";
+import NewVideoPage from "../NewVideoPage";
 
 
 function UserProfilePage() {
@@ -65,12 +65,16 @@ function UserProfilePage() {
             <div className={styles['profile-information']}>
                 <div className={styles['profile-picture-container']}>
                     <img className={styles['profile-picture']} src={sessionUser.profilePicture}/>
-
                 </div>
+
                 <div className={styles['user-info-container']}>
                     <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
                     <h5>{`${sessionUser.username}`}</h5>
                     <h5>{`${userVideoList.length} videos`}</h5>
+                </div>
+
+                <div className={styles['buttons-container']}>
+                    <OpenModalButton buttonText='Upload Video' modalComponent={<NewVideoPage/>}></OpenModalButton>
                 </div>
             </div>
 

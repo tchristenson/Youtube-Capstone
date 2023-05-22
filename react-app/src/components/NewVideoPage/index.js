@@ -2,11 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { uploadVideoThunk } from "../../store/videos";
+import styles from './NewVideoPage.module.css'
+import { useModal } from '../../context/Modal';
 
 function NewVideoPage() {
 
     const dispatch = useDispatch()
     const history = useHistory()
+    const { closeModal } = useModal();
 
     const sessionUser = useSelector(state => state.session.user)
 
@@ -98,8 +101,8 @@ function NewVideoPage() {
     }, [name, content, thumbnail])
 
     return (
-        <div className="new-video-form">
-            <h2 className="form-header">Upload videos</h2>
+        <div className={styles["new-video-form"]}>
+            <h2 className={styles["header"]}>Upload a video</h2>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
                     <h2>The following errors were found:</h2>
@@ -114,8 +117,8 @@ function NewVideoPage() {
                 onSubmit={(e) => handleSubmit(e)}
                 encType="multipart/form-data"
             >
-                <div>
-                    <label>{'Title (required)'}</label>
+                <div className={styles["input"]}>
+                    <label>{'Title (required):'}</label>
                     <input
                         type="text"
                         onChange={(e) => setName(e.target.value)}
@@ -125,8 +128,8 @@ function NewVideoPage() {
                     </input>
                 </div>
 
-                <div>
-                    <label>Description</label>
+                <div className={styles["input"]}>
+                    <label>Description:</label>
                     <input
                         type="textarea"
                         onChange={(e) => setDescription(e.target.value)}
@@ -135,8 +138,8 @@ function NewVideoPage() {
                     </input>
                 </div>
 
-                <div>
-                    <label>Thumbnail</label>
+                <div className={styles["thumbnail"]}>
+                    <label>{`Thumbnail (required):`}</label>
                     <input
                         type="file"
                         accept="image/*"
@@ -147,27 +150,27 @@ function NewVideoPage() {
                 </div>
 
                 <div>
-                    {files && (
-                        <>
-                        <div className="uploads">
-                            <ul>
-                            {Array.from(files).map((file, idx) =>
-                                <li key={idx}>
-                                {file.name}
-                                <button className="cancel-song" onClick={() => handleCancel(file)}>Cancel</button>
-                                </li>)}
-                            </ul>
-                        </div>
-                        </>
-                    )}
 
                     <div
-                    className="dropzone"
+                    className={styles["dropzone"]}
                     onDragOver={handleDragOver}
                     onDrop={handleDrop}
                     >
 
-                    <label className="dropdown-text">Drag and drop video files to upload</label>
+                    <label className={styles["dropzone-text"]}>{files ? 'File to be uploaded:' : 'Drag and drop a video file to upload'}</label>
+                        {files && (
+                            <>
+                            <div className={styles["uploads"]}>
+                                <ul>
+                                {Array.from(files).map((file, idx) =>
+                                    <li key={idx}>
+                                    {file.name}
+                                    <button className={styles["cancel-song"]} onClick={() => handleCancel(file)}>Cancel</button>
+                                    </li>)}
+                                </ul>
+                            </div>
+                            </>
+                        )}
                     <input
                         type="file"
                         accept="video/*"
@@ -179,7 +182,16 @@ function NewVideoPage() {
 
                 </div>
 
-                <button type="submit">Upload Video</button>
+            <div className={styles['buttons-container']}>
+                <button className={styles['cancel-button']} onClick={(e) => {
+                    e.preventDefault(); setContent(''); setDescription(''); setName(''); setThumbnail(''); closeModal() }}
+                    type="submit">Cancel</button>
+                <button
+                    className={content && name && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
+                    disabled={content && name && thumbnail? false : true}
+                    type="submit">Upload Video</button>
+
+            </div>
 
             </form>
 
