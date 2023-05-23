@@ -45,17 +45,24 @@ function ProfileButton({ user }) {
     <>
     <div className="dropdown">
       <button className="profile-button" onClick={openMenu}>
-        {user && user.profilePicture ? (
+        {!user &&
+            <div className='sign-up'>
+                <i class="fa-solid fa-user-plus"></i>
+                <h4>Sign In</h4>
+            </div>
+        }
+        {user && user.profilePicture &&
             <img className='session-user-profile-picture' src={user.profilePicture}/>
-        ) : (
-            <h3 className='profile-icon'>{user.username[0]}</h3>
-        )}
+        }
+        {user && !user.profilePicture &&
+            <h3 className='profile-icon'>{user?.username[0]}</h3>
+        }
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+            <li>{`${user.firstName} ${user.lastName}`}</li>
             <li>{user.username}</li>
-            <li>{user.email}</li>
             <li>
               <NavLink to={`/users/${user.id}`}>Your Channel</NavLink>
             </li>
