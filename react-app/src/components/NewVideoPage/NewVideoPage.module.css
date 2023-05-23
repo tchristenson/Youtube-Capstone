@@ -1,0 +1,139 @@
+.buttons-container {
+    text-align: right;
+}
+
+.buttons-container button {
+    padding: 5px;
+}
+
+.cancel-button {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.cancel-video {
+    cursor: pointer;
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+}
+
+.cancel-video:hover {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.dropzone {
+    border: 1px dashed whitesmoke;
+    width: 625px;
+    height: 400px;
+    margin: 20px 0 20px 0;
+    text-align: center;
+    align-items: center;
+}
+
+.dropzone-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.header {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+.input input {
+    width: 100%;
+    border: none;
+    padding: 5px 0 5px 0;
+    background-color: transparent;
+    color: whitesmoke;
+    border-bottom: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.new-video-form {
+    background-color: #282828;
+    color: whitesmoke;
+    padding: 15px
+}
+
+.submit-button {
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.submit-button-active {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223);
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.submit-button-active:hover {
+    cursor: pointer;
+    background-color: rgb(108, 205, 244);
+    border: none;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.thumbnail {
+    margin-top: 10px;
+}
+
+.thumbnail label {
+    padding-right: 10px;
+}
+
+.uploads li {
+    padding: 10px;
+}
+
+.upload-icon {
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+}
+
+.upload-icon i {
+    height: 50px;
+}

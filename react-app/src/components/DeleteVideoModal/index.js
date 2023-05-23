@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
-import { useModal } from "../context/Modal";
-import { deleteVideoThunk } from "../store/videos";
+import { useModal } from "../../context/Modal";
+import { deleteVideoThunk } from "../../store/videos";
+import styles from './DeleteVideoModal.module.css'
 
 
 function DeleteVideoModal({videoId}) {
@@ -19,7 +20,7 @@ function DeleteVideoModal({videoId}) {
     }
 
     return (
-        <div>
+        <div className={styles['delete-video-form']}>
             <h1 className="modalText">Delete forever</h1>
             <form onSubmit={handleDelete}>
                 <button type="submit">Delete</button>

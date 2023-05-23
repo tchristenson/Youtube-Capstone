@@ -3,20 +3,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { editVideoThunk } from "../../store/videos";
 import { getSingleVideoThunk } from "../../store/videos";
+import styles from './EditVideoPage.module.css'
+import { useModal } from '../../context/Modal';
 
 
-function EditVideoPage() {
+function EditVideoPage({video}) {
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const {videoId} = useParams()
+    const { closeModal } = useModal();
+    // const {videoId} = useParams()
 
     const sessionUser = useSelector(state => state.session.user)
-    const video = useSelector(state => state.videos[videoId])
+    // const video = useSelector(state => state.videos[videoId])
 
-    useEffect(() => {
-        dispatch(getSingleVideoThunk(videoId))
-    }, [dispatch, videoId])
+    // useEffect(() => {
+    //     dispatch(getSingleVideoThunk(videoId))
+    // }, [dispatch, videoId])
 
     useEffect(() => {
         if (video) {
@@ -24,7 +27,7 @@ function EditVideoPage() {
               history.push('/')
             }
         }
-      }, [sessionUser, history, video, videoId])
+      }, [sessionUser, history, video])
 
     useEffect(() => {
         if (video) {
@@ -75,8 +78,8 @@ function EditVideoPage() {
     }, [name, thumbnail])
 
     return (
-        <div className="edit-video-form">
-            <h2 className="form-header">Video details</h2>
+        <div className={styles['edit-video-form']}>
+            <h2 className={styles["header"]}>Video details</h2>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
                     <h2>The following errors were found:</h2>
@@ -91,7 +94,7 @@ function EditVideoPage() {
                 onSubmit={(e) => handleSubmit(e)}
                 encType="multipart/form-data"
             >
-                <div>
+                <div className={styles["input"]}>
                     <label>{'Title (required)'}</label>
                     <input
                         type="text"
@@ -102,7 +105,7 @@ function EditVideoPage() {
                     </input>
                 </div>
 
-                <div>
+                <div className={styles["input"]}>
                     <label>Description</label>
                     <input
                         type="textarea"
@@ -112,8 +115,8 @@ function EditVideoPage() {
                     </input>
                 </div>
 
-                <div>
-                    <label>Thumbnail</label>
+                <div className={styles["thumbnail"]}>
+                    <label>{`Thumbnail (required):`}</label>
                     <input
                         type="file"
                         accept="image/*"
@@ -123,7 +126,16 @@ function EditVideoPage() {
                     </input>
                 </div>
 
-                <button type="submit">Save</button>
+                <div className={styles['buttons-container']}>
+                <button className={styles['cancel-button']} onClick={(e) => {
+                    e.preventDefault(); setDescription(''); setName(''); setThumbnail(''); closeModal() }}
+                    type="submit">Cancel</button>
+                <button
+                    className={name && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
+                    disabled={name && thumbnail? false : true}
+                    type="submit">Save</button>
+
+            </div>
 
             </form>
         </div>

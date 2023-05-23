@@ -5,15 +5,47 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password', first_name='Demo', last_name='Lition', about='whatever', profile_picture='picture')
+        username='007',
+        email='demo@aa.io',
+        password='password',
+        first_name='James',
+        last_name='Bond',
+        about='I am James Bond, the renowned secret agent known for my impeccable style, quick wit, and daring adventures. From foiling villains to captivating hearts, I navigate the world of espionage with unmatched suave sophistication.',
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/ceecae0c93384ac8b5fb2356065239da.jpg'
+    )
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password', first_name='Marnie', last_name='Morning', about='whatever', profile_picture='picture')
+        username='dude',
+        email='marnie@aa.io',
+        password='password',
+        first_name='The',
+        last_name='Dude',
+        about="I'm the dude, man.",
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/05fb17c6ef0846d0b28ee929665daf6d.jpg'
+    )
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', first_name='Bobbie', last_name='Rickie', about='whatever', profile_picture='picture')
+        username='bluto',
+        email='bobbie@aa.io',
+        password='password',
+        first_name='John',
+        last_name='Blutarsky',
+        about="I am Bluto, a larger-than-life party animal with a mischievous streak. Known for my wild antics and rebellious spirit, I bring chaos and laughter to the fraternity life. From outrageous pranks to epic toga parties, I'm the life of the party, unapologetically embracing a carefree and spontaneous existence. With a zest for fun and a knack for trouble, I embody the free-spirited energy that defines the unforgettable college experience.",
+        profile_picture=''
+    )
+    george = User(
+        username='art-vandelay',
+        email='georgecostanza@summerofgeorge.com',
+        password='password',
+        first_name='George',
+        last_name='Costanza',
+        about='He is a short, stocky, balding man who struggles with numerous insecurities, often dooming his romantic relationships through his own fear of being dumped. He is also remarkably lazy; during periods of unemployment he actively avoids getting a job, and while employed he often finds ingenious ways to conceal idleness from his bosses.',
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/d1d74dc2edb34d2493b9d9329df7297c.png'
+
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(george)
     db.session.commit()
 
 

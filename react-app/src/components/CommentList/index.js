@@ -2,6 +2,7 @@ import EditDeleteCommentModal from "../EditDeleteCommentModal";
 import OpenModalIcon from "../OpenModalIcon";
 import LoginFormModal from "../LoginFormModal";
 import styles from './CommentList.module.css'
+import { NavLink } from "react-router-dom";
 
 
 function CommentList({video, commentsArr, sessionUser}) {
@@ -12,7 +13,13 @@ function CommentList({video, commentsArr, sessionUser}) {
             <div key={comment.id}>
                 <li>
                     <div className={styles['single-comment-container']}>
-                        <img src={comment.user.profilePicture}/>
+                        <NavLink to={`/channels/${comment.user.id}`}>
+                            { comment.user.profilePicture ? (
+                                <img className={styles['profile-picture']} src={comment.user.profilePicture}/>
+                            ) : (
+                                <h3 className={styles['profile-icon']}>{comment.user.username[0]}</h3>
+                            )}
+                    </NavLink>
                         <div className={styles['comment-owner-info']}>
                             <p>{comment.user.username}</p>
                             <p>{comment.content}</p>

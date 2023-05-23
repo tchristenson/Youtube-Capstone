@@ -21,6 +21,11 @@ function LoginFormModal() {
     }
   };
 
+  const handleDemoUser = () => {
+    setEmail('georgecostanza@summerofgeorge.com')
+    setPassword('password')
+  }
+
   return (
     <div className={styles['login-form']}>
       <h1>Log In</h1>
@@ -49,6 +54,7 @@ function LoginFormModal() {
           />
         </label>
         <button type="submit">Log In</button>
+        <button type="submit" onClick={handleDemoUser}>Demo User</button>
       </form>
 
     </div>
