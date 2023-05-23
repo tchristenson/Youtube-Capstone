@@ -64,7 +64,11 @@ function UserProfilePage() {
         <div className={styles['profile-page-container']}>
             <div className={styles['profile-information']}>
                 <div className={styles['profile-picture-container']}>
-                    <img className={styles['profile-picture']} src={sessionUser.profilePicture}/>
+                    {sessionUser.profilePicture ? (
+                        <img className={styles['profile-picture']} src={sessionUser.profilePicture}/>
+                    ) : (
+                        <h1 className={styles['profile-icon']}>{sessionUser.username[0]}</h1>
+                    )}
                 </div>
 
                 <div className={styles['user-info-container']}>
