@@ -55,6 +55,10 @@
     color: gray;
 }
 
+.input input:focus {
+    border-color: whitesmoke;
+}
+
 .input textarea {
     width: 100%;
     border: none;

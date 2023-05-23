@@ -56,6 +56,10 @@
     color: gray;
 }
 
+.input input:focus {
+    border-color: whitesmoke;
+}
+
 .login-form {
     background-color: #282828;
     color: whitesmoke;

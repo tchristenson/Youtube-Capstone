@@ -3,8 +3,6 @@ a {
     color: whitesmoke;
 }
 
-
-
 .hidden {
   display: none;
 }
@@ -39,16 +37,17 @@ a {
     right: 0
 }
 
+.login-signup {
+    width: 83px
+}
+
 .profile-dropdown {
     position: absolute;
     background-color: rgb(75, 75, 75);
     list-style: none;
-    display: flex;
     flex-direction: column;
-    width: auto;
     overflow: hidden;
     white-space: nowrap;
-
   }
 
 .profile-dropdown button {
@@ -56,6 +55,7 @@ a {
     border: none;
     background-color: transparent;
     color: whitesmoke;
+    width: auto;
 }
 
 .profile-dropdown li {

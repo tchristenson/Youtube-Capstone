@@ -85,6 +85,10 @@
     color: gray;
 }
 
+.input input:focus {
+    border-color: whitesmoke;
+}
+
 .new-video-form {
     background-color: #282828;
     color: whitesmoke;
@@ -137,7 +141,7 @@
     margin: 0;
     position: absolute;
     top: 58%;
-    left: 50%;
+    left: 48%;
 }
 
 .upload-icon i {
