@@ -160,7 +160,7 @@ function NewVideoPage() {
                     >
 
                     <label className={styles["dropzone-text"]}>{files.length ? 'File to be uploaded:' : 'Drag and drop a video file to upload'}</label>
-                        {!files.length && <div className={styles["upload-icon"]}><i class="fa-solid fa-arrow-up-from-bracket fa-2xl"></i></div>}
+                        {!files.length && <div className={styles["upload-icon"]}><i className="fa-solid fa-arrow-up-from-bracket fa-2xl"></i></div>}
                         {files && (
                             <>
                             <div className={styles["uploads"]}>
