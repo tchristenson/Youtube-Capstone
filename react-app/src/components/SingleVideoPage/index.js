@@ -62,7 +62,11 @@ function SingleVideoPage() {
                 <h3>{video.name}</h3>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
-                        <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                        { video.user.profilePicture ? (
+                            <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                        ) : (
+                            <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
+                        )}
                         <h5>{video.user.username}</h5>
                     </NavLink>
 
