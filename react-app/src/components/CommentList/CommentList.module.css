@@ -6,6 +6,10 @@
     padding-top: 5px;
 }
 
+.edit-comment-icon {
+    position: relative;
+}
+
 li {
     list-style: none;
 }

@@ -1,8 +1,21 @@
-.edit-delete-buttons {
-    position: relative;
-    /* position: absolute;
-    top: 0;
-    right: 0; */
+.buttons-container {
+    width: 200px;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    background-color: #282828;
+
+
+}
+
+.buttons-container button {
+    color: whitesmoke;
+    background-color: transparent;
+    font-weight: bold;
+    /* justify-content: center;
+    align-items: center; */
+
+    /* border: none; */
 }
 
 .unauthorized-icon {

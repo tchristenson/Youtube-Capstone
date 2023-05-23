@@ -23,9 +23,11 @@ function EditDeleteCommentModal({comment}) {
         <>
             {sessionUser && sessionUser.id === comment.userId && (
 
-                <div className={styles['edit-delete-buttons']}>
+                <div className={styles['buttons-container']}>
+
                     <OpenModalButton buttonText='Edit' modalComponent={<EditCommentModal comment={comment}/>}></OpenModalButton>
                     <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
+
                 </div>
 
 

@@ -8,6 +8,7 @@ body {
   background-color: #282828;
   color: whitesmoke;
   max-width: 1550px;
+  margin: 0 auto;
 }
 
 * {
