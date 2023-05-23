@@ -24,7 +24,11 @@ function SplashPage() {
             </NavLink>
             <div className={styles['video-info']}>
                 <NavLink to={`/channels/${video.user.id}`}>
-                    <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                    { video.user.profilePicture ? (
+                        <img className={styles['profile-picture']} src={video.user.profilePicture}/>
+                    ) : (
+                        <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
+                    )}
                 </NavLink>
                 <NavLink to={`/videos/${video.id}`}>
                     <h3 className={styles.h3link}>{video.name}</h3>

@@ -41,6 +41,19 @@ a {
     object-fit: cover;
 }
 
+.profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgb(50, 50, 142);
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .video {
     padding: 10px
 }

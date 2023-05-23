@@ -44,6 +44,11 @@ a {
 
 .profile-picture {
     border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+    margin-right: 10px;
 }
 
 .sidebar {
@@ -82,16 +87,13 @@ a {
     margin-right: 10px;
 }
 
-.video-owner-details {
-
-}
 
 .video-owner-details img,
 .video-owner-details h5 {
   display: inline-block;
   text-decoration: none;
   color: whitesmoke;
-  padding: 5px 10px 5px 0;
+  vertical-align: middle;
 }
 
 .video-description {
