@@ -19,7 +19,7 @@ function CommentList({video, commentsArr, sessionUser}) {
                             ) : (
                                 <h3 className={styles['profile-icon']}>{comment.user.username[0]}</h3>
                             )}
-                    </NavLink>
+                        </NavLink>
                         <div className={styles['comment-owner-info']}>
                             <p>{comment.user.username}</p>
                             <p>{comment.content}</p>

@@ -1,0 +1,10 @@
+.edit-delete-buttons {
+    position: relative;
+    /* position: absolute;
+    top: 0;
+    right: 0; */
+}
+
+.unauthorized-icon {
+    cursor: not-allowed;
+  }

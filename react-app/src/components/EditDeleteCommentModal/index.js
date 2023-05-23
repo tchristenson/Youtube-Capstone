@@ -3,7 +3,7 @@ import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import DeleteCommentModal from "../DeleteCommentModal";
 import EditCommentModal from "../EditCommentModal";
-import './EditDeleteCommentModal.css'
+import styles from './EditDeleteCommentModal.module.css'
 
 
 
@@ -22,14 +22,17 @@ function EditDeleteCommentModal({comment}) {
     return (
         <>
             {sessionUser && sessionUser.id === comment.userId && (
-                <div>
+
+                <div className={styles['edit-delete-buttons']}>
                     <OpenModalButton buttonText='Edit' modalComponent={<EditCommentModal comment={comment}/>}></OpenModalButton>
                     <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
                 </div>
+
+
             )}
             {sessionUser && sessionUser.id !== comment.userId && (
                 <div>
-                    <button className="unauthorized-icon" onClick={closeModal}>Report</button>
+                    <button className={styles['unauthorized-icon']} onClick={closeModal}>Report</button>
                 </div>
             )}
         </>
