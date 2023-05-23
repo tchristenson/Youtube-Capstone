@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
       <button className="profile-button" onClick={openMenu}>
         {!user &&
             <div className='sign-up'>
-                <i class="fa-solid fa-user-plus"></i>
+                <i className="fa-solid fa-user-plus"></i>
                 <h4>Sign In</h4>
             </div>
         }

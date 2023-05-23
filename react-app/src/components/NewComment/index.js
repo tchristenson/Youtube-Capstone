@@ -60,9 +60,7 @@ function NewComment({video}) {
                     {!sessionUser &&
                         <OpenModalButton
                             buttonText="Comment"
-                            disabled={content? false : true}
                             modalComponent={<LoginFormModal />}
-                            onClick={(e) => { e.preventDefault() }}
                         />}
                 </div>
             </form>

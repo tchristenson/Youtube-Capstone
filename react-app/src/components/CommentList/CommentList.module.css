@@ -8,6 +8,13 @@
 
 .edit-comment-icon {
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-comment-icon i {
+    justify-content: end;
+    align-items: flex-end;
 }
 
 li {

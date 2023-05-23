@@ -10,6 +10,7 @@ function ChannelPage() {
 
     const dispatch = useDispatch()
     let {channelId} = useParams()
+    const history = useHistory()
     channelId = parseInt(channelId)
     console.log('channelId', channelId)
     console.log('typeof channelId', typeof channelId)
@@ -21,6 +22,8 @@ function ChannelPage() {
             dispatch(getAllVideosThunk())
             dispatch(getSingleUserThunk(channelId))
     }, [dispatch, channelId])
+
+    console.log('user', user)
 
 
     if (!user) return null
@@ -59,7 +62,7 @@ function ChannelPage() {
                     <h3>{`${user.firstName} ${user.lastName}`}</h3>
                     <h5>{`@${user.username}`}</h5>
                     <h5>{`${channelVideoList.length} videos`}</h5>
-                    <h5>{user.about}</h5>
+                    <h5 className={styles['user-about']}>{user.about}</h5>
                 </div>
 
                 <div className={styles['buttons-container']}>
