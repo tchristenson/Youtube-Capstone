@@ -61,6 +61,7 @@
     justify-content: center;
     align-items: center;
     margin: 10px;
+    color: gray;
 }
 
 .header {
@@ -78,6 +79,14 @@
     outline: none;
     transition: border-color 0.3s;
     margin-bottom: 10px;
+}
+
+.input label {
+    color: gray;
+}
+
+.input input:focus {
+    border-color: whitesmoke;
 }
 
 .new-video-form {
@@ -116,6 +125,7 @@
 
 .thumbnail {
     margin-top: 10px;
+    color: gray;
 }
 
 .thumbnail label {
@@ -131,7 +141,7 @@
     margin: 0;
     position: absolute;
     top: 58%;
-    left: 50%;
+    left: 48%;
 }
 
 .upload-icon i {

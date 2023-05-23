@@ -18,19 +18,20 @@
     color: whitesmoke;
     cursor: pointer;
     border: solid rgb(160, 160, 160) 1px;
+    cursor: not-allowed;
 }
 
-.profile-information {
+.channel-information {
     display: grid;
     grid-template-columns: repeat(1, 2fr 10fr 2fr);
     margin: 10px 10px 30px 10px;
 }
 
-.profile-page-container {
+.channel-page-container {
     margin: 0 20px 0 20px;
 }
 
-.profile-picture {
+.channel-picture {
     width: 120px;
     height: 120px;
     /* Object fit clips the images so they are not distorted */
@@ -39,7 +40,7 @@
 
 }
 
-.profile-icon {
+.channel-icon {
     width: 120px;
     height: 120px;
     border-radius: 100%;
@@ -53,11 +54,7 @@
     font-size: 50px;
 }
 
-.profile-playlists {
-    margin: 20px 0 20px 0;
-}
-
-.profile-videos {
+.channel-videos {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -79,19 +76,13 @@
 
 .single-video-details {
     display: grid;
-    grid-template-columns: repeat(1, 9fr 1fr);
+    grid-template-columns: repeat(1, 25fr 1fr);
     max-width: 100%;
     padding-top: 10px;
     top: 50%
 }
 
-.single-video-details h3, i {
-
-
-}
-
 .user-info-container h5 {
     color: gray;
     font-weight: normal;
-    margin: 10px;
 }

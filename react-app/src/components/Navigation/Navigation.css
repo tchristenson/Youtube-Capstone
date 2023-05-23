@@ -3,12 +3,6 @@ a {
     color: whitesmoke;
 }
 
-.profile-dropdown {
-  position: absolute;
-  background-color: black;
-  list-style: none;
-}
-
 .hidden {
   display: none;
 }
@@ -37,16 +31,61 @@ a {
     border: none;
 }
 
-.profile-dropdown button {
-    cursor: pointer;
-    border: none;
-
-}
-
 .dropdown ul {
     position: absolute;
     top: 100%;
     right: 0
+}
+
+.login-signup {
+    width: 83px
+}
+
+.profile-dropdown {
+    position: absolute;
+    background-color: rgb(75, 75, 75);
+    list-style: none;
+    flex-direction: column;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+.profile-dropdown button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: whitesmoke;
+    width: auto;
+}
+
+.profile-dropdown li {
+    padding: 5px;
+    font-size: 13px
+}
+
+.profile-dropdown li:nth-child(2) {
+    border-bottom: 2px solid rgb(122, 122, 122);
+}
+
+.profile-dropdown li:nth-child(3):hover {
+    text-decoration: underline;
+}
+
+.profile-dropdown button:hover {
+    text-decoration: underline;
+}
+
+.profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgba(21, 21, 169, 0.703);
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .session-user-profile-picture {
@@ -57,9 +96,19 @@ a {
     object-fit: cover;
 }
 
-.session-user-profile-icon {
-    border-radius: 100%;
-    width: 30px;
-    height: 30px;
-    background-color: red;
+.sign-up {
+    color:  rgb(69, 180, 223);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+}
+
+.sign-up:hover {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223, .2);
+}
+
+.sign-up h4, i {
+    padding: 5px;
 }

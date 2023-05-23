@@ -52,6 +52,14 @@
     margin-bottom: 10px;
 }
 
+.input label {
+    color: gray;
+}
+
+.input input:focus {
+    border-color: whitesmoke;
+}
+
 .submit-button {
     background-color: rgb(65, 64, 64);
     border-radius: 3px;
@@ -86,4 +94,5 @@
 
 .thumbnail label {
     padding-right: 10px;
+    color: gray;
 }

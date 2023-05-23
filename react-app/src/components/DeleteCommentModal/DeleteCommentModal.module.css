@@ -27,13 +27,12 @@
     font-weight: bold;
 }
 
-.delete-video-form {
+.delete-comment-modal {
     background-color: #282828;
     color: whitesmoke;
     padding: 15px;
     width: 350px;
     height: 100px;
-
 }
 
 .header {

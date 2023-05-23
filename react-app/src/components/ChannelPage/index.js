@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
-import OpenModalButton from "../OpenModalButton";
-import DeleteVideoModal from "../DeleteVideoModal";
+import styles from './ChannelPage.module.css'
 
 
 function ChannelPage() {
@@ -33,22 +32,45 @@ function ChannelPage() {
     console.log('channelVideos', channelVideos)
 
     const channelVideoList = channelVideos.map(video => (
-        <>
-        <NavLink key={video.id} to={`/videos/${video.id}`}>
-            <div className="single-video">
+        <div key={video.id} className={styles["single-video"]}>
+            <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
+            </NavLink>
+            <div className={styles["single-video-details"]}>
+                <NavLink to={`/videos/${video.id}`}>
+                    <h3>{video.name}</h3>
+                </NavLink>
             </div>
-        </NavLink>
-        </>
+        </div>
     ))
 
     return (
-        <>
-            <h1>Channel Page</h1>
-            <div className="channel-videos-container">
+        <div className={styles['channel-page-container']}>
+            <div className={styles['channel-information']}>
+                <div className={styles['channel-picture-container']}>
+                {user.profilePicture ? (
+                        <img className={styles['channel-picture']} src={user.profilePicture}/>
+                    ) : (
+                        <h1 className={styles['channel-icon']}>{user.username[0]}</h1>
+                    )}
+                </div>
+
+                <div className={styles['user-info-container']}>
+                    <h3>{`${user.firstName} ${user.lastName}`}</h3>
+                    <h5>{`@${user.username}`}</h5>
+                    <h5>{`${channelVideoList.length} videos`}</h5>
+                    <h5>{user.about}</h5>
+                </div>
+
+                <div className={styles['buttons-container']}>
+                    <button>Subscribe</button>
+                </div>
+            </div>
+
+            <div className={styles['channel-videos']}>
                 {channelVideoList}
             </div>
-        </>
+        </div>
     )
 }
 

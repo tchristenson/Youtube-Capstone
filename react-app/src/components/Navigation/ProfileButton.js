@@ -45,18 +45,24 @@ function ProfileButton({ user }) {
     <>
     <div className="dropdown">
       <button className="profile-button" onClick={openMenu}>
-        {/* <i className="fa-sharp fa-solid fa-user" /> */}
-        {user && user.profilePicture ? (
-            <img className='session-user-profile-picture' src={user?.profilePicture}/>
-        ) : (
-            <div className="session-user-profile-icon">{user?.firstName[0]}</div>
-        )}
+        {!user &&
+            <div className='sign-up'>
+                <i class="fa-solid fa-user-plus"></i>
+                <h4>Sign In</h4>
+            </div>
+        }
+        {user && user.profilePicture &&
+            <img className='session-user-profile-picture' src={user.profilePicture}/>
+        }
+        {user && !user.profilePicture &&
+            <h3 className='profile-icon'>{user?.username[0]}</h3>
+        }
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+            <li>{`${user.firstName} ${user.lastName}`}</li>
             <li>{user.username}</li>
-            <li>{user.email}</li>
             <li>
               <NavLink to={`/users/${user.id}`}>Your Channel</NavLink>
             </li>
@@ -65,19 +71,23 @@ function ProfileButton({ user }) {
             </li>
           </>
         ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+          <div className="login-signup">
+            <li>
+                <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+                />
+            </li>
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
+            <li>
+                <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+                />
+            </li>
+          </div>
         )}
       </ul>
     </div>

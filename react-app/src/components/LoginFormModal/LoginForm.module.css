@@ -1,5 +1,96 @@
+.buttons-container {
+    text-align: right;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons-container button {
+    padding: 5px;
+    margin: 5px 0 5px 0;
+}
+
+.demo-user  {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid gray 1px;
+    margin-right: 10px;
+}
+
+.demo-user:hover  {
+    background-color: transparent;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+
+}
+
+.errors {
+    margin: 15px 0 15px 0;
+    color: rgba(255, 0, 0, 0.591);
+
+}
+
+.header {
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.input input {
+    width: 100%;
+    border: none;
+    padding: 5px 0 5px 0;
+    background-color: transparent;
+    color: whitesmoke;
+    border-bottom: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.input label {
+    color: gray;
+}
+
+.input input:focus {
+    border-color: whitesmoke;
+}
+
 .login-form {
     background-color: #282828;
     color: whitesmoke;
+    padding: 15px;
+    width: 500px;
+}
 
+.submit-button {
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.submit-button-active {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223);
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.submit-button-active:hover {
+    cursor: pointer;
+    background-color: rgb(108, 205, 244);
+    border: none;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
 }

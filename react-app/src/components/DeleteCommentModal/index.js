@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteCommentThunk } from "../../store/comments";
-
+import styles from './DeleteCommentModal.module.css'
 
 function DeleteCommentModal({comment}) {
     const dispatch = useDispatch();
@@ -19,11 +19,13 @@ function DeleteCommentModal({comment}) {
     }
 
     return (
-        <div>
-            <h1 className="modalText">Delete forever</h1>
+        <div className={styles['delete-comment-modal']}>
+            <h2 className={styles["header"]}>Delete forever?</h2>
             <form onSubmit={handleDelete}>
-                <button type="submit">Delete</button>
-                <button onClick={closeModal}>Cancel</button>
+            <div className={styles['buttons-container']}>
+                <button className={styles['cancel-button']} onClick={closeModal}>Cancel</button>
+                <button className={styles['submit-button-active']} type="submit">Delete</button>
+            </div>
             </form>
         </div>
 
