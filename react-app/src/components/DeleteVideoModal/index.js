@@ -21,13 +21,14 @@ function DeleteVideoModal({videoId}) {
 
     return (
         <div className={styles['delete-video-form']}>
-            <h1 className="modalText">Delete forever</h1>
+            <h2 className={styles["header"]}>Delete forever?</h2>
             <form onSubmit={handleDelete}>
-                <button type="submit">Delete</button>
-                <button onClick={closeModal}>Cancel</button>
+                <div className={styles['buttons-container']}>
+                    <button className={styles['cancel-button']} onClick={closeModal}>Cancel</button>
+                    <button className={styles['submit-button-active']} type="submit">Delete</button>
+                </div>
             </form>
         </div>
-
     )
 
 }
