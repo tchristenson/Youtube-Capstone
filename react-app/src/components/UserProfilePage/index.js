@@ -69,7 +69,7 @@ function UserProfilePage() {
 
                 <div className={styles['user-info-container']}>
                     <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
-                    <h5>{`${sessionUser.username}`}</h5>
+                    <h5>{`@${sessionUser.username}`}</h5>
                     <h5>{`${userVideoList.length} videos`}</h5>
                 </div>
 

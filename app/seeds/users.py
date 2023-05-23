@@ -31,10 +31,21 @@ def seed_users():
         about='Avid reader, writer, and thinker. Seeking solace in the digital realm, I share my musings on life, love, and the human experience. Join me in unraveling the intricacies of our existence through the power of words.',
         profile_picture=''
     )
+    george = User(
+        username='art-vandelay',
+        email='georgecostanza@summerofgeorge.com',
+        password='password',
+        first_name='George',
+        last_name='Costanza',
+        about='He is a short, stocky, balding man who struggles with numerous insecurities, often dooming his romantic relationships through his own fear of being dumped. He is also remarkably lazy; during periods of unemployment he actively avoids getting a job, and while employed he often finds ingenious ways to conceal idleness from his bosses.',
+        profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/d1d74dc2edb34d2493b9d9329df7297c.png'
+
+    )
 
     db.session.add(demo)
     db.session.add(marnie)
     db.session.add(bobbie)
+    db.session.add(george)
     db.session.commit()
 
 
