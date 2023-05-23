@@ -18,6 +18,19 @@ li {
     margin-right: 10px;
 }
 
+.profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgba(21, 21, 169, 0.703);
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .single-comment-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr 25fr 1fr);
