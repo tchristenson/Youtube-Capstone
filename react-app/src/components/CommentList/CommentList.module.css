@@ -1,6 +1,7 @@
 .comment-owner-info {
     display: inline-block;
     word-break: break-word;
+    height: auto;
 }
 
 .comment-owner-info p:nth-child(2) {

@@ -14,6 +14,10 @@ a {
     margin: 20px;
 }
 
+.comment-count {
+    margin: 15px 0 15px 0;
+}
+
 .h3link {
     text-decoration: none;
     color: whitesmoke;
@@ -115,11 +119,14 @@ a {
     background-color: rgb(54, 54, 54);
     padding: 5px 0 5px 0;
     margin: 10px 0 10px 0;
-    height: 80px;
     border-radius: 10px;
+    word-break: break-word;
+    max-height: fit-content;
+    min-height: 80px;
 }
 
 .video-description h6,
 .video-description p {
     padding: 5px;
+    flex-grow: 1;
 }

@@ -75,6 +75,14 @@ function SingleVideoPage() {
                     <h6>{video.name}</h6>
                     <p>{video.description}</p>
                 </div>
+                <div className={styles['comment-count']}>
+                    {commentsArr.length === 1 ? (
+                        `${commentsArr.length} comment`
+                    ) : (
+                        `${commentsArr.length} comments`
+
+                    )}
+                </div>
                 <div className={styles['comment-input-container']}>
                     {!sessionUser && <i className="fa-solid fa-user"></i>}
                     {sessionUser && sessionUser.profilePicture &&

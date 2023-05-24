@@ -14,11 +14,13 @@ function EditCommentModal({comment}) {
 
     const [content, setContent] = useState(comment.content)
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         setHasSubmitted(true)
+        if (validationErrors.length) return alert('Comment cannot exceed 10,000 characters')
 
         const formData = new FormData()
 
@@ -33,8 +35,16 @@ function EditCommentModal({comment}) {
 
         setContent('')
         setHasSubmitted(false)
+        setValidationErrors([])
         closeModal()
     }
+
+    useEffect(() => {
+        const errors = [];
+        if (!content) errors.push('Comment cannot be empty')
+        if (content.length > 10000) errors.push('Comment cannot exceed 10,000 characters')
+        setValidationErrors(errors)
+    }, [content])
 
     return (
         <div className="comment-container">
