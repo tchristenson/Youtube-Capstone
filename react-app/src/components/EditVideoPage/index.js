@@ -75,9 +75,11 @@ function EditVideoPage({video}) {
         const errors = [];
         // Only adding to the validation errors for fields that are nullable=False in the Video model
         if (!name) errors.push('Videos require a name')
+        if (name.length > 100) errors.push('Video name must be 100 characters or fewer')
+        if (description.length > 500) errors.push('Video description must be 500 characters or fewer')
         if (!thumbnail) errors.push('Please provide a thumbnail image file')
         setValidationErrors(errors)
-    }, [name, thumbnail])
+    }, [name, description, thumbnail])
 
     return (
         <div className={styles['edit-video-form']}>
