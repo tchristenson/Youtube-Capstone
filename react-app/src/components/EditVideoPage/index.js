@@ -66,7 +66,9 @@ function EditVideoPage({video}) {
         setValidationErrors([])
         setHasSubmitted(false)
 
-        history.push(`/videos/${editedVideo.id}`)
+        closeModal()
+
+        // history.push(`/videos/${editedVideo.id}`)
     }
 
     useEffect(() => {
