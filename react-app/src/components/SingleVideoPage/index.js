@@ -45,8 +45,8 @@ function SingleVideoPage() {
                 <NavLink to={`/videos/${video.id}`}>
                     <h3 className={styles['h3link']}>{video.name}</h3>
                 </NavLink>
-                <NavLink to={`/channels/${video.user.id}`}>
-                    <h5 className={styles['h5link']}>{video.user.username}</h5>
+                <NavLink to={`/channels/${video.user?.id}`}>
+                    <h5 className={styles['h5link']}>{video.user?.username}</h5>
                 </NavLink>
             </div>
 
