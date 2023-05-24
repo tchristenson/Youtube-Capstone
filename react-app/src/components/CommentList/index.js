@@ -22,7 +22,10 @@ function CommentList({video, commentsArr, sessionUser}) {
                         </NavLink>
                         <div className={styles['comment-owner-info']}>
                             <p>{comment.user.username}</p>
-                            <p>{comment.content}</p>
+                            <form>
+                                <input className={styles['comment-input']} type='text' placeholder={comment.content}/>
+
+                            </form>
                         </div>
 
 

@@ -25,7 +25,7 @@ function EditDeleteCommentModal({comment}) {
 
                 <div className={styles['buttons-container']}>
 
-                    <OpenModalButton buttonText='Edit' modalComponent={<EditCommentModal comment={comment}/>}></OpenModalButton>
+                    <button>Edit</button>
                     <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
 
                 </div>
