@@ -52,6 +52,20 @@ a {
     margin-right: 10px;
 }
 
+.profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgba(21, 21, 169, 0.703);
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .sidebar {
     width: 25%;
     padding: 10px;
@@ -88,9 +102,9 @@ a {
     margin-right: 10px;
 }
 
-
 .video-owner-details img,
-.video-owner-details h5 {
+.video-owner-details h5,
+.video-owner-details h3 {
   display: inline-block;
   text-decoration: none;
   color: whitesmoke;

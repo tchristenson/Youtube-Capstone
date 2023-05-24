@@ -26,15 +26,16 @@ function CommentList({video, commentsArr, sessionUser}) {
                         </div>
 
 
-                        <div className={styles['edit-comment-icon']}>
-                            {sessionUser && (
+                        {sessionUser &&
+                            <div className={styles['edit-comment-icon']}>
                                 <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
-                            )}
-                        </div>
+                            </div>
+                        }
 
-                        {!sessionUser && (
-                            <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
-                        )}
+                        {!sessionUser &&
+                            <div className={styles['edit-comment-icon']}>
+                                <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
+                            </div>}
                     </div>
                 </li>
             </div>
