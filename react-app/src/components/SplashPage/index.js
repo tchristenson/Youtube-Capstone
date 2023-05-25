@@ -7,6 +7,7 @@ import styles from './SplashPage.module.css'
 function SplashPage() {
 
     const dispatch = useDispatch()
+    const [query, setQuery] = useState('')
 
     useEffect(() => {
         dispatch(getAllVideosThunk())
@@ -17,7 +18,16 @@ function SplashPage() {
 
     const videosArr = Object.values(videos)
 
-    const videoList = videosArr.map(video => (
+    const videoList = videosArr.filter(video => {
+        if (query === '') {
+            return video;
+        } else if (video.name.toLowerCase().includes(query.toLowerCase())) {
+            return video
+        } else if (video.user.username.toLowerCase().includes(query.toLowerCase())) {
+            return video
+        }
+        })
+        .map(video => (
         <div key={video.id} className={styles.video}>
             <NavLink  to={`/videos/${video.id}`}>
                 <img className={styles.thumbnail} src={video.thumbnail}/>
@@ -43,13 +53,22 @@ function SplashPage() {
     ))
 
     return (
-        <>
+        <div className={styles['splash-page-container']}>
+            <div className={styles['search-bar-container']}>
+                <input
+                    className={styles['search-bar']}
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    type='search'
+                    placeholder="Search"
+                />
+            </div>
             <div className={styles['all-videos-container']}>
                 {videoList}
             </div>
 
 
-        </>
+        </div>
     )
 
 }
