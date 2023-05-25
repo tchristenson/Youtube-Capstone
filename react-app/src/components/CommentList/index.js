@@ -25,7 +25,6 @@ function CommentList({video, commentsArr, sessionUser}) {
                             <p>{comment.content}</p>
                         </div>
 
-
                         {sessionUser && sessionUser.id === comment.userId &&
                             <div className={styles['edit-comment-icon']}>
                                 <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>

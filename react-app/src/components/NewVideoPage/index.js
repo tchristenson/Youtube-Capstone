@@ -134,12 +134,11 @@ function NewVideoPage() {
 
                 <div className={styles["input"]}>
                     <label>Description:</label>
-                    <input
-                        type="textarea"
+                    <textarea
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                         >
-                    </input>
+                    </textarea>
                 </div>
 
                 <div className={styles["thumbnail"]}>
