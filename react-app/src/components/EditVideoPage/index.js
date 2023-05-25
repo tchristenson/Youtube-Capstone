@@ -66,16 +66,20 @@ function EditVideoPage({video}) {
         setValidationErrors([])
         setHasSubmitted(false)
 
-        history.push(`/videos/${editedVideo.id}`)
+        closeModal()
+
+        // history.push(`/videos/${editedVideo.id}`)
     }
 
     useEffect(() => {
         const errors = [];
         // Only adding to the validation errors for fields that are nullable=False in the Video model
         if (!name) errors.push('Videos require a name')
+        if (name.length > 100) errors.push('Video name must be 100 characters or fewer')
+        if (description.length > 500) errors.push('Video description must be 500 characters or fewer')
         if (!thumbnail) errors.push('Please provide a thumbnail image file')
         setValidationErrors(errors)
-    }, [name, thumbnail])
+    }, [name, description, thumbnail])
 
     return (
         <div className={styles['edit-video-form']}>
@@ -107,12 +111,11 @@ function EditVideoPage({video}) {
 
                 <div className={styles["input"]}>
                     <label>Description</label>
-                    <input
-                        type="textarea"
+                    <textarea
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}
                         >
-                    </input>
+                    </textarea>
                 </div>
 
                 <div className={styles["thumbnail"]}>

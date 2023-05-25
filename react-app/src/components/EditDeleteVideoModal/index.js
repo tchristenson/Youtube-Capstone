@@ -14,14 +14,8 @@ function EditDeleteVideoModal({video}) {
 
     const sessionUser = useSelector(state => state.session.user)
 
-    const handleEdit = async (e) => {
-        e.preventDefault()
-
-
-    }
-
     return (
-        <div>
+        <div className={styles['buttons-container']}>
             <OpenModalButton buttonText='Edit' modalComponent={<EditVideoPage video={video}/>}></OpenModalButton>
             <OpenModalButton buttonText='Delete' modalComponent={<DeleteVideoModal video={video}/>}></OpenModalButton>
         </div>

@@ -1,0 +1,27 @@
+.buttons-container {
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    background-color: #282828;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.buttons-container button {
+    color: whitesmoke;
+    background-color: #282828;
+    font-weight: bold;
+    height: 50px;
+    border: solid 1px grey;
+    font-size: 16px;
+    cursor: pointer
+}
+
+.buttons-container button:nth-child(1):hover {
+    background-color: rgba(108, 206, 244, 0.233);
+}
+
+.buttons-container button:nth-child(2):hover {
+    background-color: rgba(230, 48, 48, 0.142);
+}

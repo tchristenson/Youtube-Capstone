@@ -13,12 +13,6 @@ function EditDeleteCommentModal({comment}) {
 
     const sessionUser = useSelector(state => state.session.user)
 
-    const handleEdit = async (e) => {
-        e.preventDefault()
-
-
-    }
-
     return (
         <>
             {sessionUser && sessionUser.id === comment.userId && (
@@ -30,12 +24,6 @@ function EditDeleteCommentModal({comment}) {
 
                 </div>
 
-
-            )}
-            {sessionUser && sessionUser.id !== comment.userId && (
-                <div>
-                    <button className={styles['unauthorized-icon']} onClick={closeModal}>Report</button>
-                </div>
             )}
         </>
     )

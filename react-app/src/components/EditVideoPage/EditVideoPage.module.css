@@ -32,7 +32,7 @@
     color: whitesmoke;
     padding: 15px;
     width: 625px;
-    height: 250px;
+    height: auto;
 }
 
 .header {
@@ -56,7 +56,26 @@
     color: gray;
 }
 
+.input textarea {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    color: whitesmoke;
+    border: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+    height: 125px;
+    font: inherit;
+}
+
+
 .input input:focus {
+    border-color: whitesmoke;
+}
+
+.input textarea:focus {
     border-color: whitesmoke;
 }
 
