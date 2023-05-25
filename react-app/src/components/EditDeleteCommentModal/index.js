@@ -30,12 +30,6 @@ function EditDeleteCommentModal({comment}) {
 
                 </div>
 
-
-            )}
-            {sessionUser && sessionUser.id !== comment.userId && (
-                <div>
-                    <button className={styles['unauthorized-icon']} onClick={closeModal}>Report</button>
-                </div>
             )}
         </>
     )

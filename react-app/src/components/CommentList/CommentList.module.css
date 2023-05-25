@@ -55,3 +55,7 @@ li {
     align-content: flex-end;
     cursor: pointer;
 }
+
+#unauthorized-icon {
+    cursor: not-allowed;
+  }
