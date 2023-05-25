@@ -109,8 +109,7 @@ function NewVideoPage() {
             <h2 className={styles["header"]}>Upload a video</h2>
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
-                    <h2>The following errors were found:</h2>
-                    <ul>
+                    <ul className={styles['errors']}>
                         {validationErrors.map(error => (
                             <li key={error}>{error}</li>
                         ))}
