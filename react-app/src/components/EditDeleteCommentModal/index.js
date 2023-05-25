@@ -7,7 +7,7 @@ import styles from './EditDeleteCommentModal.module.css'
 
 
 
-function EditDeleteCommentModal({comment}) {
+function EditDeleteCommentModal({comment, setIsEditing, setEditedCommentId}) {
     const dispatch = useDispatch()
     const {closeModal} = useModal()
 
@@ -15,8 +15,9 @@ function EditDeleteCommentModal({comment}) {
 
     const handleEdit = async (e) => {
         e.preventDefault()
-
-
+        setIsEditing(true)
+        setEditedCommentId(comment.id);
+        closeModal()
     }
 
     return (
@@ -25,7 +26,7 @@ function EditDeleteCommentModal({comment}) {
 
                 <div className={styles['buttons-container']}>
 
-                    <button>Edit</button>
+                    <button onClick={handleEdit}>Edit</button>
                     <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
 
                 </div>
