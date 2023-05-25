@@ -56,9 +56,11 @@ function SingleVideoPage() {
     return (
         <div className={styles['container']}>
             <div key={video.id} className={styles['main-video-column']}>
-                <video  controls >
-                    <source src={video.content}/>
-                </video>
+                <div className={styles['main-video-container']}>
+                    <video controls className={styles['main-video']}>
+                        <source src={video.content}/>
+                    </video>
+                </div>
                 <h3>{video.name}</h3>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
