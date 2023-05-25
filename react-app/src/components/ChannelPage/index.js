@@ -61,7 +61,13 @@ function ChannelPage() {
                 <div className={styles['user-info-container']}>
                     <h3>{`${user.firstName} ${user.lastName}`}</h3>
                     <h5>{`@${user.username}`}</h5>
-                    <h5>{`${channelVideoList.length} videos`}</h5>
+                    <h5>
+                        {channelVideoList.length === 1 ? (
+                        `${channelVideoList.length} video`
+                        ) : (
+                        `${channelVideoList.length} videos`
+                        )}
+                    </h5>
                     <h5 className={styles['user-about']}>{user.about}</h5>
                 </div>
 
