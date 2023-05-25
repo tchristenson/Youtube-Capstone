@@ -7,6 +7,7 @@ a {
     flex-direction: row;
     flex-wrap: wrap;
     margin: 20px;
+    justify-content: center;
 }
 
 .h3link {
@@ -52,6 +53,34 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.search-bar {
+    background-color: transparent;
+    color: whitesmoke;
+    height: 30px;
+    width: 45%;
+    max-width: 100%;
+    border-radius: 10px;
+    border: 1px solid gray;
+    padding: 5px;
+
+}
+
+.search-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    /* position: absolute; */
+    /* top: 0%; */
+
+}
+
+.splash-page-container {
+    display: flex;
+    flex-direction: column;
+    /* position: relative; */
 }
 
 .video {
