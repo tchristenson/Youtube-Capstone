@@ -33,8 +33,8 @@ function UserProfilePage() {
     }, [sessionUser, user, history])
 
 
-    if (!sessionUser) return null
-    if (!user) return null
+    if (!sessionUser) history.push('/') // return null matter?
+    if (!user) history.push('/') // return null matter?
 
     console.log('sessionUser', sessionUser)
     console.log('user', user)
