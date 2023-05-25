@@ -63,6 +63,11 @@
     color: gray;
 }
 
+.errors {
+    margin: 15px 0 15px 0;
+    color: rgba(255, 0, 0, 0.591);
+}
+
 .header {
     margin-bottom: 10px;
     padding-bottom: 5px;
