@@ -27,38 +27,23 @@
     font-weight: bold;
 }
 
-.edit-video-form {
+.comment-container {
     background-color: #282828;
     color: whitesmoke;
     padding: 15px;
-    width: 625px;
+    width: 400px;
     height: auto;
 }
 
-.errors {
-    margin: 15px 0 15px 0;
-    color: rgba(255, 0, 0, 0.591);
+.comment-container input {
+    background-color: transparent;
+    color: whitesmoke;
+    padding: 15px
 }
 
 .header {
     margin-bottom: 10px;
     padding-bottom: 5px;
-}
-
-.input input {
-    width: 100%;
-    border: none;
-    padding: 5px 0 5px 0;
-    background-color: transparent;
-    color: whitesmoke;
-    border-bottom: 2px solid gray;
-    outline: none;
-    transition: border-color 0.3s;
-    margin-bottom: 10px;
-}
-
-.input label {
-    color: gray;
 }
 
 .input textarea {
@@ -75,9 +60,8 @@
     font: inherit;
 }
 
-
-.input input:focus {
-    border-color: whitesmoke;
+.input label {
+    color: gray;
 }
 
 .input textarea:focus {
@@ -110,13 +94,4 @@
     color: black;
     padding: 5px;
     font-weight: bold;
-}
-
-.thumbnail {
-    margin-top: 10px;
-}
-
-.thumbnail label {
-    padding-right: 10px;
-    color: gray;
 }

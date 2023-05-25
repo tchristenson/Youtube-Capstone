@@ -16,6 +16,7 @@ function NewComment({video}) {
 
     const [content, setContent] = useState('')
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +24,7 @@ function NewComment({video}) {
         setHasSubmitted(true)
 
         const formData = new FormData()
+        if (validationErrors.length) return alert('Comment cannot exceed 10,000 characters')
 
         formData.append('content', content)
         formData.append('video_id', video.id)
@@ -35,7 +37,15 @@ function NewComment({video}) {
 
         setContent('')
         setHasSubmitted(false)
+        setValidationErrors([])
     }
+
+    useEffect(() => {
+        const errors = [];
+        if (!content) errors.push('Comment cannot be empty')
+        if (content.length > 10000) errors.push('Comment cannot exceed 10,000 characters')
+        setValidationErrors(errors)
+    }, [content])
 
     return (
         <div className={styles['comment-container']}>

@@ -4,7 +4,7 @@ import { deleteVideoThunk } from "../../store/videos";
 import styles from './DeleteVideoModal.module.css'
 
 
-function DeleteVideoModal({videoId}) {
+function DeleteVideoModal({video}) {
     const dispatch = useDispatch();
 
     const { closeModal } = useModal();
@@ -12,7 +12,7 @@ function DeleteVideoModal({videoId}) {
     const handleDelete = async (e) => {
         e.preventDefault()
 
-        const deletedVideo = await dispatch(deleteVideoThunk(videoId))
+        const deletedVideo = await dispatch(deleteVideoThunk(video.id))
         if (deletedVideo.message === 'delete successful') {
             closeModal() // Don't want to redirect user if possible - user will be deleting video's from their profile page, so
             // their page should just updated with the deleted video gone

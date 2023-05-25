@@ -56,9 +56,11 @@ function SingleVideoPage() {
     return (
         <div className={styles['container']}>
             <div key={video.id} className={styles['main-video-column']}>
-                <video  controls >
-                    <source src={video.content}/>
-                </video>
+                <div className={styles['main-video-container']}>
+                    <video controls className={styles['main-video']}>
+                        <source src={video.content}/>
+                    </video>
+                </div>
                 <h3>{video.name}</h3>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
@@ -74,6 +76,14 @@ function SingleVideoPage() {
                 <div className={styles['video-description']}>
                     <h6>{video.name}</h6>
                     <p>{video.description}</p>
+                </div>
+                <div className={styles['comment-count']}>
+                    {commentsArr.length === 1 ? (
+                        `${commentsArr.length} comment`
+                    ) : (
+                        `${commentsArr.length} comments`
+
+                    )}
                 </div>
                 <div className={styles['comment-input-container']}>
                     {!sessionUser && <i className="fa-solid fa-user"></i>}

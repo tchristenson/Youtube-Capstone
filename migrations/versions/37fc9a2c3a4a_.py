@@ -41,7 +41,7 @@ def upgrade():
     op.create_table('videos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=255), nullable=False),
+    sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=500), nullable=True),
     sa.Column('content', sa.String(), nullable=False),
     sa.Column('thumbnail', sa.String(), nullable=False),

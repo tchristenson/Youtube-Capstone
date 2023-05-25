@@ -49,8 +49,7 @@
 
 .dropzone {
     border: 1px dashed whitesmoke;
-    width: 625px;
-    height: 400px;
+    height: 300px;
     margin: 20px 0 20px 0;
     text-align: center;
     align-items: center;
@@ -62,6 +61,11 @@
     align-items: center;
     margin: 10px;
     color: gray;
+}
+
+.errors {
+    margin: 15px 0 15px 0;
+    color: rgba(255, 0, 0, 0.591);
 }
 
 .header {
@@ -85,14 +89,34 @@
     color: gray;
 }
 
+.input textarea {
+    width: 100%;
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    color: whitesmoke;
+    border: 2px solid gray;
+    outline: none;
+    transition: border-color 0.3s;
+    margin-bottom: 10px;
+    height: 125px;
+    font: inherit;
+}
+
 .input input:focus {
+    border-color: whitesmoke;
+}
+
+.input textarea:focus {
     border-color: whitesmoke;
 }
 
 .new-video-form {
     background-color: #282828;
     color: whitesmoke;
-    padding: 15px
+    padding: 15px;
+    width: 625px;
+    height: auto;
 }
 
 .submit-button {
@@ -140,7 +164,7 @@
     cursor: pointer;
     margin: 0;
     position: absolute;
-    top: 58%;
+    top: 67%;
     left: 48%;
 }
 

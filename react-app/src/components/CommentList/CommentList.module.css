@@ -1,5 +1,7 @@
 .comment-owner-info {
-    display: inline-block
+    display: inline-block;
+    word-break: break-word;
+    height: auto;
 }
 
 .comment-owner-info p:nth-child(2) {
@@ -53,3 +55,7 @@ li {
     align-content: flex-end;
     cursor: pointer;
 }
+
+#unauthorized-icon {
+    cursor: not-allowed;
+  }

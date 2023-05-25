@@ -64,7 +64,7 @@ function ProfileButton({ user }) {
             <li>{`${user.firstName} ${user.lastName}`}</li>
             <li>{user.username}</li>
             <li>
-              <NavLink to={`/users/${user.id}`}>Your Channel</NavLink>
+              <NavLink onClick={closeMenu} to={`/users/${user.id}`}>Your Channel</NavLink>
             </li>
             <li>
               <button onClick={handleLogout}>Sign Out</button>

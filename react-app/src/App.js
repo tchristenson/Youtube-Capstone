@@ -24,24 +24,24 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route exact path="/login" >
+          {/* <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
-          </Route>
+          </Route> */}
           <Route exact path="/users/:userId">
             <UserProfilePage />
           </Route>
-          <Route exact path="/videos/new">
+          {/* <Route exact path="/videos/new">
             <NewVideoPage />
-          </Route>
+          </Route> */}
           <Route exact path="/videos/:videoId">
             <SingleVideoPage />
           </Route>
-          <Route exact path="/videos/:videoId/edit">
+          {/* <Route exact path="/videos/:videoId/edit">
             <EditVideoPage />
-          </Route>
+          </Route> */}
           <Route exact path="/channels/:channelId">
             <ChannelPage />
           </Route>
