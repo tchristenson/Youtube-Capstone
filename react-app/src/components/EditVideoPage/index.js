@@ -103,7 +103,7 @@ function EditVideoPage({video}) {
                 encType="multipart/form-data"
             >
                 <div className={styles["input"]}>
-                    <label>{'Title (required)'}</label>
+                    <label>{'Title (required):'}</label>
                     <input
                         type="text"
                         onChange={(e) => setName(e.target.value)}
@@ -114,7 +114,7 @@ function EditVideoPage({video}) {
                 </div>
 
                 <div className={styles["input"]}>
-                    <label>Description</label>
+                    <label>Description:</label>
                     <textarea
                         onChange={(e) => setDescription(e.target.value)}
                         value={description}

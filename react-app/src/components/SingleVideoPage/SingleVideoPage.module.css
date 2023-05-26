@@ -47,8 +47,9 @@ a {
     padding: 10px;
 }
 
-.main-video-column h3 {
+.main-video-name {
     padding: 10px 0 10px 0;
+    word-break: break-all;
 }
 
 .main-video {

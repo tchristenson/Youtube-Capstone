@@ -97,7 +97,7 @@ a {
     padding: 5px 5px 5px 0px;
     width: 310px;
     text-overflow: ellipsis;
-    word-break: break-all;
+    word-break: break-word;
     overflow: hidden;
     /* white-space: nowrap; */
 }
