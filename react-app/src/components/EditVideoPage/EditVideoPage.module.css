@@ -33,6 +33,19 @@
     padding: 15px;
     width: 625px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0 10px 0;
+}
+
+#loading-icon {
+    color: whitesmoke;
 }
 
 .errors {
