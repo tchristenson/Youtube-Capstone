@@ -65,9 +65,9 @@ a {
     height: 30px;
     width: 45%;
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid gray;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
 
 }
 
@@ -100,4 +100,9 @@ a {
     word-break: break-all;
     overflow: hidden;
     /* white-space: nowrap; */
+}
+
+.video-name-username {
+    display: flex;
+    flex-direction: column;
 }
