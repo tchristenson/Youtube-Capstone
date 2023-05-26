@@ -69,19 +69,19 @@ function SingleVideoPage() {
                         ) : (
                             <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
                         )}
-                        <h5>{video.user.username}</h5>
+                        <h4>{video.user.username}</h4>
                     </NavLink>
 
                 </div>
                 <div className={styles['video-description']}>
-                    <h6>{video.name}</h6>
-                    <p>{video.description}</p>
+                    {/* <h6>{video.name}</h6> */}
+                    <h5>{video.description}</h5>
                 </div>
                 <div className={styles['comment-count']}>
                     {commentsArr.length === 1 ? (
-                        `${commentsArr.length} comment`
+                        <h4>{`${commentsArr.length} comment`}</h4>
                     ) : (
-                        `${commentsArr.length} comments`
+                        <h5>{`${commentsArr.length} comments`}</h5>
 
                     )}
                 </div>

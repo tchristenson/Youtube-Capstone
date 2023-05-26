@@ -19,6 +19,10 @@ a {
     margin: 15px 0 15px 0;
 }
 
+.comment-count h5 {
+    font-weight: normal;
+}
+
 
 
 .h5link {
@@ -122,7 +126,7 @@ a {
 }
 
 .video-owner-details img,
-.video-owner-details h5,
+.video-owner-details h4,
 .video-owner-details h3 {
   display: inline-block;
   text-decoration: none;
@@ -138,10 +142,11 @@ a {
     word-break: break-word;
     max-height: fit-content;
     min-height: 80px;
+
 }
 
-.video-description h6,
-.video-description p {
-    padding: 5px;
+.video-description h5 {
+    padding: 5px 5px 5px 10px;
     flex-grow: 1;
+    font-weight: normal;
 }
