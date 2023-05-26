@@ -107,6 +107,12 @@ function NewVideoPage() {
     return (
         <div className={styles["new-video-form"]}>
             <h2 className={styles["header"]}>Upload a video</h2>
+            <div className={styles["loading-container"]}>
+                {hasSubmitted &&  validationErrors.length === 0 && (
+                    <i className="fa-solid fa-spinner fa-spin-pulse" id={styles["loading-icon"]}></i>
+                )}
+            </div>
+
             {hasSubmitted && validationErrors.length > 0 && (
                 <div>
                     <ul className={styles['errors']}>

@@ -24,33 +24,33 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+            <Route exact path="/users/:userId">
+              <UserProfilePage />
+            </Route>
+            <Route exact path="/videos/:videoId">
+              <SingleVideoPage />
+            </Route>
+            <Route exact path="/channels/:channelId">
+              <ChannelPage />
+            </Route>
+            <Route exact path="/">
+              <SplashPage />
+            </Route>
+            <Route>
+              Page Not Found
+            </Route>
           {/* <Route exact path="/login" >
             <LoginFormPage />
           </Route>
           <Route exact path="/signup">
             <SignupFormPage />
           </Route> */}
-          <Route exact path="/users/:userId">
-            <UserProfilePage />
-          </Route>
           {/* <Route exact path="/videos/new">
             <NewVideoPage />
           </Route> */}
-          <Route exact path="/videos/:videoId">
-            <SingleVideoPage />
-          </Route>
           {/* <Route exact path="/videos/:videoId/edit">
             <EditVideoPage />
           </Route> */}
-          <Route exact path="/channels/:channelId">
-            <ChannelPage />
-          </Route>
-          <Route exact path="/">
-            <SplashPage />
-          </Route>
-          <Route>
-            Page Not Found
-          </Route>
         </Switch>
       )}
     </>

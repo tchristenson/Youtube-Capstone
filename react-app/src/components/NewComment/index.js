@@ -42,7 +42,7 @@ function NewComment({video}) {
 
     useEffect(() => {
         const errors = [];
-        if (!content) errors.push('Comment cannot be empty')
+        if (!content.trim()) errors.push('Comment cannot be empty')
         if (content.length > 10000) errors.push('Comment cannot exceed 10,000 characters')
         setValidationErrors(errors)
     }, [content])
@@ -66,7 +66,7 @@ function NewComment({video}) {
                 <div className={styles['buttons']}>
                     <button className={styles['cancel-button']} onClick={(e) => { e.preventDefault(); setContent(''); }} type="submit">Cancel</button>
 
-                    {sessionUser && <button className={content ? styles['submit-button-active'] : styles['submit-button']} disabled={content? false : true} type="submit">Comment</button>}
+                    {sessionUser && <button className={content.trim() ? styles['submit-button-active'] : styles['submit-button']} disabled={content.trim() ? false : true} type="submit">Comment</button>}
                     {!sessionUser &&
                         <OpenModalButton
                             buttonText="Comment"

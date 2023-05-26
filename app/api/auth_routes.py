@@ -68,12 +68,13 @@ def sign_up():
     print("request.files ======>", request.files)
 
     if form.validate_on_submit():
-        profile_picture = form.data['profile_picture']
-        print("profile_picture inside User Signup route ======>>", profile_picture)
-        profile_picture.filename = get_unique_image_filename(profile_picture.filename)
-        print("profile_picture.filename inside User Signup route ======>>", profile_picture.filename)
-        profile_picture_upload = upload_image_file_to_s3(profile_picture)
-        print("profile_picture_upload inside User Signup route ======>>", profile_picture_upload)
+        if form.data['profile_picture']:
+            profile_picture = form.data['profile_picture']
+            print("profile_picture inside User Signup route ======>>", profile_picture)
+            profile_picture.filename = get_unique_image_filename(profile_picture.filename)
+            print("profile_picture.filename inside User Signup route ======>>", profile_picture.filename)
+            profile_picture_upload = upload_image_file_to_s3(profile_picture)
+            print("profile_picture_upload inside User Signup route ======>>", profile_picture_upload)
 
         user = User(
             username=form.data['username'],
@@ -82,7 +83,7 @@ def sign_up():
             first_name=form.data['first_name'],
             last_name=form.data['last_name'],
             about=form.data['about'],
-            profile_picture=profile_picture_upload['url']
+            profile_picture=profile_picture_upload['url'] if form.data['profile_picture'] else form.data['profile_picture']
         )
         db.session.add(user)
         db.session.commit()

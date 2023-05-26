@@ -33,8 +33,8 @@ function UserProfilePage() {
     }, [sessionUser, user, history])
 
 
-    if (!sessionUser) history.push('/') // return null matter?
-    if (!user) history.push('/') // return null matter?
+    if (!sessionUser) return null
+    if (!user) return null
 
     console.log('sessionUser', sessionUser)
     console.log('user', user)
@@ -74,7 +74,13 @@ function UserProfilePage() {
                 <div className={styles['user-info-container']}>
                     <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
                     <h5>{`@${sessionUser.username}`}</h5>
-                    <h5>{`${userVideoList.length} videos`}</h5>
+                    <h5>
+                        {userVideoList.length === 1 ? (
+                        `${userVideoList.length} video`
+                        ) : (
+                        `${userVideoList.length} videos`
+                        )}
+                    </h5>
                 </div>
 
                 <div className={styles['buttons-container']}>
