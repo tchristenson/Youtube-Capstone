@@ -26,13 +26,13 @@ function SignupFormModal() {
             if (validationErrors.length) return alert('Your Post has errors, cannot submit!')
 
             const formData = new FormData()
-            formData.append('email', email)
-            formData.append('username', username)
-            formData.append('first_name', firstName)
-            formData.append('last_name', lastName)
-            formData.append('about', about)
+            formData.append('email', email.trim())
+            formData.append('username', username.trim())
+            formData.append('first_name', firstName.trim())
+            formData.append('last_name', lastName.trim())
+            formData.append('about', about.trim())
             formData.append('profile_picture', profilePicture)
-            formData.append('password', password)
+            formData.append('password', password.trim())
 
             for (let key of formData.entries()) {
                 console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
@@ -55,11 +55,11 @@ function SignupFormModal() {
     useEffect(() => {
         const errors = [];
         // Only adding to the validation errors for fields that are nullable=False in the Video model
-        if (!email) errors.push('Email required')
-        if (!username) errors.push('Username required')
-        if (!password) errors.push('Password required')
-        if (!firstName) errors.push('First name required')
-        if (!lastName) errors.push('Last name required')
+        if (!email.trim()) errors.push('Email required')
+        if (!username.trim()) errors.push('Username required')
+        if (!password.trim()) errors.push('Password required')
+        if (!firstName.trim()) errors.push('First name required')
+        if (!lastName.trim()) errors.push('Last name required')
         setValidationErrors(errors)
     }, [email, username, password, firstName, lastName])
 
@@ -176,8 +176,8 @@ function SignupFormModal() {
                     closeModal() }}
                     type="submit">Cancel</button>
                 <button
-                    className={email && username && password && firstName && lastName ? styles['submit-button-active'] : styles['submit-button']}
-                    disabled={email && username && password && firstName && lastName ? false : true}
+                    className={email.trim() && username.trim() && password.trim() && firstName.trim() && lastName.trim() ? styles['submit-button-active'] : styles['submit-button']}
+                    disabled={email.trim() && username.trim() && password.trim() && firstName.trim() && lastName.trim() ? false : true}
                     type="submit">Sign Up</button>
 
             </div>

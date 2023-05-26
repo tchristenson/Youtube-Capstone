@@ -69,8 +69,8 @@ function NewVideoPage() {
         if (validationErrors.length) return alert('Your Post has errors, cannot submit!')
 
         const formData = new FormData()
-        formData.append('name', name)
-        formData.append('description', description)
+        formData.append('name', name.trim())
+        formData.append('description', description.trim())
         formData.append('content', content)
         formData.append('thumbnail', thumbnail)
 
@@ -96,9 +96,9 @@ function NewVideoPage() {
     useEffect(() => {
         const errors = [];
         // Only adding to the validation errors for fields that are nullable=False in the Video model
-        if (!name) errors.push('Videos require a name')
-        if (name.length > 100) errors.push('Video name must be 100 characters or fewer')
-        if (description.length > 500) errors.push('Video description must be 500 characters or fewer')
+        if (!name.trim()) errors.push('Videos require a name')
+        if (name.trim().length > 100) errors.push('Video name must be 100 characters or fewer')
+        if (description.trim().length > 500) errors.push('Video description must be 500 characters or fewer')
         if (!content) errors.push('Please provide a video file')
         if (!thumbnail) errors.push('Please provide a thumbnail image file')
         setValidationErrors(errors)
@@ -196,8 +196,8 @@ function NewVideoPage() {
                     e.preventDefault(); setContent(''); setDescription(''); setName(''); setThumbnail(''); closeModal() }}
                     type="submit">Cancel</button>
                 <button
-                    className={content && name && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
-                    disabled={content && name && thumbnail? false : true}
+                    className={content && name.trim() && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
+                    disabled={content && name.trim() && thumbnail? false : true}
                     type="submit">Upload Video</button>
 
             </div>

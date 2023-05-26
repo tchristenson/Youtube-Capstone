@@ -26,7 +26,7 @@ function NewComment({video}) {
         const formData = new FormData()
         if (validationErrors.length) return alert('Comment cannot exceed 10,000 characters')
 
-        formData.append('content', content)
+        formData.append('content', content.trim())
         formData.append('video_id', video.id)
 
         for (let key of formData.entries()) {
@@ -43,7 +43,7 @@ function NewComment({video}) {
     useEffect(() => {
         const errors = [];
         if (!content.trim()) errors.push('Comment cannot be empty')
-        if (content.length > 10000) errors.push('Comment cannot exceed 10,000 characters')
+        if (content.trim().length > 10000) errors.push('Comment cannot exceed 10,000 characters')
         setValidationErrors(errors)
     }, [content])
 

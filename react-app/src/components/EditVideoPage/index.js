@@ -49,8 +49,8 @@ function EditVideoPage({video}) {
         if (validationErrors.length) return alert('Your Post has errors, cannot submit!')
 
         const formData = new FormData()
-        formData.append('name', name)
-        formData.append('description', description)
+        formData.append('name', name.trim())
+        formData.append('description', description.trim())
         formData.append('thumbnail', thumbnail)
         formData.append('id', video.id)
 
@@ -74,9 +74,9 @@ function EditVideoPage({video}) {
     useEffect(() => {
         const errors = [];
         // Only adding to the validation errors for fields that are nullable=False in the Video model
-        if (!name) errors.push('Videos require a name')
-        if (name.length > 100) errors.push('Video name must be 100 characters or fewer')
-        if (description.length > 500) errors.push('Video description must be 500 characters or fewer')
+        if (!name.trim()) errors.push('Videos require a name')
+        if (name.trim().length > 100) errors.push('Video name must be 100 characters or fewer')
+        if (description.trim().length > 500) errors.push('Video description must be 500 characters or fewer')
         if (!thumbnail) errors.push('Please provide a thumbnail image file')
         setValidationErrors(errors)
     }, [name, description, thumbnail])
@@ -138,8 +138,8 @@ function EditVideoPage({video}) {
                     e.preventDefault(); setDescription(''); setName(''); setThumbnail(''); closeModal() }}
                     type="submit">Cancel</button>
                 <button
-                    className={name && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
-                    disabled={name && thumbnail? false : true}
+                    className={name.trim() && thumbnail ? styles['submit-button-active'] : styles['submit-button']}
+                    disabled={name.trim() && thumbnail? false : true}
                     type="submit">Save</button>
 
             </div>
