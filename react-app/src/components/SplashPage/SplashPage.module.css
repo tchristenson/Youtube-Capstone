@@ -10,9 +10,13 @@ a {
     justify-content: center;
 }
 
-.h3link {
+.video-name {
     text-decoration: none;
     color: whitesmoke;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
   }
 
 .h5link {
@@ -91,4 +95,9 @@ a {
     display: flex;
     flex-direction: row;
     padding: 5px 5px 5px 0px;
+    width: 310px;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    overflow: hidden;
+    /* white-space: nowrap; */
 }

@@ -68,7 +68,7 @@
 }
 
 .single-video img {
-    max-width: 100%;
+    /* max-width: 100%; */
     height: 105px;
     border-radius: 15px;
     width: 190px;
@@ -80,12 +80,18 @@
 .single-video-details {
     display: grid;
     grid-template-columns: repeat(1, 9fr 1fr);
-    max-width: 100%;
-    padding-top: 10px;
-    top: 50%
+    max-width: 190px;
+    padding-top: 5px;
+    top: 50%;
+    max-height: 37px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
 }
 
-.single-video-details h3, i {
+.single-video-details i {
+    display: flex;
+    justify-content: end;
 
 
 }

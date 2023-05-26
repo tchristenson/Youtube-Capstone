@@ -28,7 +28,7 @@ function SplashPage() {
         }
         })
         .map(video => (
-        <div key={video.id} className={styles.video}>
+        <div key={video.id} className={styles['video']}>
             <NavLink  to={`/videos/${video.id}`}>
                 <img className={styles.thumbnail} src={video.thumbnail}/>
             </NavLink>
@@ -41,7 +41,7 @@ function SplashPage() {
                     )}
                 </NavLink>
                 <NavLink to={`/videos/${video.id}`}>
-                    <h3 className={styles.h3link}>{video.name}</h3>
+                    <h5 className={styles['video-name']}>{video.name}</h5>
                 </NavLink>
             </div>
             <div>
