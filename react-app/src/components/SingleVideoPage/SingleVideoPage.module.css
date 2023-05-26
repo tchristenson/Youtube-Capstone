@@ -19,10 +19,7 @@ a {
     margin: 15px 0 15px 0;
 }
 
-.h3link {
-    text-decoration: none;
-    color: whitesmoke;
-  }
+
 
 .h5link {
     text-decoration: none;
@@ -97,8 +94,18 @@ a {
     display: grid;
     grid-template-columns: repeat(1, 45fr 55fr);
     padding-bottom: 8px;
-
+    max-width: 230px;
 }
+
+.sidebar-video-name {
+    text-decoration: none;
+    color: whitesmoke;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    word-break: break-all;
+  }
 
 .sidebar-video-details {
     padding-left: 8px;

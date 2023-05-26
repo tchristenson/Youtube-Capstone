@@ -43,7 +43,6 @@ function UserProfilePage() {
     const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
 
     const userVideoList = userVideos.map(video => (
-
         <div key={video.id} className={styles["single-video"]}>
             <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
