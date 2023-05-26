@@ -89,6 +89,7 @@
 .user-info-container h5 {
     color: gray;
     font-weight: normal;
+    word-break: break-word;
 }
 
 .user-about {
