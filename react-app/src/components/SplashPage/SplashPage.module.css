@@ -10,9 +10,13 @@ a {
     justify-content: center;
 }
 
-.h3link {
+.video-name {
     text-decoration: none;
     color: whitesmoke;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: nowrap; */
   }
 
 .h5link {
@@ -61,9 +65,9 @@ a {
     height: 30px;
     width: 45%;
     max-width: 100%;
-    border-radius: 10px;
+    border-radius: 30px;
     border: 1px solid gray;
-    padding: 5px;
+    padding: 5px 5px 5px 10px;
 
 }
 
@@ -91,4 +95,14 @@ a {
     display: flex;
     flex-direction: row;
     padding: 5px 5px 5px 0px;
+    width: 310px;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow: hidden;
+    /* white-space: nowrap; */
+}
+
+.video-name-username {
+    display: flex;
+    flex-direction: column;
 }

@@ -41,7 +41,7 @@ function ChannelPage() {
             </NavLink>
             <div className={styles["single-video-details"]}>
                 <NavLink to={`/videos/${video.id}`}>
-                    <h3>{video.name}</h3>
+                    <h5>{video.name}</h5>
                 </NavLink>
             </div>
         </div>

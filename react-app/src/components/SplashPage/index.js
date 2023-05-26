@@ -28,7 +28,7 @@ function SplashPage() {
         }
         })
         .map(video => (
-        <div key={video.id} className={styles.video}>
+        <div key={video.id} className={styles['video']}>
             <NavLink  to={`/videos/${video.id}`}>
                 <img className={styles.thumbnail} src={video.thumbnail}/>
             </NavLink>
@@ -40,14 +40,14 @@ function SplashPage() {
                         <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
                     )}
                 </NavLink>
-                <NavLink to={`/videos/${video.id}`}>
-                    <h3 className={styles.h3link}>{video.name}</h3>
-                </NavLink>
-            </div>
-            <div>
-                <NavLink to={`/channels/${video.user.id}`}>
-                    <h5 className={styles.h5link}>{video.user.username}</h5>
-                </NavLink>
+                <div className={styles['video-name-username']}>
+                    <NavLink to={`/videos/${video.id}`}>
+                        <h5 className={styles['video-name']}>{video.name}</h5>
+                    </NavLink>
+                    <NavLink to={`/channels/${video.user.id}`}>
+                        <h5 className={styles.h5link}>{video.user.username}</h5>
+                    </NavLink>
+                </div>
             </div>
         </div>
     ))

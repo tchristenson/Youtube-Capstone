@@ -43,7 +43,7 @@ function SingleVideoPage() {
             </div>
             <div className={styles['sidebar-video-details']}>
                 <NavLink to={`/videos/${video.id}`}>
-                    <h3 className={styles['h3link']}>{video.name}</h3>
+                    <h5 className={styles['sidebar-video-name']}>{video.name}</h5>
                 </NavLink>
                 <NavLink to={`/channels/${video.user?.id}`}>
                     <h5 className={styles['h5link']}>{video.user?.username}</h5>
@@ -61,7 +61,7 @@ function SingleVideoPage() {
                         <source src={video.content}/>
                     </video>
                 </div>
-                <h3>{video.name}</h3>
+                <h3 className={styles['main-video-name']}>{video.name}</h3>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
                         { video.user.profilePicture ? (
@@ -69,19 +69,19 @@ function SingleVideoPage() {
                         ) : (
                             <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
                         )}
-                        <h5>{video.user.username}</h5>
+                        <h4>{video.user.username}</h4>
                     </NavLink>
 
                 </div>
                 <div className={styles['video-description']}>
-                    <h6>{video.name}</h6>
-                    <p>{video.description}</p>
+                    {/* <h6>{video.name}</h6> */}
+                    <h5>{video.description}</h5>
                 </div>
                 <div className={styles['comment-count']}>
                     {commentsArr.length === 1 ? (
-                        `${commentsArr.length} comment`
+                        <h4>{`${commentsArr.length} comment`}</h4>
                     ) : (
-                        `${commentsArr.length} comments`
+                        <h5>{`${commentsArr.length} comments`}</h5>
 
                     )}
                 </div>

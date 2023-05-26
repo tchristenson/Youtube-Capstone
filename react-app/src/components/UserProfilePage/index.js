@@ -43,14 +43,13 @@ function UserProfilePage() {
     const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
 
     const userVideoList = userVideos.map(video => (
-
         <div key={video.id} className={styles["single-video"]}>
             <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
             </NavLink>
             <div className={styles["single-video-details"]}>
                 <NavLink to={`/videos/${video.id}`}>
-                    <h3>{video.name}</h3>
+                    <h5>{video.name}</h5>
                 </NavLink>
                 <OpenModalIcon modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
             </div>

@@ -76,10 +76,14 @@
 
 .single-video-details {
     display: grid;
-    grid-template-columns: repeat(1, 25fr 1fr);
-    max-width: 100%;
-    padding-top: 10px;
-    top: 50%
+    grid-template-columns: repeat(1, 9fr 1fr);
+    max-width: 190px;
+    padding-top: 5px;
+    top: 50%;
+    max-height: 37px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
 }
 
 .user-info-container h5 {
