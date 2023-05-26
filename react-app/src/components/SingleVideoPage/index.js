@@ -81,7 +81,7 @@ function SingleVideoPage() {
                     {commentsArr.length === 1 ? (
                         <h4>{`${commentsArr.length} comment`}</h4>
                     ) : (
-                        <h5>{`${commentsArr.length} comments`}</h5>
+                        <h4>{`${commentsArr.length} comments`}</h4>
 
                     )}
                 </div>
