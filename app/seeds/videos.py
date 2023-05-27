@@ -188,6 +188,7 @@ def seed_videos():
         user_id = 3,
         name = 'Man Dances and Cheers Happily After Graduating From App Academy',
         description = "He must've just debugged his last modal",
+        content = 'http://capstone-video-bucket.s3.amazonaws.com/ce5e8613769244ca951e0b3446101634.mp4',
         thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/3dbf7419fd264a129e4c652f28f527f6.png'
     )
     video28 = Video(
@@ -257,7 +258,6 @@ def seed_videos():
         user_id = 6,
         name = "Serene Family of Deer in the Snow",
         description = "Enter a tranquil winter scene as a family of deer gracefully moves through a snowy landscape. Witness the elegance and beauty of these majestic creatures as they navigate the pristine white surroundings with gentle steps. Feel the hushed silence and the crisp air that envelops this serene winter wonderland. Join us in this heartwarming moment where the bond of family and the harmony of nature unfold, leaving an indelible impression of peace and tranquility in the midst of the snowy wilderness.",
-        content = 'http://capstone-video-bucket.s3.amazonaws.com/b1bd516bc8994401920a34666a71f39f.mp4',
         content = 'http://capstone-video-bucket.s3.amazonaws.com/529366187cea43799c8dea39c78f16d0.mp4',
         thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/fd1836bb5beb4145b8896c3a54bca2cf.png'
     )
