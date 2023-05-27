@@ -86,7 +86,7 @@
     max-height: 37px;
     overflow: hidden;
     text-overflow: ellipsis;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .single-video-details i {
