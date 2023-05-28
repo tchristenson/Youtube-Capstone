@@ -214,15 +214,15 @@ def seed_videos():
     )
     video31 = Video(
         user_id = 9,
-        name = "Times Square's Enchanting Night Shower",
-        description = "Step into the enchanting realm of Times Square at night, where the city's vibrant energy meets the gentle touch of raindrops. Witness the mesmerizing dance of rain as it cascades down, creating a shimmering spectacle against the backdrop of dazzling lights. Feel the electric atmosphere intensify as umbrellas emerge, and the cityscape reflects on the glistening pavement. Join us in this unique moment where the allure of Times Square meets the whimsy of rainfall, offering a captivating blend of urban charm and nature's own symphony.",
+        name = "Submerged Swimmer Shows Form",
+        description = "Dive into the serene depths as an underwater camera captures the elegant movements of a man swimming. Witness the grace and fluidity as he glides through the water, surrounded by the tranquil blue hues. Feel the weightlessness and the soothing embrace of the underwater world as he explores this ethereal domain. Join us in this immersive experience where the boundaries between land and sea fade away, offering a glimpse into the captivating beauty and freedom found beneath the surface.",
         content = 'http://capstone-video-bucket.s3.amazonaws.com/2a03182a723b44c398d0cec00e9579bd.mp4',
         thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/c43aae32c3004032a3218f07d4520d3c.png'
     )
     video32 = Video(
         user_id = 10,
-        name = "Submerged Swimmer Shows Form",
-        description = "Dive into the serene depths as an underwater camera captures the elegant movements of a man swimming. Witness the grace and fluidity as he glides through the water, surrounded by the tranquil blue hues. Feel the weightlessness and the soothing embrace of the underwater world as he explores this ethereal domain. Join us in this immersive experience where the boundaries between land and sea fade away, offering a glimpse into the captivating beauty and freedom found beneath the surface.",
+        name = "Times Square's Enchanting Night Shower",
+        description = "Step into the enchanting realm of Times Square at night, where the city's vibrant energy meets the gentle touch of raindrops. Witness the mesmerizing dance of rain as it cascades down, creating a shimmering spectacle against the backdrop of dazzling lights. Feel the electric atmosphere intensify as umbrellas emerge, and the cityscape reflects on the glistening pavement. Join us in this unique moment where the allure of Times Square meets the whimsy of rainfall, offering a captivating blend of urban charm and nature's own symphony.",
         content = 'http://capstone-video-bucket.s3.amazonaws.com/7df2dd09f02d46c78adaa19942dd4f57.mp4',
         thumbnail = 'http://capstone-image-bucket2.s3.amazonaws.com/267175c98e584f178da3b03e3c38c69d.png'
     )
