@@ -15,7 +15,7 @@ function SingleVideoPage() {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
+      }, [videoId])
 
     useEffect(() => {
         dispatch(getAllVideosThunk())
@@ -33,9 +33,9 @@ function SingleVideoPage() {
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
-    console.log('filteredVideos', filteredVideos)
+    // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
-    console.log('video inside SingleVideoPage', video)
+    // console.log('video inside SingleVideoPage', video)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (
@@ -71,7 +71,7 @@ function SingleVideoPage() {
                         { video.user.profilePicture ? (
                             <img className={styles['profile-picture']} src={video.user.profilePicture}/>
                         ) : (
-                            <h3 className={styles['owner-details-profile-icon']}>{video.user.username[0]}</h3>
+                            <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
                         )}
                         <h4>{video.user.username}</h4>
                     </NavLink>

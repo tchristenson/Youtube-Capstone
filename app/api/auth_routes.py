@@ -16,7 +16,7 @@ def validation_errors_to_error_messages(validation_errors):
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages.append(error)
-            print('errorMessages ==============>>>>>>>>>>>', errorMessages)
+            # print('errorMessages ==============>>>>>>>>>>>', errorMessages)
     return errorMessages
 
 
@@ -64,17 +64,17 @@ def sign_up():
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("form.data inside User Signup route ======>>", form.data)
-    print("request.files ======>", request.files)
+    # print("form.data inside User Signup route ======>>", form.data)
+    # print("request.files ======>", request.files)
 
     if form.validate_on_submit():
         if form.data['profile_picture']:
             profile_picture = form.data['profile_picture']
-            print("profile_picture inside User Signup route ======>>", profile_picture)
+            # print("profile_picture inside User Signup route ======>>", profile_picture)
             profile_picture.filename = get_unique_image_filename(profile_picture.filename)
-            print("profile_picture.filename inside User Signup route ======>>", profile_picture.filename)
+            # print("profile_picture.filename inside User Signup route ======>>", profile_picture.filename)
             profile_picture_upload = upload_image_file_to_s3(profile_picture)
-            print("profile_picture_upload inside User Signup route ======>>", profile_picture_upload)
+            # print("profile_picture_upload inside User Signup route ======>>", profile_picture_upload)
 
         user = User(
             username=form.data['username'],

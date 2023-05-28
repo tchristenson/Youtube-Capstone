@@ -16,7 +16,7 @@ def add_comment():
     form = NewComment()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("form.data inside New Comment route ======>>", form.data)
+    # print("form.data inside New Comment route ======>>", form.data)
 
     if form.validate_on_submit():
 
@@ -38,11 +38,11 @@ def add_comment():
 def get_comments_by_video_id(id):
     """Returns all comments for a specific video"""
 
-    print('id ==============>>>>>>>>>>>>>>>>>>>>', id)
+    # print('id ==============>>>>>>>>>>>>>>>>>>>>', id)
     video = Video.query.get(id)
     comments = Comment.query.join(User).filter(Comment.video_id == video.id).all()
     # comments = db.session.query(Comment).join(Video).filter(Comment.video_id == Video.id)
-    print('comments ==============>>>>>>>>>>>>>>>>>>>>', comments)
+    # print('comments ==============>>>>>>>>>>>>>>>>>>>>', comments)
 
     if comments is None or len(comments) == 0:
         return {'Comments': []}

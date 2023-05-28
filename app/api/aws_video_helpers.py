@@ -22,12 +22,12 @@ def get_unique_video_filename(filename):
 
 def upload_video_file_to_s3(file, acl="public-read"):
     try:
-        print('file inside AWS upload function ========>>>>>>>>>', file)
-        print('type(file) inside AWS upload function ========>>>>>>>>>', type(file))
-        print('BUCKET_NAME inside AWS upload function ========>>>>>>>>>', BUCKET_NAME)
-        print('type(BUCKET_NAME) inside AWS upload function ========>>>>>>>>>', type(BUCKET_NAME))
-        print('file.filename inside AWS upload function ========>>>>>>>>>', file.filename)
-        print('type(file.filename) inside AWS upload function ========>>>>>>>>>', type(file.filename))
+        # print('file inside AWS upload function ========>>>>>>>>>', file)
+        # print('type(file) inside AWS upload function ========>>>>>>>>>', type(file))
+        # print('BUCKET_NAME inside AWS upload function ========>>>>>>>>>', BUCKET_NAME)
+        # print('type(BUCKET_NAME) inside AWS upload function ========>>>>>>>>>', type(BUCKET_NAME))
+        # print('file.filename inside AWS upload function ========>>>>>>>>>', file.filename)
+        # print('type(file.filename) inside AWS upload function ========>>>>>>>>>', type(file.filename))
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
@@ -47,7 +47,7 @@ def remove_video_file_from_s3(image_url):
     # AWS needs the image file name, not the URL,
     # so we split that out of the URL
     key = image_url.rsplit("/", 1)[1]
-    print(key)
+    # print(key)
     try:
         s3.delete_object(
         Bucket=BUCKET_NAME,

@@ -47,16 +47,16 @@ const deleteVideoAction = videoId => {
 // ----------------------------------------  THUNKS  ----------------------------------------
 
 export const uploadVideoThunk = video => async (dispatch) => {
-    for (let key of video.entries()) {
-        console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
-      }
+    // for (let key of video.entries()) {
+    //     console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
+    //   }
     const response = await fetch('/api/videos/new', {
         method: 'POST',
         body: video
     })
     if (response.ok) {
         const video = await response.json()
-        console.log('response.json() inside of thunk', video)
+        // console.log('response.json() inside of thunk', video)
         dispatch(uploadVideoAction(video));
         return video
     }
@@ -75,7 +75,7 @@ export const getAllVideosThunk = () => async (dispatch) => {
     const response = await fetch('/api/videos')
     if (response.ok) {
         const videos = await response.json()
-        console.log('videos response from backend', videos)
+        // console.log('videos response from backend', videos)
         dispatch(getAllVideosAction(videos))
         return videos
     }

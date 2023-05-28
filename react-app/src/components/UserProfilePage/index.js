@@ -15,7 +15,7 @@ function UserProfilePage() {
     const dispatch = useDispatch()
     const history = useHistory()
     const {userId} = useParams()
-    console.log('userId', userId)
+    // console.log('userId', userId)
 
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
@@ -36,9 +36,9 @@ function UserProfilePage() {
     if (!sessionUser) return null
     if (!user) return null
 
-    console.log('sessionUser', sessionUser)
-    console.log('user', user)
-    console.log('allVideos', allVideos)
+    // console.log('sessionUser', sessionUser)
+    // console.log('user', user)
+    // console.log('allVideos', allVideos)
 
     const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
 

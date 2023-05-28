@@ -29,9 +29,9 @@ function NewComment({video}) {
         formData.append('content', content.trim())
         formData.append('video_id', video.id)
 
-        for (let key of formData.entries()) {
-            console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
-          }
+        // for (let key of formData.entries()) {
+        //     console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+        //   }
 
         await dispatch(addCommentThunk(formData))
 

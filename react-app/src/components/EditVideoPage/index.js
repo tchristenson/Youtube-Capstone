@@ -54,9 +54,9 @@ function EditVideoPage({video}) {
         formData.append('thumbnail', thumbnail)
         formData.append('id', video.id)
 
-        for (let key of formData.entries()) {
-              console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
-            }
+        // for (let key of formData.entries()) {
+        //       console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+        //     }
 
         const editedVideo = await dispatch(editVideoThunk(formData))
 

@@ -28,9 +28,9 @@ function EditCommentModal({comment}) {
         formData.append('content', content)
         formData.append('id', comment.id)
 
-        for (let key of formData.entries()) {
-            console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
-          }
+        // for (let key of formData.entries()) {
+        //     console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+        //   }
 
         await dispatch(editCommentThunk(formData))
 

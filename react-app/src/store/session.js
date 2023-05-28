@@ -68,9 +68,9 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (formData) => async (dispatch) => {
-    for (let key of formData.entries()) {
-        console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
-      }
+    // for (let key of formData.entries()) {
+    //     console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
+    //   }
 	const response = await fetch("/api/auth/signup", {
 		method: "POST",
 		body: formData
