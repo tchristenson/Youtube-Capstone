@@ -36,6 +36,7 @@ class Video(db.Model):
             'thumbnail': self.thumbnail,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
+            'user_likes': len(self.user_likes),
             'user': {
                 'id': self.user.id,
                 'username': self.user.username,

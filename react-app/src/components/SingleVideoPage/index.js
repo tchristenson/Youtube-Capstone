@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
-import { getSingleVideoThunk } from "../../store/videos";
+import { likeVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import { getAllVideosThunk } from "../../store/videos";
 import NewComment from "../NewComment";
@@ -22,6 +22,13 @@ function SingleVideoPage() {
         // dispatch(getSingleVideoThunk(videoId))
         dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
+
+    const handleLike = (e) => {
+        e.preventDefault()
+        if (sessionUser) {
+            dispatch(likeVideoThunk(videoId, sessionUser.id))
+        }
+    }
 
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
@@ -66,6 +73,7 @@ function SingleVideoPage() {
                     </video>
                 </div>
                 <h3 className={styles['main-video-name']}>{video.name}</h3>
+                <button onClick={handleLike}>Like</button>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
                         { video.user.profilePicture ? (

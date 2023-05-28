@@ -6,6 +6,7 @@ const GET_SINGLE_VIDEO = 'videos/GET_SINGLE_VIDEO'
 const GET_ALL_VIDEOS = 'videos/GET_ALL_VIDEOS'
 const EDIT_VIDEO = 'videos/EDIT_VIDEO'
 const DELETE_VIDEO = 'videos/DELETE_VIDEO'
+const LIKE_VIDEO = 'videos/LIKE_VIDEO'
 
 
 const uploadVideoAction = video => {
@@ -40,6 +41,13 @@ const deleteVideoAction = videoId => {
     return {
         type: DELETE_VIDEO,
         videoId
+    }
+}
+
+const likeVideoAction = video => {
+    return {
+        type: LIKE_VIDEO,
+        video
     }
 }
 
@@ -104,6 +112,18 @@ export const deleteVideoThunk = videoId => async (dispatch) => {
     }
 }
 
+export const likeVideoThunk = (videoId, userId) => async (dispatch) => {
+    const response = await fetch(`/api/videos/${videoId}/likes/${userId}`, {
+        method: 'POST',
+        body: videoId, userId
+    });
+    if (response.ok) {
+        const video = await response.json()
+        dispatch(likeVideoAction(video))
+        return video
+    }
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -129,6 +149,10 @@ const videoReducer = (state = {}, action) => {
         case DELETE_VIDEO:
             newState = {...state}
             delete newState[action.videoId]
+            return newState
+        case LIKE_VIDEO:
+            newState = {...state}
+            newState[action.video.id] = action.video
             return newState
         default:
             return state

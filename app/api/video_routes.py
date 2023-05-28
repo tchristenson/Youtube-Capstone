@@ -6,6 +6,8 @@ from ..forms.edit_video_form import EditVideo
 from ..models import db
 from ..api.aws_video_helpers import get_unique_video_filename, upload_video_file_to_s3
 from ..api.aws_image_helpers import get_unique_image_filename, upload_image_file_to_s3
+from ..models.likes import user_video_likes
+from sqlalchemy import select
 
 video_routes = Blueprint('videos', __name__)
 
@@ -116,8 +118,39 @@ def delete_video(id):
         return 'Must be video owner to delete video'
 
 
-## ----------------------------------------  LIKE A VIDEO  ----------------------------------------
+## ----------------------------------------  LIKE OR UNLIKE A VIDEO  ----------------------------------------
 @video_routes.route('/<int:id>/likes/<int:user_id>', methods=['POST'])
 @login_required
 def like_video(id, user_id):
-    """Queries for a video and user, and adds the user's like to that video"""
+    """Queries for a video and user, and adds the user's like to that video if they have not liked the video.
+        Otherwise, the like is removed if the user has already liked the video"""
+
+    video = Video.query.get(id)
+    if not video:
+        return {'error': 'video not found'}
+
+    user = User.query.get(user_id)
+    if not user:
+        return {'error': 'user not found'}
+
+    # print('id =============>>>>>>>>>>>>>>', id)
+    # print('user_id =============>>>>>>>>>>>>>>', user_id)
+    # print('video =============>>>>>>>>>>>>>>', video)
+    # print('user =============>>>>>>>>>>>>>>', user)
+
+    query = select([user_video_likes]).where(
+        (user_video_likes.c.user_id == user_id) & (user_video_likes.c.video_id == id)
+    )
+
+    result = db.session.execute(query)
+
+    has_liked = result.fetchone() is not None
+
+    if has_liked:
+        video.user_likes.remove(user)
+        db.session.commit()
+        return video.to_dict()
+    else:
+        video.user_likes.append(user)
+        db.session.commit()
+        return video.to_dict()
