@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.schema import ForeignKey
 from sqlalchemy import func
+from .likes import user_video_likes
 
 class Video(db.Model):
     __tablename__ = 'videos'
@@ -22,6 +23,7 @@ class Video(db.Model):
 
     comments = db.relationship('Comment', back_populates='video', cascade='all, delete-orphan')
 
+    user_likes = db.relationship('User', secondary=user_video_likes, back_populates='video_likes')
 
     def to_dict(self):
         return {

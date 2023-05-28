@@ -114,3 +114,10 @@ def delete_video(id):
         return 'Delete Successful'
     else:
         return 'Must be video owner to delete video'
+
+
+## ----------------------------------------  LIKE A VIDEO  ----------------------------------------
+@video_routes.route('/<int:id>/likes/<int:user_id>', methods=['POST'])
+@login_required
+def like_video(id, user_id):
+    """Queries for a video and user, and adds the user's like to that video"""

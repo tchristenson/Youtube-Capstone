@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .likes import user_video_likes
 
 
 class User(db.Model, UserMixin):
@@ -20,6 +21,8 @@ class User(db.Model, UserMixin):
 
     videos = db.relationship('Video', back_populates='user', cascade='all, delete-orphan')
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
+
+    video_likes = db.relationship('Video', secondary=user_video_likes, back_populates='user_likes')
 
     @property
     def password(self):
