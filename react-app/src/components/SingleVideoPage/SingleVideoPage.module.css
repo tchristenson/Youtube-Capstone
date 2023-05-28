@@ -66,6 +66,21 @@ a {
     margin-right: 10px;
 }
 
+.owner-details-profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgba(21, 21, 169, 0.703);
+    font-weight: normal;
+    text-align: center;
+    padding-top: 5px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
 .profile-icon {
     border-radius: 100%;
     width: 30px;

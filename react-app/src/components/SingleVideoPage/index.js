@@ -71,7 +71,7 @@ function SingleVideoPage() {
                         { video.user.profilePicture ? (
                             <img className={styles['profile-picture']} src={video.user.profilePicture}/>
                         ) : (
-                            <h3 className={styles['profile-icon']}>{video.user.username[0]}</h3>
+                            <h3 className={styles['owner-details-profile-icon']}>{video.user.username[0]}</h3>
                         )}
                         <h4>{video.user.username}</h4>
                     </NavLink>
