@@ -12,8 +12,8 @@ function ChannelPage() {
     let {channelId} = useParams()
     const history = useHistory()
     channelId = parseInt(channelId)
-    console.log('channelId', channelId)
-    console.log('typeof channelId', typeof channelId)
+    // console.log('channelId', channelId)
+    // console.log('typeof channelId', typeof channelId)
 
     const user = useSelector(state => state.users[channelId])
     const allVideos = useSelector(state => state.videos)
@@ -23,16 +23,16 @@ function ChannelPage() {
             dispatch(getSingleUserThunk(channelId))
     }, [dispatch, channelId])
 
-    console.log('user', user)
+    // console.log('user', user)
 
 
     if (!user) return null
 
-    console.log('user', user)
-    console.log('allVideos', allVideos)
+    // console.log('user', user)
+    // console.log('allVideos', allVideos)
 
     const channelVideos = Object.values(allVideos).filter(video => video.userId === channelId)
-    console.log('channelVideos', channelVideos)
+    // console.log('channelVideos', channelVideos)
 
     const channelVideoList = channelVideos.map(video => (
         <div key={video.id} className={styles["single-video"]}>

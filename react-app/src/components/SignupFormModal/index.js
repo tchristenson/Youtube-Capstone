@@ -34,9 +34,9 @@ function SignupFormModal() {
             formData.append('profile_picture', profilePicture)
             formData.append('password', password.trim())
 
-            for (let key of formData.entries()) {
-                console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
-              }
+            // for (let key of formData.entries()) {
+            //     console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
+            //   }
 
 			const data = await dispatch(signUp(formData));
 			if (data) {

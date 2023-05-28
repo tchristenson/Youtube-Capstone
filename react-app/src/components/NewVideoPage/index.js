@@ -74,9 +74,9 @@ function NewVideoPage() {
         formData.append('content', content)
         formData.append('thumbnail', thumbnail)
 
-        for (let key of formData.entries()) {
-              console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
-            }
+        // for (let key of formData.entries()) {
+        //       console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+        //     }
 
         const newVideo = await dispatch(uploadVideoThunk(formData))
 

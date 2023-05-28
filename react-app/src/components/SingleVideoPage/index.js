@@ -33,9 +33,9 @@ function SingleVideoPage() {
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
-    console.log('filteredVideos', filteredVideos)
+    // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
-    console.log('video inside SingleVideoPage', video)
+    // console.log('video inside SingleVideoPage', video)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (

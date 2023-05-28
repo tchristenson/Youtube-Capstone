@@ -18,25 +18,25 @@ def add_video():
     form = NewVideo()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    print("form.data inside New Video route ======>>", form.data)
-    print("request.files ======>", request.files)
+    # print("form.data inside New Video route ======>>", form.data)
+    # print("request.files ======>", request.files)
 
     if form.validate_on_submit():
 
 
         content = form.data['content']
-        print("content inside New Video route ======>>", content)
+        # print("content inside New Video route ======>>", content)
         content.filename = get_unique_video_filename(content.filename)
-        print("content.filename inside New Video route ======>>", content.filename)
+        # print("content.filename inside New Video route ======>>", content.filename)
         video_upload = upload_video_file_to_s3(content)
-        print("video_upload inside New Video route ======>>", video_upload)
+        # print("video_upload inside New Video route ======>>", video_upload)
 
         thumbnail = form.data['thumbnail']
-        print("thumbnail inside New Video route ======>>", thumbnail)
+        # print("thumbnail inside New Video route ======>>", thumbnail)
         thumbnail.filename = get_unique_image_filename(thumbnail.filename)
-        print("thumbnail.filename inside New Video route ======>>", thumbnail.filename)
+        # print("thumbnail.filename inside New Video route ======>>", thumbnail.filename)
         thumbnail_upload = upload_image_file_to_s3(thumbnail)
-        print("thumbnail_upload inside New Video route ======>>", thumbnail_upload)
+        # print("thumbnail_upload inside New Video route ======>>", thumbnail_upload)
 
         video = Video(user_id = current_user.id,
                       name = form.data['name'],
@@ -87,11 +87,11 @@ def edit_video(id):
         video.description = form.data['description']
 
         thumbnail = form.data['thumbnail']
-        print("thumbnail inside Edit Video route ======>>", thumbnail)
+        # print("thumbnail inside Edit Video route ======>>", thumbnail)
         thumbnail.filename = get_unique_image_filename(thumbnail.filename)
-        print("thumbnail.filename inside Edit Video route ======>>", thumbnail.filename)
+        # print("thumbnail.filename inside Edit Video route ======>>", thumbnail.filename)
         thumbnail_upload = upload_image_file_to_s3(thumbnail)
-        print("thumbnail_upload inside Edit Video route ======>>", thumbnail_upload)
+        # print("thumbnail_upload inside Edit Video route ======>>", thumbnail_upload)
 
         video.thumbnail = thumbnail_upload['url']
 
