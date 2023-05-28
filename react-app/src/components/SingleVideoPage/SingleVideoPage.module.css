@@ -87,7 +87,7 @@ a {
 
 .sidebar-thumbnail img {
     max-width: 100%;
-    height: 70px;
+    height: 90px;
     border-radius: 10px;
     width: 300px;
     /* Object fit clips the images so they are not distorted */
@@ -99,7 +99,7 @@ a {
     display: grid;
     grid-template-columns: repeat(1, 45fr 55fr);
     padding-bottom: 8px;
-    max-width: 230px;
+    /* max-width: 230px; */
 }
 
 .sidebar-video-name {

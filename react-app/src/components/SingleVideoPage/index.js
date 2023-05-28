@@ -14,6 +14,10 @@ function SingleVideoPage() {
     const {videoId} = useParams()
 
     useEffect(() => {
+        window.scrollTo(0, 0)
+      }, [])
+
+    useEffect(() => {
         dispatch(getAllVideosThunk())
         // dispatch(getSingleVideoThunk(videoId))
         dispatch(getCommentsByVideoIdThunk(videoId))
