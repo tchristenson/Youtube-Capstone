@@ -22,7 +22,7 @@
 
 .profile-information {
     display: grid;
-    grid-template-columns: repeat(1, 2fr 10fr 2fr);
+    grid-template-columns: repeat(1, 150px 10fr 2fr);
     margin: 10px 10px 30px 10px;
 }
 
