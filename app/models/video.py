@@ -11,8 +11,8 @@ class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     # playlist_id = db.Column(db.Integer, ForeignKey(add_prefix_for_prod('playlists.id')), nullable=True) ## Placeholder until playlists implemented
-    name = db.Column(db.String(150), nullable=False, unique=True)
-    description = db.Column(db.String(750))
+    name = db.Column(db.String(100), nullable=False, unique=True)
+    description = db.Column(db.String(500))
     content = db.Column(db.String, nullable=False)
     thumbnail = db.Column(db.String, nullable=False) ## Will be required for now, can possibly select frames from the video and make it automatic
     created_at = db.Column(db.DateTime, server_default=func.now(), nullable=False)

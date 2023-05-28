@@ -10,7 +10,7 @@ def seed_users():
         password='password',
         first_name='Morgan',
         last_name='Freeman',
-        about="As you look into my eyes, you'll witness the depth and wisdom that has defined my journey. With a voice that resonates through your very being, I draw you in with tales that captivate the soul. Each line etched upon my face tells a story of a life lived fully, and my presence exudes grace and humility. I am Morgan Freeman, a legend whose performances and advocacy have left an indelible mark on the world.",
+        about="With a voice that resonates through your very being, I draw you in with tales that captivate the soul. Each line etched upon my face tells a story of a life lived fully, and my presence exudes grace and humility. I am Morgan Freeman, a legend whose performances and advocacy have left an indelible mark on the world.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/f10fbcc7541e44089c16aad00ef53559.jpg'
     )
     ferris = User(
@@ -19,7 +19,7 @@ def seed_users():
         password='password',
         first_name='Ferris',
         last_name='Bueller',
-        about="I am the epitome of teenage charm and mischief. With an irresistible charisma that captures hearts, I navigate life with a fearless spirit and a mischievous twinkle in my eye. I effortlessly manipulate the world around me, bending rules and conventions to suit my whims. Whether I'm playing hooky from school or orchestrating elaborate schemes, my quick wit and cunning maneuvers keep everyone on their toes. I am Ferris Bueller, a master of seizing the day and reminding the world that sometimes you just have to take a joyride through life.",
+        about="I am the epitome of teenage charm and mischief. With an irresistible charisma that captures hearts, I navigate life with a fearless spirit and a mischievous twinkle in my eye. Whether I'm playing hooky from school or orchestrating elaborate schemes, my quick wit and cunning maneuvers keep everyone on their toes.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/a38de0ed2e7844638c7f7ad2a54db27c.png'
     )
     dude = User(
@@ -47,7 +47,7 @@ def seed_users():
         password='password',
         first_name='Larry',
         last_name='David',
-        about='I am the unapologetically honest and unabashedly neurotic individual who thrives on the uncomfortable and absurd moments of life. With a knack for finding myself in the most cringe-worthy situations, I navigate through social norms with a refreshing disregard. My signature blend of dry wit and self-deprecating humor keeps audiences laughing and squirming simultaneously. From the tiniest social faux pas to grand misunderstandings, I am a magnet for chaos and comedic gold. I am Larry David, where every interaction becomes a hilarious dance of awkwardness and authenticity.',
+        about='I am the unapologetically honest and unabashedly neurotic individual who thrives on the uncomfortable and absurd moments of life. With a knack for finding myself in the most cringe-worthy situations, I navigate through social norms with a refreshing disregard. My signature blend of dry wit and self-deprecating humor keeps audiences laughing and squirming simultaneously.',
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/d4604036e0714ff99a5c18187817890c.png'
 
     )
@@ -57,7 +57,7 @@ def seed_users():
         password='password',
         first_name='Tom',
         last_name='Cruise',
-        about="I embody the essence of a true Hollywood icon. With a charismatic presence that electrifies the screen, I command attention and captivate audiences worldwide. Whether I'm sprinting through action-packed sequences or delving into complex characters, my commitment to my craft is unparalleled. I bring an intensity and physicality that leaves viewers breathless. Behind the scenes, my unwavering dedication and work ethic are the driving forces behind my success. I am Tom Cruise, a versatile performer who continues to push boundaries and deliver unforgettable performances, ensuring my place among the legends of the silver screen.",
+        about="I embody the essence of a true Hollywood icon. With a charismatic presence that electrifies the screen, I command attention and captivate audiences worldwide. Whether I'm sprinting through action-packed sequences or delving into complex characters, my commitment to my craft is unparalleled. I bring an intensity and physicality that leaves viewers breathless.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/3d4d6297c8b54e61b87b28d9d5ee9742.png'
 
     )
@@ -67,7 +67,7 @@ def seed_users():
         password='password',
         first_name='Gordon',
         last_name='Ramsay',
-        about="I am a culinary force to be reckoned with. With fiery passion and an unyielding commitment to excellence, I command the kitchen with authority and expertise. I am known for my high standards and relentless pursuit of culinary perfection. Beyond the intense persona, I am a skilled chef with an impeccable palate and a deep understanding of flavors. Whether I'm creating mouthwatering dishes or inspiring aspiring chefs, I am Gordon Ramsay, a culinary maestro who never settles for anything less than extraordinary",
+        about="I am a culinary force to be reckoned with. With fiery passion and an unyielding commitment to excellence, I command the kitchen with authority and expertise. I am known for my high standards and relentless pursuit of culinary perfection. Beyond the intense persona, I am a skilled chef with an impeccable palate and a deep understanding of flavors.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/0efadea0604345209635fa24c61544cd.png'
 
     )
@@ -77,7 +77,7 @@ def seed_users():
         password='password',
         first_name='Betty',
         last_name='White',
-        about="I radiate timeless charm and effervescent wit. With a career spanning decades, I am a beloved icon of television and comedy. My infectious smile and twinkling eyes bring joy to audiences of all ages. Whether delivering punchlines with impeccable timing or enchanting viewers with my endearing warmth, I captivate hearts effortlessly. I have left an indelible mark with my unmatched talent and versatility. Beyond my comedic prowess, I am an advocate for animals and a beacon of positivity. I am Betty White, a true legend whose enduring spirit continues to inspire generations and remind us all to embrace life with laughter and love.",
+        about="I radiate timeless charm and effervescent wit. With a career spanning decades, I am a beloved icon of television and comedy. My infectious smile and twinkling eyes bring joy to audiences of all ages. Whether delivering punchlines with impeccable timing or enchanting viewers with my endearing warmth, I captivate hearts effortlessly. I have left an indelible mark with my unmatched talent and versatility.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/d802808082bf467ea81e3863fa95f6a0.png'
 
     )
@@ -87,7 +87,7 @@ def seed_users():
         password='password',
         first_name='Kim',
         last_name='Kardashian',
-        about='I embody the essence of modern-day fame and influence. With a captivating presence that permeates popular culture, I have become a household name. Known for my impeccable fashion sense and flawless aesthetics, I have redefined beauty standards and shaped trends. From reality TV to business ventures, I have leveraged my platform to build a successful empire. Beyond the glamour and media attention, I am a shrewd entrepreneur and a savvy social media strategist. I have used my influence to advocate for criminal justice reform and raise awareness on important issues. I leaving an undeniable impact on the world of entertainment and beyond.',
+        about='I embody the essence of modern-day fame and influence. With a captivating presence that permeates popular culture, I have become a household name. Known for my impeccable fashion sense and flawless aesthetics, I have redefined beauty standards and shaped trends. From reality TV to business ventures, I have leveraged my platform to build a successful empire.',
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/127531253e734dfd90a9234772fbe522.png'
 
     )
@@ -97,7 +97,7 @@ def seed_users():
         password='password',
         first_name='Hermione',
         last_name='Granger',
-        about="With a thirst for knowledge and a love for books, I am the brightest witch of my age. My unruly hair and studious nature showcase my relentless pursuit of academic excellence. From casting spells to solving complex puzzles, I am always ready to take on any challenge with unwavering confidence. Beyond my academic prowess, I am a loyal friend and a fierce advocate for justice. Whether fighting for the rights of magical creatures or standing up against prejudice, I am a true champion for equality and inclusivity. I am a magical force who reminds us all that bravery and knowledge can change the world.",
+        about="With a thirst for knowledge and a love for books, I am the brightest witch of my age. My unruly hair and studious nature showcase my relentless pursuit of academic excellence. From casting spells to solving complex puzzles, I am always ready to take on any challenge with unwavering confidence. I am a magical force who reminds us all that bravery and knowledge can change the world.",
         profile_picture='http://capstone-image-bucket2.s3.amazonaws.com/f58284ed395b41b698f1c1fabb6f25f1.png'
 
     )
