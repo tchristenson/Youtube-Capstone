@@ -66,6 +66,21 @@ a {
     margin-right: 10px;
 }
 
+.owner-details-profile-icon {
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    color: whitesmoke;
+    background-color: rgba(21, 21, 169, 0.703);
+    font-weight: normal;
+    text-align: center;
+    padding-top: 5px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+}
+
 .profile-icon {
     border-radius: 100%;
     width: 30px;
@@ -87,7 +102,7 @@ a {
 
 .sidebar-thumbnail img {
     max-width: 100%;
-    height: 70px;
+    height: 90px;
     border-radius: 10px;
     width: 300px;
     /* Object fit clips the images so they are not distorted */
@@ -99,7 +114,7 @@ a {
     display: grid;
     grid-template-columns: repeat(1, 45fr 55fr);
     padding-bottom: 8px;
-    max-width: 230px;
+    /* max-width: 230px; */
 }
 
 .sidebar-video-name {
@@ -109,7 +124,7 @@ a {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    word-break: break-all;
+    word-break: break-word;
   }
 
 .sidebar-video-details {
