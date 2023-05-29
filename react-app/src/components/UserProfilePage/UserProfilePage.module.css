@@ -63,6 +63,14 @@
     flex-wrap: wrap;
 }
 
+.section {
+    border-bottom: 1px solid gray;
+}
+
+.section-header {
+    padding-left: 10px;
+}
+
 .single-video {
     padding: 10px;
 }

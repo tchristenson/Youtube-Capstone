@@ -87,19 +87,21 @@ function UserProfilePage() {
                 </div>
             </div>
 
-            <div className={styles['profile-videos']}>
-                {userVideoList}
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Uploads</h4>
+                <div className={styles['profile-videos']}>
+                    {userVideoList}
+                </div>
             </div>
 
-            <div className={styles['profile-playlists']}>
-                <h2>Placeholder for Playlists</h2>
-
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Playlists</h4>
             </div>
 
-            <div className={styles['profile-subscriptions']}>
-                <h2>Placeholder for Subscriptions</h2>
-
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Subscriptions</h4>
             </div>
+
         </div>
 
     )
