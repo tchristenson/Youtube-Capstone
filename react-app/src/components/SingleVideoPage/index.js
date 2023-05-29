@@ -19,7 +19,6 @@ function SingleVideoPage() {
 
     useEffect(() => {
         dispatch(getAllVideosThunk())
-        // dispatch(getSingleVideoThunk(videoId))
         dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
 
@@ -40,6 +39,8 @@ function SingleVideoPage() {
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
+    const userLike = video.userLikes.filter(like => like.id === sessionUser.id)
+    // console.log('userLike', userLike)
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
     // console.log('video inside SingleVideoPage', video)
@@ -74,9 +75,13 @@ function SingleVideoPage() {
                 </div>
                 <div className={styles['name-like-container']}>
                     <h3 className={styles['main-video-name']}>{video.name}</h3>
-                    <div className={styles['like-info-container']}>
-                        <button className={styles['like-button']} onClick={handleLike}>
-                            <i className="fa-solid fa-thumbs-up"></i>
+                    <div className={styles['like-info-container']} onClick={handleLike}>
+                        <button className={styles['like-button']}>
+                            {userLike.length ? (
+                                <i id={styles['user-has-liked']} className="fa-solid fa-thumbs-up"></i>
+                            ) : (
+                                <i id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
+                            )}
                         </button>
                         <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
                     </div>

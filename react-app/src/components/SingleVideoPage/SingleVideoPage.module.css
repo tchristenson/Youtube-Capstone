@@ -46,10 +46,15 @@ a {
     padding: 5px;
 }
 
-/* .like-button i:hover {
+#user-has-liked {
     padding: 5px;
-    background-color: rgb(108, 205, 244);
-} */
+    color: rgb(69, 180, 223);
+}
+
+#user-has-not-liked {
+    padding: 5px;
+    color: whitesmoke
+}
 
 .like-count {
     margin: 0px 5px 0 5px;
@@ -62,6 +67,11 @@ a {
     background-color: rgb(54, 54, 54);
     padding: 5px;
     border-radius: 30px;
+    cursor: pointer;
+}
+
+.like-info-container:hover {
+    background-color: rgb(72, 72, 72);
 }
 
 .main-video-container {
