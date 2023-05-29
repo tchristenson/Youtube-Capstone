@@ -68,6 +68,8 @@ def get_all_videos():
     """Displays all videos"""
 
     videos = Video.query.join(User, Video.user_id == User.id).all()
+    videos_check = [video.to_dict() for video in videos]
+    # print('videos_check ===========>>>>>>>>>>>', videos_check)
     return {'Videos': [video.to_dict() for video in videos]}
 
 
@@ -143,8 +145,10 @@ def like_video(id, user_id):
     )
 
     result = db.session.execute(query)
+    print('result =============>>>>>>>>>>>>>>', result)
 
     has_liked = result.fetchone() is not None
+    print('has_liked =============>>>>>>>>>>>>>>', has_liked)
 
     if has_liked:
         video.user_likes.remove(user)
@@ -154,3 +158,36 @@ def like_video(id, user_id):
         video.user_likes.append(user)
         db.session.commit()
         return video.to_dict()
+
+
+# ## ----------------------------------------  GET LIKE STATUS  ----------------------------------------
+# @video_routes.route('/<int:id>/likes/<int:user_id>', methods=['GET'])
+# def get_like_status(id, user_id):
+#     """Queries for a video and user, and returns a boolean whether that user has liked that video or not"""
+
+#     video = Video.query.get(id)
+#     if not video:
+#         return {'error': 'video not found'}
+
+#     user = User.query.get(user_id)
+#     if not user:
+#         return {'error': 'user not found'}
+
+#     query = select([user_video_likes]).where(
+#         (user_video_likes.c.user_id == user_id) & (user_video_likes.c.video_id == id)
+#     )
+
+#     result = db.session.execute(query)
+#     print('result =============>>>>>>>>>>>>>>', result)
+
+#     has_liked = result.fetchone() is not None
+#     print('has_liked =============>>>>>>>>>>>>>>', has_liked)
+
+#     if has_liked:
+#         video.user_likes.remove(user)
+#         db.session.commit()
+#         return video.to_dict()
+#     else:
+#         video.user_likes.append(user)
+#         db.session.commit()
+#         return video.to_dict()

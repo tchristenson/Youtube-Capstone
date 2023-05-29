@@ -26,6 +26,7 @@ class Video(db.Model):
     user_likes = db.relationship('User', secondary=user_video_likes, back_populates='video_likes')
 
     def to_dict(self):
+        user_likes = [user.to_dict() for user in self.user_likes]
         return {
             'id': self.id,
             'userId': self.user_id,
@@ -36,7 +37,7 @@ class Video(db.Model):
             'thumbnail': self.thumbnail,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            'user_likes': len(self.user_likes),
+            'userLikes': user_likes,
             'user': {
                 'id': self.user.id,
                 'username': self.user.username,

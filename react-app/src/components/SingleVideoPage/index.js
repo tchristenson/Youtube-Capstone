@@ -72,8 +72,15 @@ function SingleVideoPage() {
                         <source src={video.content}/>
                     </video>
                 </div>
-                <h3 className={styles['main-video-name']}>{video.name}</h3>
-                <button onClick={handleLike}>Like</button>
+                <div className={styles['name-like-container']}>
+                    <h3 className={styles['main-video-name']}>{video.name}</h3>
+                    <div className={styles['like-info-container']}>
+                        <button className={styles['like-button']} onClick={handleLike}>
+                            <i className="fa-solid fa-thumbs-up"></i>
+                        </button>
+                        <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+                    </div>
+                </div>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
                         { video.user.profilePicture ? (

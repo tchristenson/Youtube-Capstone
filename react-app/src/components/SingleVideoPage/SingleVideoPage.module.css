@@ -35,6 +35,35 @@ a {
     color: whitesmoke
   }
 
+.like-button {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    margin: 0px 5px 0 5px;
+}
+
+.like-button i {
+    padding: 5px;
+}
+
+/* .like-button i:hover {
+    padding: 5px;
+    background-color: rgb(108, 205, 244);
+} */
+
+.like-count {
+    margin: 0px 5px 0 5px;
+    padding: 2px;
+}
+
+.like-info-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    padding: 5px;
+    border-radius: 30px;
+}
+
 .main-video-container {
     width: 100%;
     max-height: 600px;
@@ -48,13 +77,21 @@ a {
 }
 
 .main-video-name {
-    padding: 10px 0 10px 0;
+    /* padding: 10px 0 10px 0; */
     word-break: break-all;
 }
 
 .main-video {
     width: 100%;
     max-height: 600px;
+}
+
+.name-like-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 5px;
+    height: 40px;
 }
 
 .profile-picture {
@@ -139,6 +176,10 @@ a {
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
     margin-right: 10px;
+}
+
+.video-owner-details {
+    margin: 5px 0 5px 0;
 }
 
 .video-owner-details img,
