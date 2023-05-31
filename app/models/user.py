@@ -24,7 +24,7 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
 
     video_likes = db.relationship('Video', secondary=user_video_likes, back_populates='user_likes')
-    susbcribed = db.relationship('User',
+    subscribers = db.relationship('User',
         secondary=subscribers,
         primaryjoin=(subscribers.c.followed_user_id == id),
         secondaryjoin=(subscribers.c.following_user_id == id),
