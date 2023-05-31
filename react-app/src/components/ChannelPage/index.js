@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
+import { subscribeUnsubscribeThunk } from "../../store/users";
 import styles from './ChannelPage.module.css'
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 
 
 function ChannelPage() {
@@ -16,12 +19,18 @@ function ChannelPage() {
     // console.log('typeof channelId', typeof channelId)
 
     const user = useSelector(state => state.users[channelId])
+    const sessionUser = useSelector(state => state.session.user)
     const allVideos = useSelector(state => state.videos)
 
     useEffect(() => {
             dispatch(getAllVideosThunk())
             dispatch(getSingleUserThunk(channelId))
     }, [dispatch, channelId])
+
+    const handleSubscribe = (e) => {
+        e.preventDefault()
+        dispatch(subscribeUnsubscribeThunk(user.id, sessionUser.id))
+    }
 
     // console.log('user', user)
 
@@ -72,7 +81,13 @@ function ChannelPage() {
                 </div>
 
                 <div className={styles['buttons-container']}>
-                    <button>Subscribe</button>
+                    {sessionUser && <button onClick={handleSubscribe}>Subscribe</button>}
+                    {!sessionUser &&
+                        <OpenModalButton
+                            buttonText="Subscribe"
+                            modalComponent={<LoginFormModal />}
+                        />}
+
                 </div>
             </div>
 

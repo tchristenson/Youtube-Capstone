@@ -27,7 +27,7 @@ def user(id):
 
 
 ## ----------------------------------------  SUBSCRIBE OR UNSUBSCRIBE FROM A USER  ----------------------------------------
-@user_routes.route('/<int:id/subscribe/<int:user_id>', methods=['POST'])
+@user_routes.route('/<int:id>/subscribe/<int:user_id>', methods=['POST'])
 @login_required
 def subscribe_unsubscribe(id, user_id):
     """Queries for a user, and subscribes the current user to that queried user.

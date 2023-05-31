@@ -69,7 +69,6 @@ class User(db.Model, UserMixin):
         if self.is_subscribed(user):
             self.subscribed.remove(user)
 
-
     def to_dict(self):
         return {
             'id': self.id,

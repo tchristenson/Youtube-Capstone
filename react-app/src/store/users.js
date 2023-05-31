@@ -1,11 +1,19 @@
 
 // ----------------------------------------  ACTIONS  ----------------------------------------
 const GET_SINGLE_USER = 'users/GET_SINGLE_USER'
+const SUBSCRIBE_UNSUBSCRIBE = 'users/SUBSCRIBE_UNSUBSCRIBE'
 
 
 const getSingleUserAction = (user) => {
     return {
         type: GET_SINGLE_USER,
+        user
+    }
+}
+
+const subscribeUnsubscribeAction = (user) => {
+    return {
+        type: SUBSCRIBE_UNSUBSCRIBE,
         user
     }
 }
@@ -22,6 +30,17 @@ export const getSingleUserThunk = userId => async (dispatch) => {
     }
 }
 
+export const subscribeUnsubscribeThunk = (userId, currUserId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/subscribe/${currUserId}`, {
+        method: 'POST',
+        body: userId, currUserId
+    });
+    if (response.ok) {
+        const user = await response.json()
+        dispatch(subscribeUnsubscribeAction(user))
+    }
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -29,6 +48,10 @@ const userReducer = (state = {}, action) => {
     let newState
     switch (action.type) {
         case GET_SINGLE_USER:
+            newState = {...state}
+            newState[action.user.id] = action.user
+            return newState
+        case SUBSCRIBE_UNSUBSCRIBE:
             newState = {...state}
             newState[action.user.id] = action.user
             return newState

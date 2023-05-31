@@ -18,7 +18,6 @@
     color: whitesmoke;
     cursor: pointer;
     border: solid rgb(160, 160, 160) 1px;
-    cursor: not-allowed;
 }
 
 .channel-information {
