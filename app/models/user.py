@@ -24,11 +24,11 @@ class User(db.Model, UserMixin):
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
 
     video_likes = db.relationship('Video', secondary=user_video_likes, back_populates='user_likes')
-    subscribers = db.relationship('User',
+    subscribed = db.relationship('User',
         secondary=subscribers,
         primaryjoin=(subscribers.c.followed_user_id == id),
         secondaryjoin=(subscribers.c.following_user_id == id),
-        back_populates='subscribers'
+        backref='subscribers'
         )
 
     @property
