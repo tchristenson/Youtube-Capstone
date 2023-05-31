@@ -57,21 +57,26 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    # def is_subscribed(self, user):
-    #     return self.subscribed.filter(
-    #         subscribers.c.followed_user_id == user.id).count() > 0
+    # def get_subscribed_users(self):
+    #     """Get a list of all users that this user is subscribed to."""
+    #     subscribed = []
+    #     for user in self.subscribed:
+    #         subscribed.append(user)
+    #     return subscribed
 
-    # def subscribe(self, user):
-    #     if not self.is_subscribed(user):
-    #         self.subscribed.append(user)
-
-    # def unsubscribe(self, user):
-    #     if self.is_subscribed(user):
-    #         self.subscribed.remove(user)
+    # def get_subscribing_users(self):
+    #     """Get a list of all users that are subscribed to this user."""
+    #     subscribing = []
+    #     for user in self.subscribers:
+    #         subscribing.append(user)
+    #     return subscribing
 
     def to_dict(self):
-        # subscribed = [user.to_dict() for user in self.subscribed]
-        # subscribers = [user.to_dict() for user in self.subscribers]
+        # print('self.subscribed ==========>>>>>>>>>', self.subscribed)
+        # print('self.subscribers ==========>>>>>>>>>', self.subscribers)
+        subscribed_ids = [user.id for user in self.subscribed]
+        subscribing_ids = [user.id for user in self.subscribers]
+
         return {
             'id': self.id,
             'username': self.username,
@@ -79,7 +84,7 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'email': self.email,
             'about': self.about,
-            'profilePicture': self.profile_picture
-            # 'userSubscribed': subscribed,
-            # 'userSubscribers': subscribers
+            'profilePicture': self.profile_picture,
+            'subscribedIds': subscribed_ids,
+            'subscribersIds': subscribing_ids
         }

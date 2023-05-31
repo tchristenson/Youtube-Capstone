@@ -39,6 +39,7 @@ function ChannelPage() {
 
     // console.log('user', user)
     // console.log('allVideos', allVideos)
+    console.log('sessionUser ------>', sessionUser)
 
     const channelVideos = Object.values(allVideos).filter(video => video.userId === channelId)
     // console.log('channelVideos', channelVideos)

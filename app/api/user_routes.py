@@ -43,26 +43,30 @@ def subscribe_unsubscribe(target_user_id, curr_user_id):
     if not curr_user:
         return {'error': 'user not found'}
 
-    print('target_user_id =============>>>>>>>>>>>>>>', target_user_id)
-    print('curr_user_id =============>>>>>>>>>>>>>>', curr_user_id)
-    print('target_user =============>>>>>>>>>>>>>>', target_user)
-    print('curr_user =============>>>>>>>>>>>>>>', curr_user)
+    # print('target_user_id =============>>>>>>>>>>>>>>', target_user_id)
+    # print('curr_user_id =============>>>>>>>>>>>>>>', curr_user_id)
+    # print('target_user =============>>>>>>>>>>>>>>', target_user)
+    # print('curr_user =============>>>>>>>>>>>>>>', curr_user)
 
     query = select([subscribers]).where(
         (subscribers.c.followed_user_id == target_user_id) & (subscribers.c.following_user_id == curr_user_id)
     )
 
     result = db.session.execute(query)
-    print('result =============>>>>>>>>>>>>>>', result)
+    # print('result =============>>>>>>>>>>>>>>', result)
 
     has_subscribed = result.fetchone() is not None
-    print('has_subscribed =============>>>>>>>>>>>>>>', has_subscribed)
+    # print('has_subscribed =============>>>>>>>>>>>>>>', has_subscribed)
 
     if has_subscribed:
         curr_user.subscribed.remove(target_user)
+        print('curr_user ======>>>>>>>', curr_user)
+        print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()
     else:
         curr_user.subscribed.append(target_user)
+        print('curr_user ======>>>>>>>', curr_user)
+        print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()

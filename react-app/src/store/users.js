@@ -53,8 +53,18 @@ const userReducer = (state = {}, action) => {
             return newState
         case SUBSCRIBE_UNSUBSCRIBE:
             newState = {...state}
+            console.log('action.user inside Reducer', action.user)
             newState[action.user.id] = action.user
             return newState
+
+
+            // const updatedSubscribers = action.user.subscribedIds.reduce((acc, user) => {
+            //     acc[user.id] = user;
+            //     return acc;
+            //   }, {});
+            // return {
+            // ...updatedSubscribers
+            // };
         default:
             return state
     }
