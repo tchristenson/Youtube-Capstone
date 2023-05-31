@@ -34,15 +34,15 @@ class User(db.Model, UserMixin):
 
     subscribed = db.relationship('User',
         secondary=subscribers,
-        primaryjoin=(subscribers.c.followed_user_id == id),
-        secondaryjoin=(subscribers.c.following_user_id == id),
+        primaryjoin=(subscribers.c.following_user_id == id),
+        secondaryjoin=(subscribers.c.followed_user_id == id),
         back_populates='subscribers'
         )
 
     subscribers = db.relationship('User',
         secondary=subscribers,
-        primaryjoin=(subscribers.c.following_user_id == id),
-        secondaryjoin=(subscribers.c.followed_user_id == id),
+        primaryjoin=(subscribers.c.followed_user_id == id),
+        secondaryjoin=(subscribers.c.following_user_id == id),
         back_populates='subscribed'
         )
 
@@ -57,19 +57,21 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def is_subscribed(self, user):
-        return self.subscribed.filter(
-            subscribers.c.followed_user_id == user.id).count() > 0
+    # def is_subscribed(self, user):
+    #     return self.subscribed.filter(
+    #         subscribers.c.followed_user_id == user.id).count() > 0
 
-    def subscribe(self, user):
-        if not self.is_subscribed(user):
-            self.subscribed.append(user)
+    # def subscribe(self, user):
+    #     if not self.is_subscribed(user):
+    #         self.subscribed.append(user)
 
-    def unsubscribe(self, user):
-        if self.is_subscribed(user):
-            self.subscribed.remove(user)
+    # def unsubscribe(self, user):
+    #     if self.is_subscribed(user):
+    #         self.subscribed.remove(user)
 
     def to_dict(self):
+        # subscribed = [user.to_dict() for user in self.subscribed]
+        # subscribers = [user.to_dict() for user in self.subscribers]
         return {
             'id': self.id,
             'username': self.username,
@@ -78,4 +80,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'about': self.about,
             'profilePicture': self.profile_picture
+            # 'userSubscribed': subscribed,
+            # 'userSubscribers': subscribers
         }
