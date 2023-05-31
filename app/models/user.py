@@ -42,6 +42,19 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def is_subscribed(self, user):
+        return self.subscribed.filter(
+            subscribers.c.followed_user_id == user.id).count() > 0
+
+    def subscribe(self, user):
+        if not self.is_subscribed(user):
+            self.subscribed.append(user)
+
+    def unsubscribe(self, user):
+        if self.is_subscribed(user):
+            self.subscribed.remove(user)
+
+
     def to_dict(self):
         return {
             'id': self.id,
