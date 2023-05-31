@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
-import { subscribeUnsubscribeThunk } from "../../store/users";
+import { subscribeUnsubscribeThunk } from "../../store/session";
 import styles from './ChannelPage.module.css'
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -32,8 +32,7 @@ function ChannelPage() {
         dispatch(subscribeUnsubscribeThunk(user.id, sessionUser.id))
     }
 
-    // console.log('user', user)
-
+    console.log('user ------->', user)
 
     if (!user) return null
 
@@ -82,9 +81,13 @@ function ChannelPage() {
                 </div>
 
                 <div className={styles['buttons-container']}>
-                    {sessionUser && <button onClick={handleSubscribe}>Subscribe</button>}
+                    {sessionUser && !sessionUser.subscribedIds.includes(user.id) &&
+                        <button onClick={handleSubscribe} id={styles['subscribe-button']}>Subscribe</button>}
+                    {sessionUser && sessionUser.subscribedIds.includes(user.id) &&
+                        <button onClick={handleSubscribe} id={styles['subscribed-button']}>Subscribed</button>}
                     {!sessionUser &&
                         <OpenModalButton
+                            id={styles['inactive-subscribe-button']}
                             buttonText="Subscribe"
                             modalComponent={<LoginFormModal />}
                         />}
