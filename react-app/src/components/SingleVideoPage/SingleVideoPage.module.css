@@ -210,11 +210,33 @@ a {
     font-size: 10px;
 }
 
+.subscribeButtonInactive {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid gray 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribeButtonInactive:hover {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
 .subscribe-buttons {
     margin-left: 10px;
 }
 
-.subscribe-buttons button {
+.subscribedButton {
     background-color: transparent;
     padding: 8px;
     font-weight: bold;
@@ -225,7 +247,7 @@ a {
     font-size: 10px;
 }
 
-.subscribe-buttons button:hover {
+.subscribedButton:hover {
     background-color: transparent;
     padding: 8px;
     font-weight: bold;

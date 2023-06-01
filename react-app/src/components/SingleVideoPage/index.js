@@ -10,6 +10,7 @@ import OpenModalButton from "../OpenModalButton";
 import NewComment from "../NewComment";
 import CommentList from "../CommentList";
 import styles from './SingleVideoPage.module.css'
+import LoginFormModal from "../LoginFormModal";
 
 function SingleVideoPage() {
 
@@ -108,7 +109,10 @@ function SingleVideoPage() {
                             <button onClick={handleSubscribe} id={styles['subscribe-button']}>Subscribe</button>
                         }
                         {sessionUser && sessionUser.subscribedIds.includes(video.user.id) &&
-                            <OpenModalButton buttonText='Subscribed' modalComponent={<UnsubscribeModal user={video.user} sessionUser={sessionUser}/>}></OpenModalButton>
+                            <OpenModalButton className={styles.subscribedButton} buttonText='Subscribed' modalComponent={<UnsubscribeModal user={video.user} sessionUser={sessionUser}/>}></OpenModalButton>
+                        }
+                        {!sessionUser &&
+                            <OpenModalButton className={styles.subscribeButtonInactive} buttonText='Subscribe' modalComponent={<LoginFormModal/>}></OpenModalButton>
                         }
                     </div>
 
