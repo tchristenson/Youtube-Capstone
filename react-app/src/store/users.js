@@ -1,7 +1,8 @@
 
 // ----------------------------------------  ACTIONS  ----------------------------------------
 const GET_SINGLE_USER = 'users/GET_SINGLE_USER'
-const SUBSCRIBE_UNSUBSCRIBE = 'users/SUBSCRIBE_UNSUBSCRIBE'
+const GET_ALL_USERS = 'users/GET_ALL_USERS'
+// const SUBSCRIBE_UNSUBSCRIBE = 'users/SUBSCRIBE_UNSUBSCRIBE'
 
 
 const getSingleUserAction = (user) => {
@@ -11,12 +12,19 @@ const getSingleUserAction = (user) => {
     }
 }
 
-const subscribeUnsubscribeAction = (user) => {
+const getAllUsersAction = (users) => {
     return {
-        type: SUBSCRIBE_UNSUBSCRIBE,
-        user
+        type: GET_ALL_USERS,
+        users
     }
 }
+
+// const subscribeUnsubscribeAction = (user) => {
+//     return {
+//         type: SUBSCRIBE_UNSUBSCRIBE,
+//         user
+//     }
+// }
 
 
 // ----------------------------------------  THUNKS  ----------------------------------------
@@ -30,16 +38,25 @@ export const getSingleUserThunk = userId => async (dispatch) => {
     }
 }
 
-export const subscribeUnsubscribeThunk = (userId, currUserId) => async (dispatch) => {
-    const response = await fetch(`/api/users/${userId}/subscribe/${currUserId}`, {
-        method: 'POST',
-        body: userId, currUserId
-    });
+export const getAllUsersThunk = () => async (dispatch) => {
+    const response = await fetch(`/api/users`)
     if (response.ok) {
-        const user = await response.json()
-        dispatch(subscribeUnsubscribeAction(user))
+        const users = await response.json()
+        dispatch(getAllUsersAction(users))
+        return users
     }
 }
+
+// export const subscribeUnsubscribeThunk = (userId, currUserId) => async (dispatch) => {
+//     const response = await fetch(`/api/users/${userId}/subscribe/${currUserId}`, {
+//         method: 'POST',
+//         body: userId, currUserId
+//     });
+//     if (response.ok) {
+//         const user = await response.json()
+//         dispatch(subscribeUnsubscribeAction(user))
+//     }
+// }
 
 
 // ----------------------------------------  REDUCER  ----------------------------------------
@@ -51,20 +68,15 @@ const userReducer = (state = {}, action) => {
             newState = {...state}
             newState[action.user.id] = action.user
             return newState
-        case SUBSCRIBE_UNSUBSCRIBE:
+        case GET_ALL_USERS:
             newState = {...state}
-            console.log('action.user inside Reducer', action.user)
-            newState[action.user.id] = action.user
+            action.users.users.forEach(user => newState[user.id] = user)
             return newState
-
-
-            // const updatedSubscribers = action.user.subscribedIds.reduce((acc, user) => {
-            //     acc[user.id] = user;
-            //     return acc;
-            //   }, {});
-            // return {
-            // ...updatedSubscribers
-            // };
+        // case SUBSCRIBE_UNSUBSCRIBE:
+        //     newState = {...state}
+        //     console.log('action.user inside Reducer', action.user)
+        //     newState[action.user.id] = action.user
+        //     return newState
         default:
             return state
     }

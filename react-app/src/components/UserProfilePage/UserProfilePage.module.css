@@ -9,6 +9,7 @@
     color: whitesmoke;
     cursor: pointer;
     border: solid gray 1px;
+    border-radius: 20px;
 }
 
 .buttons-container button:hover {
@@ -100,8 +101,50 @@
 .single-video-details i {
     display: flex;
     justify-content: end;
+}
 
+.single-subscribed {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+}
 
+.subscribed-button {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color:rgb(69, 180, 223);
+    cursor: pointer;
+    border: solid rgb(69, 180, 223) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribed-count {
+    color: grey;
+    font-weight: normal;
+    margin-bottom: 5px;
+}
+
+.subscribed-to-users {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 40px;
+    margin-bottom: 40px;
+}
+
+.subscribed-profile-picture {
+    width: 90px;
+    height: 90px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.subscribed-username {
+    margin: 5px 0px
 }
 
 .user-info-container h5 {

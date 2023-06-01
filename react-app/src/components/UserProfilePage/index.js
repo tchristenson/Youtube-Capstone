@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
-import { getSingleUserThunk } from "../../store/users";
+import { getSingleUserThunk, getAllUsersThunk } from "../../store/users";
 import OpenModalButton from "../OpenModalButton";
 import styles from './UserProfilePage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
@@ -20,10 +20,12 @@ function UserProfilePage() {
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
     const allVideos = useSelector(state => state.videos)
+    const allUsers = useSelector(state => state.users)
 
     useEffect(() => {
         dispatch(getAllVideosThunk())
         dispatch(getSingleUserThunk(userId))
+        dispatch(getAllUsersThunk())
     }, [dispatch, userId])
 
     useEffect(() => {
@@ -36,13 +38,15 @@ function UserProfilePage() {
     if (!sessionUser) return null
     if (!user) return null
 
-    // console.log('sessionUser', sessionUser)
-    // console.log('user', user)
+    console.log('sessionUser ------->', sessionUser)
+    console.log('allUsers ------->', allUsers)
     // console.log('allVideos', allVideos)
 
-    const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
+    const sessionUserVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
+    const sessionUserSubscribed = Object.values(allUsers).filter(user => sessionUser.subscribedIds.includes(user.id))
+    console.log('sessionUserSubscribed ------->', sessionUserSubscribed)
 
-    const userVideoList = userVideos.map(video => (
+    const sessionUserVideoList = sessionUserVideos.map(video => (
         <div key={video.id} className={styles["single-video"]}>
             <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
@@ -54,7 +58,24 @@ function UserProfilePage() {
                 <OpenModalIcon modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
             </div>
         </div>
+    ))
 
+    const sessionUserSubscribedList = sessionUserSubscribed.map(user => (
+        <div key={user.id} className={styles["single-subscribed"]}>
+            <NavLink to={`/channels/${user.id}`}>
+                <img src={user.profilePicture} className={styles["subscribed-profile-picture"]}/>
+                <h5 className={styles["subscribed-username"]}>{user.username}</h5>
+                <h5 className={styles["subscribed-count"]}>
+                    {user.subscribersIds.length === 1 ? (
+                        `${user.subscribersIds.length} subscriber`
+                        ) : (
+                        `${user.subscribersIds.length} subscribers`
+                        )}
+
+                </h5>
+                <button className={styles["subscribed-button"]}>Subscribed</button>
+            </NavLink>
+        </div>
     ))
 
     return (
@@ -74,10 +95,10 @@ function UserProfilePage() {
                     <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
                     <h5>{`@${sessionUser.username}`}</h5>
                     <h5>
-                        {userVideoList.length === 1 ? (
-                        `${userVideoList.length} video`
+                        {sessionUserVideoList.length === 1 ? (
+                        `${sessionUserVideoList.length} video`
                         ) : (
-                        `${userVideoList.length} videos`
+                        `${sessionUserVideoList.length} videos`
                         )}
                     </h5>
                 </div>
@@ -90,7 +111,7 @@ function UserProfilePage() {
             <div className={styles['section']}>
                 <h4 className={styles['section-header']}>Uploads</h4>
                 <div className={styles['profile-videos']}>
-                    {userVideoList}
+                    {sessionUserVideoList}
                 </div>
             </div>
 
@@ -100,6 +121,9 @@ function UserProfilePage() {
 
             <div className={styles['section']}>
                 <h4 className={styles['section-header']}>Subscriptions</h4>
+                <div className={styles['subscribed-to-users']}>
+                    {sessionUserSubscribedList}
+                </div>
             </div>
 
         </div>
