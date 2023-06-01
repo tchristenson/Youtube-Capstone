@@ -4,6 +4,9 @@ import { useParams, NavLink } from "react-router-dom";
 import { likeVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import { getAllVideosThunk } from "../../store/videos";
+import { subscribeUnsubscribeThunk } from "../../store/session";
+import UnsubscribeModal from "../UnsubscribeModal"
+import OpenModalButton from "../OpenModalButton";
 import NewComment from "../NewComment";
 import CommentList from "../CommentList";
 import styles from './SingleVideoPage.module.css'
@@ -29,6 +32,11 @@ function SingleVideoPage() {
         }
     }
 
+    const handleSubscribe = (e) => {
+        e.preventDefault()
+        dispatch(subscribeUnsubscribeThunk(video.user.id, sessionUser.id))
+    }
+
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
     const allVideos = useSelector(state => state.videos)
@@ -43,7 +51,7 @@ function SingleVideoPage() {
     // console.log('userLike', userLike)
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
-    // console.log('video inside SingleVideoPage', video)
+    console.log('video inside SingleVideoPage', video)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (
@@ -95,6 +103,14 @@ function SingleVideoPage() {
                         )}
                         <h4>{video.user.username}</h4>
                     </NavLink>
+                    <div className={styles["subscribe-buttons"]}>
+                        {sessionUser && !sessionUser.subscribedIds.includes(video.user.id) &&
+                            <button onClick={handleSubscribe} id={styles['subscribe-button']}>Subscribe</button>
+                        }
+                        {sessionUser && sessionUser.subscribedIds.includes(video.user.id) &&
+                            <OpenModalButton buttonText='Subscribed' modalComponent={<UnsubscribeModal user={video.user} sessionUser={sessionUser}/>}></OpenModalButton>
+                        }
+                    </div>
 
                 </div>
                 <div className={styles['video-description']}>
