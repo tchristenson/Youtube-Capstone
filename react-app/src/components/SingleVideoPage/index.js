@@ -38,6 +38,11 @@ function SingleVideoPage() {
         dispatch(subscribeUnsubscribeThunk(video.user.id, sessionUser.id))
     }
 
+    const openLoginModal = (e) => {
+        e.preventDefault()
+        return <LoginFormModal/>
+    }
+
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
     const allVideos = useSelector(state => state.videos)
@@ -86,11 +91,15 @@ function SingleVideoPage() {
                     <h3 className={styles['main-video-name']}>{video.name}</h3>
                     <div className={styles['like-info-container']} onClick={handleLike}>
                         <button className={styles['like-button']}>
-                            {userLike.length ? (
+                            {sessionUser && userLike.length === 1 &&
                                 <i id={styles['user-has-liked']} className="fa-solid fa-thumbs-up"></i>
-                            ) : (
+                            }
+                            {sessionUser && userLike.length === 0 &&
                                 <i id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
-                            )}
+                            }
+                            {!sessionUser &&
+                                <i onClick={openLoginModal} id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
+                            }
                         </button>
                         <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
                     </div>
