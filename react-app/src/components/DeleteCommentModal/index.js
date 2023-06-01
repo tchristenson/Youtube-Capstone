@@ -28,7 +28,6 @@ function DeleteCommentModal({comment}) {
             </div>
             </form>
         </div>
-
     )
 
 }

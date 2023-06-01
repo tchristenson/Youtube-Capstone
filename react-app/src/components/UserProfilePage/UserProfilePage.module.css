@@ -69,7 +69,7 @@
 }
 
 .section-header {
-    padding-left: 10px;
+    padding: 10px 0 10px 10px;
 }
 
 .single-video {
@@ -107,9 +107,10 @@
     text-align: center;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
 }
 
-.subscribed-button {
+#subscribed-button button {
     background-color: transparent;
     padding: 8px;
     font-weight: bold;
@@ -118,6 +119,18 @@
     border: solid rgb(69, 180, 223) 1px;
     border-radius: 15px;
     font-size: 10px;
+}
+
+#subscribed-button button:hover {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color:rgb(108, 205, 244);
+    cursor: pointer;
+    border: solid rgb(108, 205, 244) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+
 }
 
 .subscribed-count {
@@ -130,9 +143,10 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     padding: 10px 40px;
     margin-bottom: 40px;
+    gap: 30px 70px;
 }
 
 .subscribed-profile-picture {

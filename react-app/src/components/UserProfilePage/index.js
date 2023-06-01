@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk, getAllUsersThunk } from "../../store/users";
+import UnsubscribeModal from "../UnsubscribeModal"
 import OpenModalButton from "../OpenModalButton";
 import styles from './UserProfilePage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
@@ -33,6 +34,7 @@ function UserProfilePage() {
             history.push('/')
         }
     }, [sessionUser, user, history])
+
 
 
     if (!sessionUser) return null
@@ -71,10 +73,11 @@ function UserProfilePage() {
                         ) : (
                         `${user.subscribersIds.length} subscribers`
                         )}
-
                 </h5>
-                <button className={styles["subscribed-button"]}>Subscribed</button>
             </NavLink>
+            <div id={styles["subscribed-button"]}>
+                <OpenModalButton buttonText='Subscribed' modalComponent={<UnsubscribeModal user={user} sessionUser={sessionUser}/>}></OpenModalButton>
+            </div>
         </div>
     ))
 
