@@ -5,7 +5,8 @@ import styles from './OpenModalIcon.module.css'
 function OpenModalIcon({
   modalComponent, // component to render inside the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
+  className
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
@@ -16,7 +17,7 @@ function OpenModalIcon({
   };
 
   return (
-    <i onClick={onClick} className="fa-solid fa-ellipsis-vertical"></i>
+    <i onClick={onClick} className={className}></i>
   );
 }
 

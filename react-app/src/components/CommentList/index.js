@@ -27,7 +27,7 @@ function CommentList({video, commentsArr, sessionUser}) {
 
                         {sessionUser && sessionUser.id === comment.userId &&
                             <div className={styles['edit-comment-icon']}>
-                                <OpenModalIcon modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
+                                <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeleteCommentModal video={video} comment={comment}/>}></OpenModalIcon>
                             </div>
                         }
 
@@ -39,7 +39,7 @@ function CommentList({video, commentsArr, sessionUser}) {
 
                         {!sessionUser &&
                             <div className={styles['edit-comment-icon']}>
-                                <OpenModalIcon modalComponent={<LoginFormModal/>}></OpenModalIcon>
+                                <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<LoginFormModal/>}></OpenModalIcon>
                             </div>}
                     </div>
                 </li>

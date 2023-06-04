@@ -5,23 +5,27 @@ import { likeVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import { getAllVideosThunk } from "../../store/videos";
 import { subscribeUnsubscribeThunk } from "../../store/session";
+import { getSingleVideoThunk } from "../../store/videos";
 import UnsubscribeModal from "../UnsubscribeModal"
 import OpenModalButton from "../OpenModalButton";
 import NewComment from "../NewComment";
 import CommentList from "../CommentList";
 import styles from './SingleVideoPage.module.css'
 import LoginFormModal from "../LoginFormModal";
+import OpenModalIcon from "../OpenModalIcon";
 
 function SingleVideoPage() {
 
     const dispatch = useDispatch()
     const {videoId} = useParams()
+    // const [video, setVideo] = useState(null)
 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [videoId])
 
     useEffect(() => {
+        // dispatch(getSingleVideoThunk(videoId)).then(data => setVideo(data))
         dispatch(getAllVideosThunk())
         dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
@@ -43,6 +47,8 @@ function SingleVideoPage() {
         return <LoginFormModal/>
     }
 
+    // console.log('video ------>', video)
+
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
     const allVideos = useSelector(state => state.videos)
@@ -53,8 +59,8 @@ function SingleVideoPage() {
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
-    const userLike = video.userLikes.filter(like => like.id === sessionUser.id)
-    // console.log('userLike', userLike)
+    const userLike = video.userLikes.filter(like => like.id === sessionUser?.id)
+    console.log('userLike', userLike)
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
     console.log('video inside SingleVideoPage', video)
@@ -98,7 +104,7 @@ function SingleVideoPage() {
                                 <i id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
                             }
                             {!sessionUser &&
-                                <i onClick={openLoginModal} id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
+                             <OpenModalIcon className="fa-solid fa-thumbs-up" modalComponent={<LoginFormModal/>}></OpenModalIcon>
                             }
                         </button>
                         <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
