@@ -74,6 +74,10 @@ a {
     background-color: rgb(72, 72, 72);
 }
 
+.like-playlist-buttons-container {
+    display: flex;
+}
+
 .main-video-container {
     width: 100%;
     max-height: 600px;
@@ -96,7 +100,7 @@ a {
     max-height: 600px;
 }
 
-.name-like-container {
+.name-like-playlist-container {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
@@ -111,6 +115,34 @@ a {
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
     margin-right: 10px;
+}
+
+.playlist-info-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    padding: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    color: whitesmoke;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.playlist-info-container:hover {
+    background-color: rgb(72, 72, 72);
+}
+
+.playlist-button {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    margin: 0px 5px 0 5px;
+}
+
+.playlist-button i {
+    padding: 5px;
 }
 
 .owner-details-profile-icon {
