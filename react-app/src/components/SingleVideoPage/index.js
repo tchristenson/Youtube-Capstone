@@ -13,6 +13,7 @@ import CommentList from "../CommentList";
 import styles from './SingleVideoPage.module.css'
 import LoginFormModal from "../LoginFormModal";
 import OpenModalIcon from "../OpenModalIcon";
+import NewPlaylistModal from "../NewPlaylistModal";
 
 function SingleVideoPage() {
 
@@ -42,11 +43,6 @@ function SingleVideoPage() {
         dispatch(subscribeUnsubscribeThunk(video.user.id, sessionUser.id))
     }
 
-    const openLoginModal = (e) => {
-        e.preventDefault()
-        return <LoginFormModal/>
-    }
-
     // console.log('video ------>', video)
 
     const video = useSelector(state => state.videos[videoId])
@@ -64,6 +60,7 @@ function SingleVideoPage() {
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
     console.log('video inside SingleVideoPage', video)
+    console.log('sessionUser inside Single Video Page', sessionUser)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (
@@ -113,11 +110,8 @@ function SingleVideoPage() {
                             <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
                         </div>
                         <div className={styles['playlist-info-container']}>
-                            <button className={styles['playlist-button']}>
-                                <i id={styles['user-has-added']} className="fa-solid fa-list"></i>
-                                <i id={styles['user-has-added']} className="fa-solid fa-plus"></i>
-
-                            </button>
+                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
+                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
                         </div>
                     </div>
                 </div>

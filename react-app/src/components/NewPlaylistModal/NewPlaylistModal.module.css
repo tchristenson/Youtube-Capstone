@@ -1,0 +1,11 @@
+.new-playlist-form {
+    background-color: #282828;
+    color: whitesmoke;
+    padding: 15px;
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
