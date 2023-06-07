@@ -77,6 +77,7 @@ class User(db.Model, UserMixin):
         # print('self.subscribers ==========>>>>>>>>>', self.subscribers)
         subscribed_ids = [user.id for user in self.subscribed]
         subscribing_ids = [user.id for user in self.subscribers]
+        playlists = [playlist.to_dict() for playlist in self.playlists]
 
         return {
             'id': self.id,
@@ -87,5 +88,6 @@ class User(db.Model, UserMixin):
             'about': self.about,
             'profilePicture': self.profile_picture,
             'subscribedIds': subscribed_ids,
-            'subscribersIds': subscribing_ids
+            'subscribersIds': subscribing_ids,
+            'playlists': playlists
         }

@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import Video, User, Playlist
+from app.models import Video, User, Playlist, playlist_video
 from flask_login import current_user, login_required, current_user
 from ..forms.video_form import NewVideo
 from ..forms.edit_video_form import EditVideo
@@ -188,6 +188,11 @@ def create_playlist(id):
         db.session.add(playlist)
         db.session.commit()
         print('playlist ========>>>>>>>>', playlist.to_dict())
+
+        video.playlists.append(playlist)
+
+        # db.session.execute(playlist_video.insert().values(playlist_id=playlist.id, video_id=video.id))
+        db.session.commit()
 
         return playlist.to_dict()
 
