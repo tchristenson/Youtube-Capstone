@@ -52,15 +52,20 @@ function NewPlaylistModal({video}) {
     }, [playlistName])
 
     const showFormToggle = () => {
-        console.log('is this working')
-
         setShowForm(true)
     }
+
+    const userPlaylists = sessionUser.playlists.map(playlist => (
+        <div className={styles["user-playlists"]}>
+            <input type="radio" name={playlist.name}/>
+        </div>
+    ))
 
 
     return (
         <div className={styles["new-playlist-form"]}>
             <h4 className={styles["header"]}>Save to...</h4>
+            {userPlaylists}
             <div className={styles["new-playlist-button-container"]}>
                 <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
                 <button onClick={showFormToggle} className={styles['new-playlist-button']}>

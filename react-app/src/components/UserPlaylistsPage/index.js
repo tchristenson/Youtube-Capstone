@@ -49,9 +49,9 @@ function UserPlaylistsPage() {
         <div className={styles["playlist-page-container"]}>
             <div className={styles["playlist-thumbnail-container"]}>
                 <img className={styles["playlist-thumbnail"]} src={playlist?.videos[0].thumbnail}/>
-                <h3>{playlist?.name}</h3>
-                <h5>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h5>
-                <h6>
+                <h3 className={styles["playlist-name"]}>{playlist?.name}</h3>
+                <h5 className={styles["first-last-name"]}>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h5>
+                <h6 className={styles["playlist-video-count"]}>
                     {playlist?.videos.length === 1 ? (
                         `${playlist.videos.length} video`
                     ) : (

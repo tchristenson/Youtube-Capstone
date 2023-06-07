@@ -1,3 +1,7 @@
+.first-last-name {
+    padding-bottom: 5px;
+}
+
 .playlist-page-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr 3fr);
@@ -7,7 +11,12 @@
 
 .playlist-thumbnail {
     width: 300px;
-    height: auto
+    height: auto;
+    border-radius: 20px;
+}
+
+.playlist-name {
+    padding: 5px 0;
 }
 
 .playlist-video {
@@ -17,6 +26,11 @@
     width: 200px;
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
+}
+
+.playlist-video-count {
+    color: grey;
+    font-weight: normal;
 }
 
 .playlist-thumbnail-container {
