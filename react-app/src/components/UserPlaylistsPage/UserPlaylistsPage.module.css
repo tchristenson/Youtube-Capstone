@@ -1,0 +1,52 @@
+.playlist-page-container {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 3fr);
+    column-gap: 40px;
+    margin: 20px;
+}
+
+.playlist-thumbnail {
+    width: 300px;
+    height: auto
+}
+
+.playlist-video {
+    max-width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    width: 200px;
+    /* Object fit clips the images so they are not distorted */
+    object-fit: cover;
+}
+
+.playlist-thumbnail-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.playlist-videos-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-video {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr 4fr);
+    padding-bottom: 8px;
+    /* max-width: 230px; */
+}
+
+.sidebar-video-details {
+    padding-left: 8px;
+    text-decoration: none;
+}
+
+.sidebar-video-name {
+    text-decoration: none;
+    color: whitesmoke;
+    max-height: 33px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    word-break: break-word;
+  }

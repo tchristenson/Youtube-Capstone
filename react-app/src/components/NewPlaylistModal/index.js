@@ -40,6 +40,8 @@ function NewPlaylistModal({video}) {
         setPlaylistName('')
         setHasSubmitted(false)
         setValidationErrors([])
+
+        closeModal()
     }
 
     useEffect(() => {

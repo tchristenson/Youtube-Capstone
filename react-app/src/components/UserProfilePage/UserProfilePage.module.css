@@ -58,6 +58,12 @@
     margin: 20px 0 20px 0;
 }
 
+.playlist-videos {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .profile-videos {
     display: flex;
     flex-direction: row;

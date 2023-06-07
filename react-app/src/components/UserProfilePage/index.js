@@ -9,6 +9,7 @@ import styles from './UserProfilePage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
 import EditDeleteVideoModal from "../EditDeleteVideoModal";
 import NewVideoPage from "../NewVideoPage";
+import UserPlaylistsPage from "../UserPlaylistsPage";
 
 
 function UserProfilePage() {
@@ -65,11 +66,18 @@ function UserProfilePage() {
         </div>
     ))
 
-    // const sessionUserPlaylists = user.playlists.forEach(playlist => (
-    //     console.log('playlist inside forEach', playlist),
-    //     allVideosArr.filter(video => playlist.videoIds.includes(video.id))
-    // ))
-    // console.log('sessionUserPlaylists', sessionUserPlaylists)
+    const sessionUserPlaylists = sessionUser.playlists.map(playlist => (
+        <NavLink key={playlist.videos[0].id} to={`/users/${sessionUser.id}/playlists/${playlist.id}`}>
+        <div className={styles["single-video"]}>
+            <img src={playlist.videos[0].thumbnail}/>
+            <div className={styles["single-video-details"]}>
+                    <h5>{playlist.name}</h5>
+            </div>
+        </div>
+        </NavLink>
+    ))
+
+    console.log('sessionUserPlaylists', sessionUserPlaylists)
 
     const sessionUserSubscribedList = sessionUserSubscribed.map(user => (
         <div key={user.id} className={styles["single-subscribed"]}>
@@ -129,7 +137,9 @@ function UserProfilePage() {
 
             <div className={styles['section']}>
                 <h4 className={styles['section-header']}>Playlists</h4>
-                {/* {sessionUserPlaylists} */}
+                <div className={styles['playlist-videos']}>
+                    {sessionUserPlaylists}
+                </div>
             </div>
 
             <div className={styles['section']}>

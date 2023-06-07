@@ -42,3 +42,12 @@ def create_playlist(data, video_id):
         return playlist.to_dict()
 
     return { "errors": form.errors }
+
+
+## ----------------------------------------  GET PLAYLIST VIDEO BY ID  ----------------------------------------
+@playlist_routes.route('/<int:id>', methods=['GET'])
+def get_single_playlist(id):
+    """Retrieves a single playlist specified by ID"""
+
+    playlist = Playlist.query.get(id)
+    return playlist.to_dict()

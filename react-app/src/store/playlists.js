@@ -2,10 +2,18 @@
 // ----------------------------------------  ACTIONS  ----------------------------------------
 
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
+const GET_SINGLE_PLAYLIST = 'playlists/GET_SINGLE_PLAYLIST'
 
 const createPlaylistAction = playlist => {
     return {
         type: CREATE_PLAYLIST,
+        playlist
+    }
+}
+
+const getSinglePlaylistAction = playlist => {
+    return {
+        type: GET_SINGLE_PLAYLIST,
         playlist
     }
 }
@@ -30,6 +38,15 @@ export const createPlaylistThunk = (playlist) => async (dispatch) => {
     }
 }
 
+export const getSinglePlaylistThunk = playlistId => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}`)
+    if (response.ok) {
+        const playlist = await response.json()
+        dispatch(getSinglePlaylistAction(playlist))
+        return playlist
+    }
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -40,8 +57,12 @@ const playlistReducer = (state = {}, action) => {
             newState = {...state}
             newState[action.playlist.id] = action.playlist
             return newState
+        case GET_SINGLE_PLAYLIST:
+            newState = {...state}
+            newState[action.playlist.id] = action.playlist
+            return newState
         default:
-                return state
+            return state
     }
 }
 

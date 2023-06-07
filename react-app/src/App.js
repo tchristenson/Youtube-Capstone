@@ -8,6 +8,7 @@ import SplashPage from "./components/SplashPage";
 import UserProfilePage from "./components/UserProfilePage";
 import ChannelPage from "./components/ChannelPage";
 import Footer from "./components/Footer";
+import UserPlaylistsPage from "./components/UserPlaylistsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ function App() {
         <Switch>
             <Route exact path="/users/:userId">
               <UserProfilePage />
+            </Route>
+            <Route exact path="/users/:userId/playlists/:playlistId">
+              <UserPlaylistsPage />
             </Route>
             <Route exact path="/videos/:videoId">
               <SingleVideoPage />
