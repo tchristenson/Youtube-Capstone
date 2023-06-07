@@ -56,11 +56,11 @@ function SingleVideoPage() {
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
     const userLike = video.userLikes.filter(like => like.id === sessionUser?.id)
-    console.log('userLike', userLike)
+    // console.log('userLike', userLike)
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
-    console.log('video inside SingleVideoPage', video)
-    console.log('sessionUser inside Single Video Page', sessionUser)
+    // console.log('video inside SingleVideoPage', video)
+    // console.log('sessionUser inside Single Video Page', sessionUser)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (

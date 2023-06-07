@@ -4,12 +4,14 @@ import session from './session'
 import videoReducer from './videos'
 import userReducer from './users';
 import commentReducer from './comments';
+import playlistReducer from './playlists';
 
 const rootReducer = combineReducers({
   session,
   videos: videoReducer,
   users: userReducer,
-  comments: commentReducer
+  comments: commentReducer,
+  playlists: playlistReducer
 });
 
 
