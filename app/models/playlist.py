@@ -20,7 +20,7 @@ class Playlist(db.Model):
     videos = db.relationship('Video', secondary=playlist_video, back_populates='playlists')
 
     def to_dict(self):
-        # videos = [video.id for video in self.videos]
+        videos = [{'id': video.id, 'name': video.name, 'content': video.content, 'thumbnail': video.thumbnail } for video in self.videos]
 
         return {
             'id': self.id,
@@ -28,5 +28,5 @@ class Playlist(db.Model):
             'name': self.name,
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
-            # 'videoIds': videos
+            'videos': videos
         }

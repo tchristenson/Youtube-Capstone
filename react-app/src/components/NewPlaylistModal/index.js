@@ -33,7 +33,9 @@ function NewPlaylistModal({video}) {
         //     console.log('formData before dispatch', key[0] + '----->' + key[1]);
         //   }
 
-        await dispatch(createPlaylistThunk(formData))
+        const data = await dispatch(createPlaylistThunk(formData))
+        console.log('playlist returned from backend', data)
+        console.log('playlist returned from backend with videos', data.videos)
 
         setPlaylistName('')
         setHasSubmitted(false)
