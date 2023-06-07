@@ -45,6 +45,8 @@ function UserProfilePage() {
     console.log('user ------>', user)
     // console.log('allVideos', allVideos)
 
+    const allVideosArr = Object.values(allVideos)
+    console.log('allVideosArr ------>', allVideosArr)
     const sessionUserVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
     const sessionUserSubscribed = Object.values(allUsers).filter(user => sessionUser.subscribedIds.includes(user.id))
     console.log('sessionUserSubscribed ------->', sessionUserSubscribed)
@@ -62,6 +64,12 @@ function UserProfilePage() {
             </div>
         </div>
     ))
+
+    // const sessionUserPlaylists = user.playlists.forEach(playlist => (
+    //     console.log('playlist inside forEach', playlist),
+    //     allVideosArr.filter(video => playlist.videoIds.includes(video.id))
+    // ))
+    // console.log('sessionUserPlaylists', sessionUserPlaylists)
 
     const sessionUserSubscribedList = sessionUserSubscribed.map(user => (
         <div key={user.id} className={styles["single-subscribed"]}>
@@ -121,6 +129,7 @@ function UserProfilePage() {
 
             <div className={styles['section']}>
                 <h4 className={styles['section-header']}>Playlists</h4>
+                {/* {sessionUserPlaylists} */}
             </div>
 
             <div className={styles['section']}>

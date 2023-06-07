@@ -28,6 +28,7 @@ class Video(db.Model):
 
     def to_dict(self):
         user_likes = [user.to_dict() for user in self.user_likes]
+        playlists = [playlist.to_dict() for playlist in self.playlists]
         return {
             'id': self.id,
             'userId': self.user_id,
@@ -38,6 +39,7 @@ class Video(db.Model):
             'createdAt': self.created_at,
             'updatedAt': self.updated_at,
             'userLikes': user_likes,
+            'playlists': playlists,
             'user': {
                 'id': self.user.id,
                 'username': self.user.username,
