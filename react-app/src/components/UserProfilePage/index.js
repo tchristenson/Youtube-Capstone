@@ -42,6 +42,7 @@ function UserProfilePage() {
 
     console.log('sessionUser ------->', sessionUser)
     console.log('allUsers ------->', allUsers)
+    console.log('user ------>', user)
     // console.log('allVideos', allVideos)
 
     const sessionUserVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)

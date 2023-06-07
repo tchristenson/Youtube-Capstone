@@ -1,8 +1,9 @@
 from flask import Blueprint, request
-from app.models import Video, User
+from app.models import Video, User, Playlist
 from flask_login import current_user, login_required, current_user
 from ..forms.video_form import NewVideo
 from ..forms.edit_video_form import EditVideo
+from ..forms.playlist_form import NewPlaylist
 from ..models import db
 from ..api.aws_video_helpers import get_unique_video_filename, upload_video_file_to_s3
 from ..api.aws_image_helpers import get_unique_image_filename, upload_image_file_to_s3
@@ -158,3 +159,36 @@ def like_video(id, user_id):
         video.user_likes.append(user)
         db.session.commit()
         return video.to_dict()
+
+
+## ----------------------------------------  CREATE A PLAYLIST  ----------------------------------------
+@video_routes.route('/<int:id>/playlists/new', methods=['POST'])
+@login_required
+def create_playlist(id):
+    """Allows a logged in user to create a playlist"""
+
+    form = NewPlaylist()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    print('form.data ========>>>>>>>>', form.data)
+
+    video = Video.query.get(id)
+    if not video:
+        return {'error': 'video not found'}
+
+    print('video ========>>>>>>>>', video.to_dict())
+
+
+    if form.validate_on_submit():
+
+        playlist = Playlist(
+            user_id = current_user.id,
+            name = form.data['name']
+        )
+
+        db.session.add(playlist)
+        db.session.commit()
+        print('playlist ========>>>>>>>>', playlist.to_dict())
+
+        return playlist.to_dict()
+
+    return { "errors": form.errors }

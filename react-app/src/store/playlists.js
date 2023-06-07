@@ -13,10 +13,15 @@ const createPlaylistAction = playlist => {
 
 // ----------------------------------------  THUNKS  ----------------------------------------
 
-export const createPlaylistThunk = videoId => async (dispatch) => {
-    const response = await fetch(`/api/playlists/new`, {
+export const createPlaylistThunk = (playlist) => async (dispatch) => {
+//     for (let key of playlist.entries()) {
+//     console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
+//   }
+    const videoId = parseInt(playlist.get('id'))
+    console.log('videoId', videoId)
+    const response = await fetch(`/api/videos/${videoId}/playlists/new`, {
         method: 'POST',
-        body: videoId
+        body: playlist
     });
     if (response.ok) {
         const playlist = await response.json()

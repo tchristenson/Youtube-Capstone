@@ -27,6 +27,11 @@ function NewPlaylistModal({video}) {
         if (validationErrors.length) return alert('Playlist name cannot exceed 100 characters')
 
         formData.append('name', playlistName.trim())
+        formData.append('id', video.id)
+
+        // for (let key of formData.entries()) {
+        //     console.log('formData before dispatch', key[0] + '----->' + key[1]);
+        //   }
 
         await dispatch(createPlaylistThunk(formData))
 
