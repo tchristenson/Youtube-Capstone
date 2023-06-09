@@ -4,6 +4,7 @@ import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getSinglePlaylistThunk } from "../../store/playlists";
 import styles from './UserPlaylistsPage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
+import EditDeletePlaylistModal from "../EditDeletePlaylistModal";
 
 function UserPlaylistsPage() {
 
@@ -49,7 +50,10 @@ function UserPlaylistsPage() {
         <div className={styles["playlist-page-container"]}>
             <div className={styles["playlist-thumbnail-container"]}>
                 <img className={styles["playlist-thumbnail"]} src={playlist?.videos[0].thumbnail}/>
-                <h3 className={styles["playlist-name"]}>{playlist?.name}</h3>
+                <div className={styles["name-icon-container"]}>
+                    <h3 className={styles["playlist-name"]}>{playlist?.name}</h3>
+                    <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeletePlaylistModal playlist={playlist}/>}></OpenModalIcon>
+                </div>
                 <h5 className={styles["first-last-name"]}>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h5>
                 <h6 className={styles["playlist-video-count"]}>
                     {playlist?.videos.length === 1 ? (

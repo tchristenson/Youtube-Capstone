@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import OpenModalButton from "../OpenModalButton";
 import styles from './EditDeletePlaylistModal.module.css'
+import EditPlaylistModal from "../EditPlaylistModal";
+import DeletePlaylistModal from "../DeletePlaylistModal";
 
 
 
@@ -13,12 +15,12 @@ function EditDeletePlaylistModal({playlist}) {
 
     return (
         <>
-            {sessionUser && sessionUser.id === comment.userId && (
+            {sessionUser && sessionUser.id === playlist.userId && (
 
                 <div className={styles['buttons-container']}>
 
-                    <OpenModalButton buttonText='Edit' modalComponent={<EditCommentModal comment={comment}/>}></OpenModalButton>
-                    <OpenModalButton buttonText='Delete' modalComponent={<DeleteCommentModal comment={comment}/>}></OpenModalButton>
+                    <OpenModalButton buttonText='Edit' modalComponent={<EditPlaylistModal playlist={playlist}/>}></OpenModalButton>
+                    <OpenModalButton buttonText='Delete' modalComponent={<DeletePlaylistModal playlist={playlist}/>}></OpenModalButton>
 
                 </div>
 

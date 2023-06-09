@@ -2,6 +2,12 @@
     padding-bottom: 5px;
 }
 
+.name-icon-container {
+    display: grid;
+    grid-template-columns: repeat(1, 14fr 1fr);
+    align-items: center;
+}
+
 .playlist-page-container {
     display: grid;
     grid-template-columns: repeat(1, 1fr 3fr);
