@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
 import { getSingleUserThunk } from "../../store/users";
+import { subscribeUnsubscribeThunk } from "../../store/session";
 import styles from './ChannelPage.module.css'
+import OpenModalButton from "../OpenModalButton";
+import LoginFormModal from "../LoginFormModal";
 
 
 function ChannelPage() {
@@ -16,6 +19,7 @@ function ChannelPage() {
     // console.log('typeof channelId', typeof channelId)
 
     const user = useSelector(state => state.users[channelId])
+    const sessionUser = useSelector(state => state.session.user)
     const allVideos = useSelector(state => state.videos)
 
     useEffect(() => {
@@ -23,13 +27,18 @@ function ChannelPage() {
             dispatch(getSingleUserThunk(channelId))
     }, [dispatch, channelId])
 
-    // console.log('user', user)
+    const handleSubscribe = (e) => {
+        e.preventDefault()
+        dispatch(subscribeUnsubscribeThunk(user.id, sessionUser.id))
+    }
 
+    console.log('user ------->', user)
 
     if (!user) return null
 
     // console.log('user', user)
     // console.log('allVideos', allVideos)
+    console.log('sessionUser ------>', sessionUser)
 
     const channelVideos = Object.values(allVideos).filter(video => video.userId === channelId)
     // console.log('channelVideos', channelVideos)
@@ -72,7 +81,17 @@ function ChannelPage() {
                 </div>
 
                 <div className={styles['buttons-container']}>
-                    <button>Subscribe</button>
+                    {sessionUser && !sessionUser.subscribedIds.includes(user.id) &&
+                        <button onClick={handleSubscribe} id={styles['subscribe-button']}>Subscribe</button>}
+                    {sessionUser && sessionUser.subscribedIds.includes(user.id) &&
+                        <button onClick={handleSubscribe} id={styles['subscribed-button']}>Subscribed</button>}
+                    {!sessionUser &&
+                        <OpenModalButton
+                            id={styles['inactive-subscribe-button']}
+                            buttonText="Subscribe"
+                            modalComponent={<LoginFormModal />}
+                        />}
+
                 </div>
             </div>
 

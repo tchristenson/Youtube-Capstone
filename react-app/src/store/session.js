@@ -1,6 +1,7 @@
-// constants
+// ----------------------------------------  ACTIONS  ----------------------------------------
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const SUBSCRIBE_UNSUBSCRIBE = 'session/SUBSCRIBE_UNSUBSCRIBE'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +12,16 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
+const subscribeUnsubscribeAction = (user) => {
+    return {
+        type: SUBSCRIBE_UNSUBSCRIBE,
+        payload: user
+    }
+}
+
 const initialState = { user: null };
+
+// ----------------------------------------  THUNKS  ----------------------------------------
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -89,12 +99,27 @@ export const signUp = (formData) => async (dispatch) => {
 	}
 };
 
+export const subscribeUnsubscribeThunk = (userId, currUserId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/subscribe/${currUserId}`, {
+        method: 'POST',
+        body: userId, currUserId
+    });
+    if (response.ok) {
+        const user = await response.json()
+        dispatch(subscribeUnsubscribeAction(user))
+    }
+}
+
+// ----------------------------------------  REDUCER  ----------------------------------------
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+        case SUBSCRIBE_UNSUBSCRIBE:
+            return { user: action.payload };
 		default:
 			return state;
 	}

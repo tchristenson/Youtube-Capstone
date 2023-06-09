@@ -50,7 +50,7 @@
 
 .submit-button {
     background-color: rgb(65, 64, 64);
-    border-radius: 3px;
+    border-radius: 12px;
     border: none;
     color: grey;
     padding: 5px;
@@ -63,11 +63,39 @@
     border: none;
     color: black;
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 12px;
     font-weight: bold;
 }
 
 .submit-button-active:hover {
+    cursor: pointer;
+    background-color: rgb(108, 205, 244);
+    border: none;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.inactiveLogin {
+    background-color: rgb(65, 64, 64);
+    border-radius: 12px;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.activeLogin {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223);
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.activeLogin:hover {
     cursor: pointer;
     background-color: rgb(108, 205, 244);
     border: none;

@@ -71,6 +71,8 @@ function NewComment({video}) {
                         <OpenModalButton
                             buttonText="Comment"
                             modalComponent={<LoginFormModal />}
+                            className={content.trim() ? styles.activeLogin : styles.inactiveLogin}
+                            disabled={content.trim() ? false : true}
                         />}
                 </div>
             </form>

@@ -1,6 +1,8 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .likes import user_video_likes
+from .subscribers import subscribers
 
 
 class User(db.Model, UserMixin):
@@ -20,6 +22,30 @@ class User(db.Model, UserMixin):
 
     videos = db.relationship('Video', back_populates='user', cascade='all, delete-orphan')
     comments = db.relationship('Comment', back_populates='user', cascade='all, delete-orphan')
+    playlists = db.relationship('Playlist', back_populates='user', cascade='all, delete-orphan')
+
+    video_likes = db.relationship('Video', secondary=user_video_likes, back_populates='user_likes')
+
+    # subscribed = db.relationship('User',
+    #     secondary=subscribers,
+    #     primaryjoin=(subscribers.c.followed_user_id == id),
+    #     secondaryjoin=(subscribers.c.following_user_id == id),
+    #     backref='subscribers'
+    #     )
+
+    subscribed = db.relationship('User',
+        secondary=subscribers,
+        primaryjoin=(subscribers.c.following_user_id == id),
+        secondaryjoin=(subscribers.c.followed_user_id == id),
+        back_populates='subscribers'
+        )
+
+    subscribers = db.relationship('User',
+        secondary=subscribers,
+        primaryjoin=(subscribers.c.followed_user_id == id),
+        secondaryjoin=(subscribers.c.following_user_id == id),
+        back_populates='subscribed'
+        )
 
     @property
     def password(self):
@@ -32,7 +58,27 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    # def get_subscribed_users(self):
+    #     """Get a list of all users that this user is subscribed to."""
+    #     subscribed = []
+    #     for user in self.subscribed:
+    #         subscribed.append(user)
+    #     return subscribed
+
+    # def get_subscribing_users(self):
+    #     """Get a list of all users that are subscribed to this user."""
+    #     subscribing = []
+    #     for user in self.subscribers:
+    #         subscribing.append(user)
+    #     return subscribing
+
     def to_dict(self):
+        # print('self.subscribed ==========>>>>>>>>>', self.subscribed)
+        # print('self.subscribers ==========>>>>>>>>>', self.subscribers)
+        subscribed_ids = [user.id for user in self.subscribed]
+        subscribing_ids = [user.id for user in self.subscribers]
+        playlists = [playlist.to_dict() for playlist in self.playlists]
+
         return {
             'id': self.id,
             'username': self.username,
@@ -40,5 +86,8 @@ class User(db.Model, UserMixin):
             'lastName': self.last_name,
             'email': self.email,
             'about': self.about,
-            'profilePicture': self.profile_picture
+            'profilePicture': self.profile_picture,
+            'subscribedIds': subscribed_ids,
+            'subscribersIds': subscribing_ids,
+            'playlists': playlists
         }

@@ -35,6 +35,49 @@ a {
     color: whitesmoke
   }
 
+.like-button {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    margin: 0px 5px 0 5px;
+}
+
+.like-button i {
+    padding: 5px;
+}
+
+#user-has-liked {
+    padding: 5px;
+    color: rgb(69, 180, 223);
+}
+
+#user-has-not-liked {
+    padding: 5px;
+    color: whitesmoke
+}
+
+.like-count {
+    margin: 0px 5px 0 5px;
+    padding: 2px;
+}
+
+.like-info-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    padding: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.like-info-container:hover {
+    background-color: rgb(72, 72, 72);
+}
+
+.like-playlist-buttons-container {
+    display: flex;
+}
+
 .main-video-container {
     width: 100%;
     max-height: 600px;
@@ -48,13 +91,21 @@ a {
 }
 
 .main-video-name {
-    padding: 10px 0 10px 0;
+    /* padding: 10px 0 10px 0; */
     word-break: break-all;
 }
 
 .main-video {
     width: 100%;
     max-height: 600px;
+}
+
+.name-like-playlist-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 5px;
+    height: 40px;
 }
 
 .profile-picture {
@@ -64,6 +115,34 @@ a {
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
     margin-right: 10px;
+}
+
+.playlist-info-container {
+    display: flex;
+    align-items: center;
+    background-color: rgb(54, 54, 54);
+    padding: 5px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    color: whitesmoke;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.playlist-info-container:hover {
+    background-color: rgb(72, 72, 72);
+}
+
+.playlist-button {
+    background-color: transparent;
+    color: whitesmoke;
+    border: none;
+    margin: 0px 5px 0 5px;
+}
+
+.playlist-button i {
+    padding: 5px;
 }
 
 .owner-details-profile-icon {
@@ -139,6 +218,81 @@ a {
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
     margin-right: 10px;
+}
+
+#subscribe-button {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid gray 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+#subscribe-button:hover {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribeButtonInactive {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid gray 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribeButtonInactive:hover {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribe-buttons {
+    margin-left: 10px;
+}
+
+.subscribedButton {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color:rgb(69, 180, 223);
+    cursor: pointer;
+    border: solid rgb(69, 180, 223) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.subscribedButton:hover {
+    background-color: transparent;
+    padding: 8px;
+    font-weight: bold;
+    color:rgb(108, 205, 244);
+    cursor: pointer;
+    border: solid rgb(108, 205, 244) 1px;
+    border-radius: 15px;
+    font-size: 10px;
+}
+
+.video-owner-details {
+    margin: 5px 0 5px 0;
+    display: flex;
 }
 
 .video-owner-details img,

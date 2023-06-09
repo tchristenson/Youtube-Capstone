@@ -18,7 +18,42 @@
     color: whitesmoke;
     cursor: pointer;
     border: solid rgb(160, 160, 160) 1px;
-    cursor: not-allowed;
+}
+
+#subscribe-button {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid gray 1px;
+}
+
+#subscribe-button:hover {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    border: solid rgb(160, 160, 160) 1px;
+}
+
+#subscribed-button {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color:rgb(69, 180, 223);
+    cursor: pointer;
+    border: solid rgb(69, 180, 223) 1px;
+}
+
+#subscribed-button:hover {
+    background-color: transparent;
+    padding: 12px;
+    font-weight: bold;
+    color:rgb(108, 205, 244);
+    cursor: pointer;
+    border: solid rgb(108, 205, 244) 1px;
 }
 
 .channel-information {

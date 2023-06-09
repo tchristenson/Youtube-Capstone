@@ -2,12 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink, useHistory } from "react-router-dom";
 import { getAllVideosThunk } from "../../store/videos";
-import { getSingleUserThunk } from "../../store/users";
+import { getSingleUserThunk, getAllUsersThunk } from "../../store/users";
+import UnsubscribeModal from "../UnsubscribeModal"
 import OpenModalButton from "../OpenModalButton";
 import styles from './UserProfilePage.module.css'
 import OpenModalIcon from "../OpenModalIcon";
 import EditDeleteVideoModal from "../EditDeleteVideoModal";
 import NewVideoPage from "../NewVideoPage";
+import UserPlaylistsPage from "../UserPlaylistsPage";
 
 
 function UserProfilePage() {
@@ -20,10 +22,12 @@ function UserProfilePage() {
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
     const allVideos = useSelector(state => state.videos)
+    const allUsers = useSelector(state => state.users)
 
     useEffect(() => {
         dispatch(getAllVideosThunk())
         dispatch(getSingleUserThunk(userId))
+        dispatch(getAllUsersThunk())
     }, [dispatch, userId])
 
     useEffect(() => {
@@ -33,16 +37,22 @@ function UserProfilePage() {
     }, [sessionUser, user, history])
 
 
+
     if (!sessionUser) return null
     if (!user) return null
 
-    // console.log('sessionUser', sessionUser)
-    // console.log('user', user)
+    console.log('sessionUser ------->', sessionUser)
+    console.log('allUsers ------->', allUsers)
+    console.log('user ------>', user)
     // console.log('allVideos', allVideos)
 
-    const userVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
+    const allVideosArr = Object.values(allVideos)
+    console.log('allVideosArr ------>', allVideosArr)
+    const sessionUserVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
+    const sessionUserSubscribed = Object.values(allUsers).filter(user => sessionUser.subscribedIds.includes(user.id))
+    console.log('sessionUserSubscribed ------->', sessionUserSubscribed)
 
-    const userVideoList = userVideos.map(video => (
+    const sessionUserVideoList = sessionUserVideos.map(video => (
         <div key={video.id} className={styles["single-video"]}>
             <NavLink to={`/videos/${video.id}`}>
                 <img src={video.thumbnail}/>
@@ -51,10 +61,41 @@ function UserProfilePage() {
                 <NavLink to={`/videos/${video.id}`}>
                     <h5>{video.name}</h5>
                 </NavLink>
-                <OpenModalIcon modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
+                <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
             </div>
         </div>
+    ))
 
+    const sessionUserPlaylists = sessionUser.playlists.map(playlist => (
+        <NavLink key={playlist.videos[0].id} to={`/users/${sessionUser.id}/playlists/${playlist.id}`}>
+        <div className={styles["single-video"]}>
+            <img src={playlist.videos[0].thumbnail}/>
+            <div className={styles["single-video-details"]}>
+                    <h5>{playlist.name}</h5>
+            </div>
+        </div>
+        </NavLink>
+    ))
+
+    console.log('sessionUserPlaylists', sessionUserPlaylists)
+
+    const sessionUserSubscribedList = sessionUserSubscribed.map(user => (
+        <div key={user.id} className={styles["single-subscribed"]}>
+            <NavLink to={`/channels/${user.id}`}>
+                <img src={user.profilePicture} className={styles["subscribed-profile-picture"]}/>
+                <h5 className={styles["subscribed-username"]}>{user.username}</h5>
+                <h5 className={styles["subscribed-count"]}>
+                    {user.subscribersIds.length === 1 ? (
+                        `${user.subscribersIds.length} subscriber`
+                        ) : (
+                        `${user.subscribersIds.length} subscribers`
+                        )}
+                </h5>
+            </NavLink>
+            <div id={styles["subscribed-button"]}>
+                <OpenModalButton buttonText='Subscribed' modalComponent={<UnsubscribeModal user={user} sessionUser={sessionUser}/>}></OpenModalButton>
+            </div>
+        </div>
     ))
 
     return (
@@ -74,10 +115,10 @@ function UserProfilePage() {
                     <h3>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h3>
                     <h5>{`@${sessionUser.username}`}</h5>
                     <h5>
-                        {userVideoList.length === 1 ? (
-                        `${userVideoList.length} video`
+                        {sessionUserVideoList.length === 1 ? (
+                        `${sessionUserVideoList.length} video`
                         ) : (
-                        `${userVideoList.length} videos`
+                        `${sessionUserVideoList.length} videos`
                         )}
                     </h5>
                 </div>
@@ -87,19 +128,27 @@ function UserProfilePage() {
                 </div>
             </div>
 
-            <div className={styles['profile-videos']}>
-                {userVideoList}
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Uploads</h4>
+                <div className={styles['profile-videos']}>
+                    {sessionUserVideoList}
+                </div>
             </div>
 
-            <div className={styles['profile-playlists']}>
-                <h2>Placeholder for Playlists</h2>
-
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Playlists</h4>
+                <div className={styles['playlist-videos']}>
+                    {sessionUserPlaylists}
+                </div>
             </div>
 
-            <div className={styles['profile-subscriptions']}>
-                <h2>Placeholder for Subscriptions</h2>
-
+            <div className={styles['section']}>
+                <h4 className={styles['section-header']}>Subscriptions</h4>
+                <div className={styles['subscribed-to-users']}>
+                    {sessionUserSubscribedList}
+                </div>
             </div>
+
         </div>
 
     )

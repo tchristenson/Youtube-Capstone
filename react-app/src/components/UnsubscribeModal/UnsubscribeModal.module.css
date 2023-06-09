@@ -1,0 +1,64 @@
+.buttons-container {
+    text-align: right;
+}
+
+.buttons-container button {
+    padding: 5px;
+}
+
+.cancel-button {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: transparent;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.cancel-button:hover {
+    cursor: pointer;
+    margin-right: 10px;
+    background-color: rgb(65, 64, 64);
+    border-radius: 3px;
+    border: none;
+    color: whitesmoke;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.unsubscribe-modal {
+    background-color: #282828;
+    color: whitesmoke;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.submit-button-active {
+    cursor: pointer;
+    background-color: rgb(69, 180, 223);
+    border: none;
+    color: black;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.submit-button-active:hover {
+    cursor: pointer;
+    background-color: rgb(108, 205, 244);
+    border: none;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}

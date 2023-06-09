@@ -1,27 +1,49 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, NavLink } from "react-router-dom";
-import { getSingleVideoThunk } from "../../store/videos";
+import { likeVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import { getAllVideosThunk } from "../../store/videos";
+import { subscribeUnsubscribeThunk } from "../../store/session";
+import { getSingleVideoThunk } from "../../store/videos";
+import UnsubscribeModal from "../UnsubscribeModal"
+import OpenModalButton from "../OpenModalButton";
 import NewComment from "../NewComment";
 import CommentList from "../CommentList";
 import styles from './SingleVideoPage.module.css'
+import LoginFormModal from "../LoginFormModal";
+import OpenModalIcon from "../OpenModalIcon";
+import NewPlaylistModal from "../NewPlaylistModal";
 
 function SingleVideoPage() {
 
     const dispatch = useDispatch()
     const {videoId} = useParams()
+    // const [video, setVideo] = useState(null)
 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [videoId])
 
     useEffect(() => {
+        // dispatch(getSingleVideoThunk(videoId)).then(data => setVideo(data))
         dispatch(getAllVideosThunk())
-        // dispatch(getSingleVideoThunk(videoId))
         dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
+
+    const handleLike = (e) => {
+        e.preventDefault()
+        if (sessionUser) {
+            dispatch(likeVideoThunk(videoId, sessionUser.id))
+        }
+    }
+
+    const handleSubscribe = (e) => {
+        e.preventDefault()
+        dispatch(subscribeUnsubscribeThunk(video.user.id, sessionUser.id))
+    }
+
+    // console.log('video ------>', video)
 
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
@@ -33,9 +55,12 @@ function SingleVideoPage() {
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
+    const userLike = video.userLikes.filter(like => like.id === sessionUser?.id)
+    // console.log('userLike', userLike)
     // console.log('filteredVideos', filteredVideos)
     // console.log('commentsArr inside SingleVideoPage', commentsArr)
     // console.log('video inside SingleVideoPage', video)
+    // console.log('sessionUser inside Single Video Page', sessionUser)
     // console.log('comments inside SingleVideoPage', comments)
 
     const sidebarVideos = filteredVideos.map(video => (
@@ -65,7 +90,31 @@ function SingleVideoPage() {
                         <source src={video.content}/>
                     </video>
                 </div>
-                <h3 className={styles['main-video-name']}>{video.name}</h3>
+                <div className={styles['name-like-playlist-container']}>
+                    <div>
+                        <h3 className={styles['main-video-name']}>{video.name}</h3>
+                    </div>
+                    <div className={styles['like-playlist-buttons-container']}>
+                        <div className={styles['like-info-container']} onClick={handleLike}>
+                            <button className={styles['like-button']}>
+                                {sessionUser && userLike.length === 1 &&
+                                    <i id={styles['user-has-liked']} className="fa-solid fa-thumbs-up"></i>
+                                }
+                                {sessionUser && userLike.length === 0 &&
+                                    <i id={styles['user-has-not-liked']} className="fa-solid fa-thumbs-up"></i>
+                                }
+                                {!sessionUser &&
+                                <OpenModalIcon className="fa-solid fa-thumbs-up" modalComponent={<LoginFormModal/>}></OpenModalIcon>
+                                }
+                            </button>
+                            <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+                        </div>
+                        <div className={styles['playlist-info-container']}>
+                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
+                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
+                        </div>
+                    </div>
+                </div>
                 <div className={styles['video-owner-details']}>
                     <NavLink to={`/channels/${video.user.id}`}>
                         { video.user.profilePicture ? (
@@ -75,6 +124,17 @@ function SingleVideoPage() {
                         )}
                         <h4>{video.user.username}</h4>
                     </NavLink>
+                    <div className={styles["subscribe-buttons"]}>
+                        {sessionUser && !sessionUser.subscribedIds.includes(video.user.id) &&
+                            <button onClick={handleSubscribe} id={styles['subscribe-button']}>Subscribe</button>
+                        }
+                        {sessionUser && sessionUser.subscribedIds.includes(video.user.id) &&
+                            <OpenModalButton className={styles.subscribedButton} buttonText='Subscribed' modalComponent={<UnsubscribeModal user={video.user} sessionUser={sessionUser}/>}></OpenModalButton>
+                        }
+                        {!sessionUser &&
+                            <OpenModalButton className={styles.subscribeButtonInactive} buttonText='Subscribe' modalComponent={<LoginFormModal/>}></OpenModalButton>
+                        }
+                    </div>
 
                 </div>
                 <div className={styles['video-description']}>
