@@ -1,12 +1,16 @@
 """empty message
 
 Revision ID: bf153b92dd69
-Revises: 
+Revises:
 Create Date: 2023-06-04 14:35:02.368011
 
 """
 from alembic import op
 import sqlalchemy as sa
+
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
@@ -31,6 +35,10 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('playlists',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -40,6 +48,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE playlists SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('subscribers',
     sa.Column('followed_user_id', sa.Integer(), nullable=False),
     sa.Column('following_user_id', sa.Integer(), nullable=False),
@@ -47,6 +59,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['following_user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('followed_user_id', 'following_user_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE subscribers SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('videos',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -60,6 +76,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('name')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE videos SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
@@ -71,6 +91,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['video_id'], ['videos.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE comments SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('playlist_video',
     sa.Column('playlist_id', sa.Integer(), nullable=False),
     sa.Column('video_id', sa.Integer(), nullable=False),
@@ -78,6 +102,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['video_id'], ['videos.id'], ),
     sa.PrimaryKeyConstraint('playlist_id', 'video_id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE playlist_video SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
     op.create_table('video_likes',
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('video_id', sa.Integer(), nullable=False),
@@ -85,7 +113,10 @@ def upgrade():
     sa.ForeignKeyConstraint(['video_id'], ['videos.id'], ),
     sa.PrimaryKeyConstraint('user_id', 'video_id')
     )
-    # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE video_likes SET SCHEMA {SCHEMA};")
+    # ### end Alembic commands ###qqqqqqqqq
+
 
 
 def downgrade():
