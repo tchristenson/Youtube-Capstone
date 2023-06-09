@@ -7,41 +7,41 @@ from ..forms.playlist_form import NewPlaylist
 
 playlist_routes = Blueprint('playlists', __name__)
 
-## ----------------------------------------  CREATE A PLAYLIST  ----------------------------------------
-@playlist_routes.route('/new', methods=['POST'])
-@login_required
-def create_playlist(data, video_id):
-    """Allows a logged in user to create a playlist"""
-    print('data ========>>>>>>>>', data)
-    print('video_id ========>>>>>>>>', video_id)
+# ## ----------------------------------------  CREATE A PLAYLIST  ----------------------------------------
+# @playlist_routes.route('/new', methods=['POST'])
+# @login_required
+# def create_playlist(data, video_id):
+#     """Allows a logged in user to create a playlist"""
+#     print('data ========>>>>>>>>', data)
+#     print('video_id ========>>>>>>>>', video_id)
 
-    form = NewPlaylist()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data before validation ========>>>>>>>>', form.data)
+#     form = NewPlaylist()
+#     form['csrf_token'].data = request.cookies['csrf_token']
+#     print('form.data before validation ========>>>>>>>>', form.data)
 
-    if form.validate_on_submit():
-        print('form.data after validation ========>>>>>>>>', form.data)
+#     if form.validate_on_submit():
+#         print('form.data after validation ========>>>>>>>>', form.data)
 
-        playlist = Playlist(
-            user_id = current_user.id,
-            name = form.data['name']
-        )
+#         playlist = Playlist(
+#             user_id = current_user.id,
+#             name = form.data['name']
+#         )
 
-        db.session.add(playlist)
-        db.session.commit()
-        print('playlist ========>>>>>>>>', playlist.to_dict())
-        print('form.data[video_id] ========>>>>>>>>', form.data['video_id'])
+#         db.session.add(playlist)
+#         db.session.commit()
+#         print('playlist ========>>>>>>>>', playlist.to_dict())
+#         print('form.data[video_id] ========>>>>>>>>', form.data['video_id'])
 
-        video = Video.query.get(form.data['video_id'])
-        if not video:
-            return {'error': 'video not found'}
+#         video = Video.query.get(form.data['video_id'])
+#         if not video:
+#             return {'error': 'video not found'}
 
-        print('video ========>>>>>>>>', video.to_dict())
+#         print('video ========>>>>>>>>', video.to_dict())
 
 
-        return playlist.to_dict()
+#         return playlist.to_dict()
 
-    return { "errors": form.errors }
+#     return { "errors": form.errors }
 
 
 ## ----------------------------------------  GET PLAYLIST VIDEO BY ID  ----------------------------------------

@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from './NewPlaylistModal.module.css'
 import { useModal } from '../../context/Modal';
 import { createPlaylistThunk } from "../../store/playlists";
+import { addOrRemoveVideoFromPlaylistThunk } from "../../store/playlists";
 
 function NewPlaylistModal({video}) {
 
@@ -14,9 +15,26 @@ function NewPlaylistModal({video}) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showForm, setShowForm] = useState(false)
+    const [selectedPlaylists, setSelectedPlaylists] = useState([])
 
     console.log('video inside NewPlaylistModal', video)
     console.log('sessionUser inside NewPlaylistModal', sessionUser)
+
+    const handlePlaylistSelection = (e) => {
+        const playlistId = e.target.value
+        if (sessionUser) {
+            dispatch(addOrRemoveVideoFromPlaylistThunk(video.id, playlistId))
+        }
+
+        // console.log('playlistId', playlistId)
+        // const isChecked = e.target.checked
+
+        // if (isChecked) {
+        //     setSelectedPlaylists((prevSelectedPlaylists) => [...prevSelectedPlaylists, playlist])
+        // } else {
+        //     setSelectedPlaylists((prevSelectedPlaylists) => prevSelectedPlaylists.filter(currPlaylist => currPlaylist.id !== playlist.id))
+        // }
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,8 +74,16 @@ function NewPlaylistModal({video}) {
     }
 
     const userPlaylists = sessionUser.playlists.map(playlist => (
-        <div className={styles["user-playlists"]}>
-            <input type="radio" name={playlist.name}/>
+        <div key={playlist.id} className={styles["user-playlists"]}>
+            <label>
+                <input
+                    type="checkbox"
+                    name={playlist.name}
+                    value={playlist.id}
+                    onChange={handlePlaylistSelection}
+                />
+            {playlist.name}
+            </label>
         </div>
     ))
 

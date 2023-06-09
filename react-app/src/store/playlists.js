@@ -3,6 +3,7 @@
 
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
 const GET_SINGLE_PLAYLIST = 'playlists/GET_SINGLE_PLAYLIST'
+const ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST = 'playlists/ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST'
 
 const createPlaylistAction = playlist => {
     return {
@@ -14,6 +15,13 @@ const createPlaylistAction = playlist => {
 const getSinglePlaylistAction = playlist => {
     return {
         type: GET_SINGLE_PLAYLIST,
+        playlist
+    }
+}
+
+const addOrRemoveVideoFromPlaylistAction = playlist => {
+    return {
+        type: ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST,
         playlist
     }
 }
@@ -47,6 +55,18 @@ export const getSinglePlaylistThunk = playlistId => async (dispatch) => {
     }
 }
 
+export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async (dispatch) => {
+    const response = await fetch(`/api/videos/${videoId}/playlists/${playlistId}`, {
+        method: 'POST',
+        body: videoId, playlistId
+    });
+    if (response.ok) {
+        const playlist = await response.json()
+        dispatch(addOrRemoveVideoFromPlaylistAction(playlist))
+        return playlist
+    }
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -58,6 +78,10 @@ const playlistReducer = (state = {}, action) => {
             newState[action.playlist.id] = action.playlist
             return newState
         case GET_SINGLE_PLAYLIST:
+            newState = {...state}
+            newState[action.playlist.id] = action.playlist
+            return newState
+        case ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST:
             newState = {...state}
             newState[action.playlist.id] = action.playlist
             return newState

@@ -61,7 +61,7 @@ function UserProfilePage() {
                 <NavLink to={`/videos/${video.id}`}>
                     <h5>{video.name}</h5>
                 </NavLink>
-                <OpenModalIcon modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
+                <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeleteVideoModal video={video}/>}></OpenModalIcon>
             </div>
         </div>
     ))
