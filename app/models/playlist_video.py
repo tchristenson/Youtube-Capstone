@@ -8,3 +8,6 @@ playlist_video = db.Table(
     db.Column('playlist_id', ForeignKey(add_prefix_for_prod('playlists.id')), primary_key=True),
     db.Column('video_id', ForeignKey(add_prefix_for_prod('videos.id')), primary_key=True)
 )
+
+if environment == "production":
+    playlist_video.schema = SCHEMA
