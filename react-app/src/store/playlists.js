@@ -4,6 +4,7 @@
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
 const GET_SINGLE_PLAYLIST = 'playlists/GET_SINGLE_PLAYLIST'
 const ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST = 'playlists/ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST'
+const EDIT_PLAYLIST = 'playists/EDIT_PLAYLIST'
 
 const createPlaylistAction = playlist => {
     return {
@@ -22,6 +23,13 @@ const getSinglePlaylistAction = playlist => {
 const addOrRemoveVideoFromPlaylistAction = playlist => {
     return {
         type: ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST,
+        playlist
+    }
+}
+
+const editPlaylistAction = playlist => {
+    return {
+        type: EDIT_PLAYLIST,
         playlist
     }
 }
@@ -67,6 +75,23 @@ export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async 
     }
 }
 
+export const editPlaylistThunk = playlist => async (dispatch) => {
+    for (let key of playlist.entries()) {
+        console.log('formData inside thunk', key[0] + '----->' + key[1]);
+      }
+    const playlistId = parseInt(playlist.get('id'))
+    const response = await fetch(`/api/playlists/${playlistId}/edit`, {
+        method: 'PUT',
+        body: playlist
+    })
+    if (response.ok) {
+        const playlist = await response.json()
+        dispatch(editPlaylistAction(playlist))
+        return playlist
+    }
+
+}
+
 
 // ----------------------------------------  REDUCER  ----------------------------------------
 
@@ -82,6 +107,10 @@ const playlistReducer = (state = {}, action) => {
             newState[action.playlist.id] = action.playlist
             return newState
         case ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST:
+            newState = {...state}
+            newState[action.playlist.id] = action.playlist
+            return newState
+        case EDIT_PLAYLIST:
             newState = {...state}
             newState[action.playlist.id] = action.playlist
             return newState

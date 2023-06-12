@@ -12,16 +12,13 @@ function UserPlaylistsPage() {
     const history = useHistory()
     const {userId, playlistId} = useParams()
 
-    const [playlist, setPlaylist] = useState(null)
-    // console.log('userId', userId)
-    // console.log('playlistId', playlistId)
-
     useEffect(() => {
-        dispatch(getSinglePlaylistThunk(playlistId)).then(data => setPlaylist(data))
+        dispatch(getSinglePlaylistThunk(playlistId))
     }, [dispatch, playlistId])
 
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
+    const playlist = useSelector(state => state.playlists[playlistId])
     console.log('playlist', playlist)
 
     useEffect(() => {
@@ -36,8 +33,7 @@ function UserPlaylistsPage() {
         <NavLink key={video.id} to={`/videos/${video.id}`}>
             <div className={styles['sidebar-video']}>
                 <div className={styles['sidebar-thumbnail']}>
-
-                        <img className={styles['playlist-video']} src={video.thumbnail} alt="Video Thumbnail"/>
+                    <img className={styles['playlist-video']} src={video.thumbnail} alt="Video Thumbnail"/>
                 </div>
                 <div className={styles['sidebar-video-details']}>
                         <h5 className={styles['sidebar-video-name']}>{video.name}</h5>
@@ -55,13 +51,13 @@ function UserPlaylistsPage() {
                     <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeletePlaylistModal playlist={playlist}/>}></OpenModalIcon>
                 </div>
                 <h5 className={styles["first-last-name"]}>{`${sessionUser.firstName} ${sessionUser.lastName}`}</h5>
-                <h6 className={styles["playlist-video-count"]}>
+                <h5 className={styles["playlist-video-count"]}>
                     {playlist?.videos.length === 1 ? (
                         `${playlist.videos.length} video`
                     ) : (
                         `${playlist.videos.length} videos`
                     )}
-                </h6>
+                </h5>
             </div>
 
             <div className={styles["playlist-videos-container"]}>

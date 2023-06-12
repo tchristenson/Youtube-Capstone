@@ -46,7 +46,7 @@
     padding-bottom: 5px;
 }
 
-.input textarea {
+.input input {
     width: 100%;
     border: none;
     padding: 5px;
@@ -56,7 +56,7 @@
     outline: none;
     transition: border-color 0.3s;
     margin-bottom: 10px;
-    height: 125px;
+    height: 30px;
     font: inherit;
 }
 
@@ -64,7 +64,7 @@
     color: gray;
 }
 
-.input textarea:focus {
+.input input:focus {
     border-color: whitesmoke;
 }
 

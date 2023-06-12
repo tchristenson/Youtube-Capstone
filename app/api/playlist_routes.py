@@ -51,3 +51,25 @@ def get_single_playlist(id):
 
     playlist = Playlist.query.get(id)
     return playlist.to_dict()
+
+
+## ----------------------------------------  EDIT PLAYLIST  ----------------------------------------
+@playlist_routes.route('/<int:id>/edit', methods=['PUT'])
+@login_required
+def edit_playlist(id):
+    """Allows the user to edit a playlist if the owner of the playlist is the logged in user"""
+
+    playlist = Playlist.query.get(id)
+    if not playlist:
+        return {'error': 'playlist not found'}
+
+    form = NewPlaylist()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        playlist.name = form.data['name']
+
+        db.session.commit()
+        return playlist.to_dict()
+
+    return { 'errors': form.errors }

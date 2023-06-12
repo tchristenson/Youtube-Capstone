@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { editPlaylistThunk } from "../../store/playlists";
 import { useModal } from "../../context/Modal";
 import styles from './EditPlaylistModal.module.css'
 
@@ -18,6 +18,7 @@ function EditPlaylistModal({playlist}) {
     const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
+        console.log('handleSubmit running')
         e.preventDefault();
 
         setHasSubmitted(true)
@@ -28,11 +29,11 @@ function EditPlaylistModal({playlist}) {
         formData.append('name', name)
         formData.append('id', playlist.id)
 
-        // for (let key of formData.entries()) {
-        //     console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
-        //   }
+        for (let key of formData.entries()) {
+            console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+          }
 
-        // await dispatch(editCommentThunk(formData)) // update to editPlaylistThunk
+        await dispatch(editPlaylistThunk(formData))
 
         setName('')
         setHasSubmitted(false)
@@ -49,16 +50,17 @@ function EditPlaylistModal({playlist}) {
 
     return (
         <div className={styles['playlist-container']}>
-            <h2 className={styles["header"]}>Edit your playlist</h2>
+            <h2 className={styles["header"]}>Edit your playlist's name</h2>
             <form
                 onSubmit={(e) => handleSubmit(e)}
             >
                 <div className={styles["input"]}>
-                    <textarea
+                    <input
+                        type="text"
                         onChange={(e) => setName(e.target.value)}
                         value={name}
                         >
-                    </textarea>
+                    </input>
                 </div>
 
                 <div className={styles['buttons-container']}>
@@ -69,7 +71,6 @@ function EditPlaylistModal({playlist}) {
                     className={name ? styles['submit-button-active'] : styles['submit-button']}
                     disabled={name ? false : true}
                     type="submit">Save</button>
-
             </div>
             </form>
         </div>
