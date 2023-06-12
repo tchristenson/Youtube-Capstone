@@ -4,6 +4,8 @@ import styles from './NewPlaylistModal.module.css'
 import { useModal } from '../../context/Modal';
 import { createPlaylistThunk } from "../../store/playlists";
 import { addOrRemoveVideoFromPlaylistThunk } from "../../store/playlists";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function NewPlaylistModal({video}) {
 
@@ -23,6 +25,7 @@ function NewPlaylistModal({video}) {
         const playlistId = e.target.value
         if (sessionUser) {
             dispatch(addOrRemoveVideoFromPlaylistThunk(video.id, playlistId))
+            toast("Wow so easy!");
         }
     }
 
@@ -88,6 +91,7 @@ function NewPlaylistModal({video}) {
 
     return (
         <div className={styles["new-playlist-form"]}>
+            <ToastContainer />
             <h4 className={styles["header"]}>Save to...</h4>
             <div className={styles["playlists-container"]}>
                 {selectablePlaylists}

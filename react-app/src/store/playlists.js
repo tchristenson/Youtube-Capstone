@@ -78,6 +78,7 @@ export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async 
     });
     if (response.ok) {
         const playlist = await response.json()
+        console.log('playlist result from thunk', playlist)
         dispatch(addOrRemoveVideoFromPlaylistAction(playlist))
         return playlist
     }
