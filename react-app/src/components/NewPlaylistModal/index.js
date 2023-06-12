@@ -15,7 +15,6 @@ function NewPlaylistModal({video}) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showForm, setShowForm] = useState(false)
-    const [selectedPlaylists, setSelectedPlaylists] = useState([])
 
     console.log('video inside NewPlaylistModal', video)
     console.log('sessionUser inside NewPlaylistModal', sessionUser)
@@ -25,15 +24,6 @@ function NewPlaylistModal({video}) {
         if (sessionUser) {
             dispatch(addOrRemoveVideoFromPlaylistThunk(video.id, playlistId))
         }
-
-        // console.log('playlistId', playlistId)
-        // const isChecked = e.target.checked
-
-        // if (isChecked) {
-        //     setSelectedPlaylists((prevSelectedPlaylists) => [...prevSelectedPlaylists, playlist])
-        // } else {
-        //     setSelectedPlaylists((prevSelectedPlaylists) => prevSelectedPlaylists.filter(currPlaylist => currPlaylist.id !== playlist.id))
-        // }
     }
 
     const handleSubmit = async (e) => {
@@ -70,10 +60,19 @@ function NewPlaylistModal({video}) {
     }, [playlistName])
 
     const showFormToggle = () => {
-        setShowForm(true)
+        showForm? setShowForm(false) : setShowForm(true)
     }
 
-    const userPlaylists = sessionUser.playlists.map(playlist => (
+    const sessionUserPlaylists = Object.values(sessionUser.playlists)
+    // console.log('sessionUserPlaylists', sessionUserPlaylists)
+
+    const filteredSessionUserPlaylists = sessionUserPlaylists.filter(playlist => {
+        return !playlist.videos.some(currVideo => currVideo.id === video.id)
+    })
+
+    // console.log('filteredSessionUserPlaylists', filteredSessionUserPlaylists)
+
+    const selectablePlaylists = filteredSessionUserPlaylists.map(playlist => (
         <div key={playlist.id} className={styles["user-playlists"]}>
             <label>
                 <input
@@ -87,16 +86,19 @@ function NewPlaylistModal({video}) {
         </div>
     ))
 
-
     return (
         <div className={styles["new-playlist-form"]}>
             <h4 className={styles["header"]}>Save to...</h4>
-            {userPlaylists}
-            <div className={styles["new-playlist-button-container"]}>
-                <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
-                <button onClick={showFormToggle} className={styles['new-playlist-button']}>
-                    Create New Playlist
-                </button>
+            <div className={styles["playlists-container"]}>
+                {selectablePlaylists}
+            </div>
+            <div className={styles["buttons-container"]}>
+                <div onClick={showFormToggle} className={styles["new-playlist-button-container"]}>
+                    <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
+                    <button className={styles['new-playlist-button']}>
+                        Create New Playlist
+                    </button>
+                </div>
                 {showForm &&
                     <form
                         onSubmit={(e) => handleSubmit(e)}
@@ -121,7 +123,6 @@ function NewPlaylistModal({video}) {
 
         </div>
     )
-
 }
 
 export default NewPlaylistModal
