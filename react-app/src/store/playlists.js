@@ -5,6 +5,7 @@ const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
 const GET_SINGLE_PLAYLIST = 'playlists/GET_SINGLE_PLAYLIST'
 const ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST = 'playlists/ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST'
 const EDIT_PLAYLIST = 'playists/EDIT_PLAYLIST'
+const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST'
 
 const createPlaylistAction = playlist => {
     return {
@@ -31,6 +32,13 @@ const editPlaylistAction = playlist => {
     return {
         type: EDIT_PLAYLIST,
         playlist
+    }
+}
+
+const deletePlaylistAction = playlistId => {
+    return {
+        type: DELETE_PLAYLIST,
+        playlistId
     }
 }
 
@@ -89,7 +97,16 @@ export const editPlaylistThunk = playlist => async (dispatch) => {
         dispatch(editPlaylistAction(playlist))
         return playlist
     }
+}
 
+export const deletePlaylistThunk = playlistId => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}/delete`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        dispatch(deletePlaylistAction(playlistId))
+        return {'message': 'delete successful'}
+    }
 }
 
 
@@ -113,6 +130,10 @@ const playlistReducer = (state = {}, action) => {
         case EDIT_PLAYLIST:
             newState = {...state}
             newState[action.playlist.id] = action.playlist
+            return newState
+        case DELETE_PLAYLIST:
+            newState = {...state}
+            delete newState[action.playlistId]
             return newState
         default:
             return state

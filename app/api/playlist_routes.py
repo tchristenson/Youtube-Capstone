@@ -73,3 +73,17 @@ def edit_playlist(id):
         return playlist.to_dict()
 
     return { 'errors': form.errors }
+
+## ----------------------------------------  DELETE A PLAYLIST  ----------------------------------------
+@playlist_routes.route('/<int:id>/delete', methods=['DELETE'])
+@login_required
+def delete_playlist(id):
+    """Allows the user to delete a playlist if the owner of the playlist is the logged in user"""
+
+    playlist = Playlist.query.get(id)
+    if playlist.user_id == current_user.id:
+        db.session.delete(playlist)
+        db.session.commit()
+        return 'Delete Successful'
+    else:
+        return 'Must be playlist owner to delete playlist'

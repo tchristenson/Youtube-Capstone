@@ -1,21 +1,26 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
-
+import { deletePlaylistThunk } from "../../store/playlists";
 import styles from './DeletePlaylistModal.module.css'
+import { useHistory } from "react-router-dom";
 
 function DeletePlaylistModal({playlist}) {
     const dispatch = useDispatch();
+    const history = useHistory();
+
+    const sessionUser = useSelector(state => state.session.user)
 
     const { closeModal } = useModal();
 
     const handleDelete = async (e) => {
         e.preventDefault()
+        console.log('handleDelete running')
 
-        // const deletedPlaylist = await dispatch(deleteCommentThunk(comment.id)) // Change this to deletePlaylistThunk
-        // if (deletedPlaylist.message === 'delete successful') {
-        //     closeModal() // Don't want to redirect user if possible - user will be deleting video's from their profile page, so
-        //     // their page should just updated with the deleted video gone
-        // }
+        const deletedPlaylist = await dispatch(deletePlaylistThunk(playlist.id))
+        if (deletedPlaylist.message === 'delete successful') {
+            closeModal()
+        }
+        history.push(`/users/${sessionUser.id}`)
     }
 
     return (
