@@ -51,7 +51,6 @@ function NewPlaylistModal({video, allPlaylistsArr}) {
         formData.append('id', video.id)
 
         await dispatch(createPlaylistThunk(formData))
-        toast(`Video added to ${playlistName}`);
 
         setPlaylistName('')
         setHasSubmitted(false)
