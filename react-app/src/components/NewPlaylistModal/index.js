@@ -7,7 +7,7 @@ import { addOrRemoveVideoFromPlaylistThunk } from "../../store/playlists";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function NewPlaylistModal({video}) {
+function NewPlaylistModal({video, allPlaylistsArr}) {
 
     const dispatch = useDispatch()
     const { closeModal } = useModal();
@@ -21,6 +21,7 @@ function NewPlaylistModal({video}) {
 
     console.log('video inside NewPlaylistModal', video)
     console.log('sessionUser inside NewPlaylistModal', sessionUser)
+    console.log('allPlaylistsArr inside of NewPlaylistModal', allPlaylistsArr)
 
     const handlePlaylistSelection = (e, playlist) => {
         const playlistId = e.target.value
@@ -49,10 +50,6 @@ function NewPlaylistModal({video}) {
         formData.append('name', playlistName.trim())
         formData.append('id', video.id)
 
-        // for (let key of formData.entries()) {
-        //     console.log('formData before dispatch', key[0] + '----->' + key[1]);
-        //   }
-
         await dispatch(createPlaylistThunk(formData))
         toast(`Video added to ${playlistName}`);
 
@@ -74,8 +71,8 @@ function NewPlaylistModal({video}) {
         showForm? setShowForm(false) : setShowForm(true)
     }
 
-    const sessionUserPlaylists = Object.values(sessionUser.playlists)
-    // console.log('sessionUserPlaylists', sessionUserPlaylists)
+    const sessionUserPlaylists = allPlaylistsArr.filter(playlist => playlist.userId === sessionUser.id)
+    console.log('sessionUserPlaylists', sessionUserPlaylists)
 
     const filteredSessionUserPlaylists = sessionUserPlaylists.filter(playlist => {
         return !playlist.videos.some(currVideo => currVideo.id === video.id)
