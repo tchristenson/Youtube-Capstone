@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: bf153b92dd69
+Revision ID: 2e3c49133a93
 Revises:
-Create Date: 2023-06-04 14:35:02.368011
+Create Date: 2023-06-13 02:14:27.975846
 
 """
 from alembic import op
@@ -14,7 +14,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-revision = 'bf153b92dd69'
+revision = '2e3c49133a93'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -116,7 +116,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE video_likes SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###qqqqqqqqq
-
+    # ### end Alembic commands ###
 
 
 def downgrade():
