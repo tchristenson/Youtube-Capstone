@@ -9,6 +9,7 @@
     color: whitesmoke;
     cursor: pointer;
     border: solid gray 1px;
+    border-radius: 20px;
 }
 
 .buttons-container button:hover {
