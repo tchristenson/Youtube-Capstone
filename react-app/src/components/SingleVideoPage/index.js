@@ -107,11 +107,28 @@ function SingleVideoPage() {
                                 <OpenModalIcon className="fa-solid fa-thumbs-up" modalComponent={<LoginFormModal/>}></OpenModalIcon>
                                 }
                             </button>
-                            <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+                            {sessionUser ? (
+                                <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+
+                            ) : (
+                                <OpenModalButton className={styles.likeCount} buttonText={video.userLikes.length} modalComponent={<LoginFormModal/>}></OpenModalButton>
+                            )
+
+                            }
                         </div>
                         <div className={styles['playlist-info-container']}>
-                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
-                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            {sessionUser &&
+                            <>
+                                <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
+                                <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            </>
+                            }
+                            {!sessionUser &&
+                            <>
+                                <OpenModalIcon modalComponent={<LoginFormModal/>} className="fa-solid fa-list"></OpenModalIcon>
+                                <OpenModalIcon modalComponent={<LoginFormModal/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            </>
+                            }
                         </div>
                     </div>
                 </div>
