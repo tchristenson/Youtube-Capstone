@@ -10,8 +10,8 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
 * [Wireframes](https://github.com/tchristenson/Youtube-Capstone/wiki/YouTube-Wireframes-(combined))
 
 ### How to start the project locally:
-1. Clone the project repo into the desired location on your machine
-2. Create a **.env** file based on the example with proper settings for your development environment
+1. Clone the project repo into the desired location on your machine (https://github.com/tchristenson/Youtube-Capstone)
+2. Create a **.env** file based on the example with proper settings for your development environment. Review the *aws-s3-uploads-flask.md* file to set up your own AWS bucket and user
 3. cd into the react-app directory and run the command below to install all dependencies
       ```bash
       npm install
@@ -37,6 +37,13 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
       ```
 
 7. Browse the site and enjoy
+
+### Splash Page
+![Splash Page](/react-app/public/splash-page-capture.gif)
+### Single Video Page
+![Single Video Page](/react-app/public/single-video-page-capture.gif)
+### User Profile Page
+![User Profile Page](/react-app/public/user-profile-page-capture.gif)
 
 ### API Endpoints
 | HTTP Verbs | Endpoints | Action |
