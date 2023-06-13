@@ -64,6 +64,11 @@
     color: whitesmoke;
 }
 
+.no-playlists-message {
+    font-weight: normal;
+    text-align: center;
+}
+
 .playlists-container {
     display: flex;
     flex-direction: column;

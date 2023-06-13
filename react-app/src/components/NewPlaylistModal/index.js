@@ -53,9 +53,8 @@ function NewPlaylistModal({video}) {
         //     console.log('formData before dispatch', key[0] + '----->' + key[1]);
         //   }
 
-        const data = await dispatch(createPlaylistThunk(formData))
-        console.log('playlist returned from backend', data)
-        console.log('playlist returned from backend with videos', data.videos)
+        await dispatch(createPlaylistThunk(formData))
+        toast(`Video added to ${playlistName}`);
 
         setPlaylistName('')
         setHasSubmitted(false)
@@ -101,10 +100,17 @@ function NewPlaylistModal({video}) {
     return (
         <div className={styles["new-playlist-form"]}>
             <ToastContainer />
-            <h4 className={styles["header"]}>Save to...</h4>
-            <div className={styles["playlists-container"]}>
-                {selectablePlaylists}
-            </div>
+            {selectablePlaylists.length? (
+                <>
+                    <h4 className={styles["header"]}>Save to...</h4>
+                        <div className={styles["playlists-container"]}>
+                            {selectablePlaylists}
+                        </div>
+                </>
+            ) : (
+                <h5 className={styles["no-playlists-message"]}>No playlists currently available</h5>
+            )
+            }
             <div className={styles["buttons-container"]}>
                 <div onClick={showFormToggle} className={styles["new-playlist-button-container"]}>
                     <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
