@@ -4,6 +4,7 @@ from wtforms import StringField, FileField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import User
 from app.api.aws_image_helpers import ALLOWED_IMAGE_EXTENSIONS
+import re
 
 
 def user_exists(form, field):
@@ -24,7 +25,7 @@ def username_exists(form, field):
 def valid_email(form, field):
     # Checking if email is valid
     email = field.data
-    email_error = '@' not in email
+    email_error = not re.match(r'^[\w\.-]+@[\w\.-]+\.\w+$', email)
     if email_error:
         raise ValidationError('Email is not valid.')
 
