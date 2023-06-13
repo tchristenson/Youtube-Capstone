@@ -26,13 +26,6 @@ class User(db.Model, UserMixin):
 
     video_likes = db.relationship('Video', secondary=user_video_likes, back_populates='user_likes')
 
-    # subscribed = db.relationship('User',
-    #     secondary=subscribers,
-    #     primaryjoin=(subscribers.c.followed_user_id == id),
-    #     secondaryjoin=(subscribers.c.following_user_id == id),
-    #     backref='subscribers'
-    #     )
-
     subscribed = db.relationship('User',
         secondary=subscribers,
         primaryjoin=(subscribers.c.following_user_id == id),
@@ -57,20 +50,6 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
-
-    # def get_subscribed_users(self):
-    #     """Get a list of all users that this user is subscribed to."""
-    #     subscribed = []
-    #     for user in self.subscribed:
-    #         subscribed.append(user)
-    #     return subscribed
-
-    # def get_subscribing_users(self):
-    #     """Get a list of all users that are subscribed to this user."""
-    #     subscribing = []
-    #     for user in self.subscribers:
-    #         subscribing.append(user)
-    #     return subscribing
 
     def to_dict(self):
         # print('self.subscribed ==========>>>>>>>>>', self.subscribed)

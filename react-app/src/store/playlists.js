@@ -4,6 +4,9 @@
 const CREATE_PLAYLIST = 'playlists/CREATE_PLAYLIST'
 const GET_SINGLE_PLAYLIST = 'playlists/GET_SINGLE_PLAYLIST'
 const ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST = 'playlists/ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST'
+const EDIT_PLAYLIST = 'playists/EDIT_PLAYLIST'
+const DELETE_PLAYLIST = 'playlists/DELETE_PLAYLIST'
+const GET_ALL_PLAYLISTS = 'playlists/GET_ALL_PLAYLISTS'
 
 const createPlaylistAction = playlist => {
     return {
@@ -23,6 +26,27 @@ const addOrRemoveVideoFromPlaylistAction = playlist => {
     return {
         type: ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST,
         playlist
+    }
+}
+
+const editPlaylistAction = playlist => {
+    return {
+        type: EDIT_PLAYLIST,
+        playlist
+    }
+}
+
+const deletePlaylistAction = playlistId => {
+    return {
+        type: DELETE_PLAYLIST,
+        playlistId
+    }
+}
+
+const getAllPlaylistsAction = playlists => {
+    return {
+        type: GET_ALL_PLAYLISTS,
+        playlists
     }
 }
 
@@ -62,8 +86,44 @@ export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async 
     });
     if (response.ok) {
         const playlist = await response.json()
+        console.log('playlist result from thunk', playlist)
         dispatch(addOrRemoveVideoFromPlaylistAction(playlist))
         return playlist
+    }
+}
+
+export const editPlaylistThunk = playlist => async (dispatch) => {
+    for (let key of playlist.entries()) {
+        console.log('formData inside thunk', key[0] + '----->' + key[1]);
+      }
+    const playlistId = parseInt(playlist.get('id'))
+    const response = await fetch(`/api/playlists/${playlistId}/edit`, {
+        method: 'PUT',
+        body: playlist
+    })
+    if (response.ok) {
+        const playlist = await response.json()
+        dispatch(editPlaylistAction(playlist))
+        return playlist
+    }
+}
+
+export const deletePlaylistThunk = playlistId => async (dispatch) => {
+    const response = await fetch(`/api/playlists/${playlistId}/delete`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        dispatch(deletePlaylistAction(playlistId))
+        return {'message': 'delete successful'}
+    }
+}
+
+export const getAllPlaylistsThunk = () => async (dispatch) => {
+    const response = await fetch('/api/playlists')
+    if (response.ok) {
+        const playlists = await response.json()
+        dispatch(getAllPlaylistsAction(playlists))
+        return playlists
     }
 }
 
@@ -84,6 +144,18 @@ const playlistReducer = (state = {}, action) => {
         case ADD_OR_REMOVE_VIDEO_FROM_PLAYLIST:
             newState = {...state}
             newState[action.playlist.id] = action.playlist
+            return newState
+        case EDIT_PLAYLIST:
+            newState = {...state}
+            newState[action.playlist.id] = action.playlist
+            return newState
+        case DELETE_PLAYLIST:
+            newState = {...state}
+            delete newState[action.playlistId]
+            return newState
+        case GET_ALL_PLAYLISTS:
+            newState = {...state}
+            action.playlists.Playlists.forEach(playlist => newState[playlist.id] = playlist)
             return newState
         default:
             return state

@@ -14,7 +14,6 @@
     color: whitesmoke;
     padding: 5px;
     font-weight: bold;
-    font-size: 12px;
 }
 
 .cancel-button:hover {
@@ -26,70 +25,48 @@
     color: whitesmoke;
     padding: 5px;
     font-weight: bold;
-    font-size: 12px;
+}
+
+.playlist-container {
+    background-color: #282828;
+    color: whitesmoke;
+    padding: 15px;
+    width: 400px;
+    height: auto;
+}
+
+.playlist-container input {
+    background-color: transparent;
+    color: whitesmoke;
+    padding: 15px
 }
 
 .header {
     margin-bottom: 10px;
+    padding-bottom: 5px;
 }
 
-.new-playlist-button {
-    background-color: transparent;
-    color: whitesmoke;
-    border: none;
-    cursor: pointer;
-}
-
-.new-playlist-form {
-    background-color: #282828;
-    color: whitesmoke;
-    padding: 15px;
-    width: 200px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.new-playlist-button-container {
-    display: flex;
-    justify-content: center;
-    margin: 5px 0px;
-}
-
-.new-playlist-button-container:hover {
-    cursor: pointer;
-    background-color: rgb(65, 64, 64);
-    border-radius: 3px;
-    color: whitesmoke;
-}
-
-.no-playlists-message {
-    font-weight: normal;
-    text-align: center;
-}
-
-.playlists-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.playlist-input-box {
+.input input {
     width: 100%;
     border: none;
-    padding: 5px 0 5px 0;
+    padding: 5px;
     background-color: transparent;
     color: whitesmoke;
-    border-bottom: 2px solid gray;
+    border: 2px solid gray;
     outline: none;
     transition: border-color 0.3s;
     margin-bottom: 10px;
+    height: 30px;
+    font: inherit;
 }
 
-.playlist-input-box:focus {
+.input label {
+    color: gray;
+}
+
+.input input:focus {
     border-color: whitesmoke;
-  }
+}
 
 .submit-button {
     background-color: rgb(65, 64, 64);
@@ -98,7 +75,6 @@
     color: grey;
     padding: 5px;
     font-weight: bold;
-    font-size: 12px;
 }
 
 .submit-button-active {
@@ -109,7 +85,6 @@
     padding: 5px;
     border-radius: 3px;
     font-weight: bold;
-    font-size: 12px;
 }
 
 .submit-button-active:hover {
@@ -119,17 +94,4 @@
     color: black;
     padding: 5px;
     font-weight: bold;
-    font-size: 12px;
-}
-
-.user-playlists {
-    margin: 2px 0
-}
-
-.user-playlists input {
-    margin-right: 5px;
-}
-
-.user-playlists label {
-    font-size: 12px;
 }

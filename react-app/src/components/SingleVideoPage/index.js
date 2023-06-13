@@ -5,7 +5,7 @@ import { likeVideoThunk } from "../../store/videos";
 import { getCommentsByVideoIdThunk } from "../../store/comments";
 import { getAllVideosThunk } from "../../store/videos";
 import { subscribeUnsubscribeThunk } from "../../store/session";
-import { getSingleVideoThunk } from "../../store/videos";
+import { getAllPlaylistsThunk } from "../../store/playlists";
 import UnsubscribeModal from "../UnsubscribeModal"
 import OpenModalButton from "../OpenModalButton";
 import NewComment from "../NewComment";
@@ -19,15 +19,14 @@ function SingleVideoPage() {
 
     const dispatch = useDispatch()
     const {videoId} = useParams()
-    // const [video, setVideo] = useState(null)
 
     useEffect(() => {
         window.scrollTo(0, 0)
       }, [videoId])
 
     useEffect(() => {
-        // dispatch(getSingleVideoThunk(videoId)).then(data => setVideo(data))
         dispatch(getAllVideosThunk())
+        dispatch(getAllPlaylistsThunk())
         dispatch(getCommentsByVideoIdThunk(videoId))
     }, [dispatch, videoId])
 
@@ -48,12 +47,14 @@ function SingleVideoPage() {
     const video = useSelector(state => state.videos[videoId])
     const comments = useSelector(state => state.comments)
     const allVideos = useSelector(state => state.videos)
+    const allPlaylists = useSelector(state => state.playlists)
     const sessionUser = useSelector(state => state.session.user)
 
     if (!video) return null
 
     const commentsArr = Object.values(comments)
     const allVideosArr = Object.values(allVideos)
+    const allPlaylistsArr = Object.values(allPlaylists)
     const filteredVideos = allVideosArr.filter(currVideo => currVideo.id !== video.id)
     const userLike = video.userLikes.filter(like => like.id === sessionUser?.id)
     // console.log('userLike', userLike)
@@ -62,6 +63,8 @@ function SingleVideoPage() {
     // console.log('video inside SingleVideoPage', video)
     // console.log('sessionUser inside Single Video Page', sessionUser)
     // console.log('comments inside SingleVideoPage', comments)
+    console.log('allPlaylists inside SingleVideoPage', allPlaylists)
+    console.log('allPlaylistsArr inside SingleVideoPage', allPlaylistsArr)
 
     const sidebarVideos = filteredVideos.map(video => (
         <div key={video.id} className={styles['sidebar-video']}>
@@ -107,11 +110,28 @@ function SingleVideoPage() {
                                 <OpenModalIcon className="fa-solid fa-thumbs-up" modalComponent={<LoginFormModal/>}></OpenModalIcon>
                                 }
                             </button>
-                            <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+                            {sessionUser ? (
+                                <h5 className={styles['like-count']}>{video.userLikes.length}</h5>
+
+                            ) : (
+                                <OpenModalButton className={styles.likeCount} buttonText={video.userLikes.length} modalComponent={<LoginFormModal/>}></OpenModalButton>
+                            )
+
+                            }
                         </div>
                         <div className={styles['playlist-info-container']}>
-                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
-                            <OpenModalIcon modalComponent={<NewPlaylistModal video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            {sessionUser &&
+                            <>
+                                <OpenModalIcon modalComponent={<NewPlaylistModal allPlaylistsArr={allPlaylistsArr} video={video}/>} className="fa-solid fa-list"></OpenModalIcon>
+                                <OpenModalIcon modalComponent={<NewPlaylistModal allPlaylistsArr={allPlaylistsArr} video={video}/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            </>
+                            }
+                            {!sessionUser &&
+                            <>
+                                <OpenModalIcon modalComponent={<LoginFormModal/>} className="fa-solid fa-list"></OpenModalIcon>
+                                <OpenModalIcon modalComponent={<LoginFormModal/>} className="fa-solid fa-plus"></OpenModalIcon>
+                            </>
+                            }
                         </div>
                     </div>
                 </div>

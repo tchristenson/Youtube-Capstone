@@ -1,5 +1,7 @@
 from app.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from .shared_data import shared_user_list
+import random
 
 
 # Adds a demo user, you can add other users here if you want
@@ -114,6 +116,16 @@ def seed_users():
     db.session.add(hermione)
     db.session.commit()
 
+    user_list = [morgan, ferris, dude, george, larry, tom, gordon, betty, kim, hermione]
+
+    for user in user_list:
+        other_users = [u for u in user_list if u != user]
+
+        subscribers = random.sample(other_users, k=random.randint(1, len(other_users)))
+        user.subscribed.extend(subscribers)
+    db.session.commit()
+
+    shared_user_list.extend([morgan, ferris, dude, george, larry, tom, gordon, betty, kim, hermione])
 
 # Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
 # have a built in function to do this. With postgres in production TRUNCATE

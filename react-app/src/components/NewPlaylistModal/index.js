@@ -4,8 +4,10 @@ import styles from './NewPlaylistModal.module.css'
 import { useModal } from '../../context/Modal';
 import { createPlaylistThunk } from "../../store/playlists";
 import { addOrRemoveVideoFromPlaylistThunk } from "../../store/playlists";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function NewPlaylistModal({video}) {
+function NewPlaylistModal({video, allPlaylistsArr}) {
 
     const dispatch = useDispatch()
     const { closeModal } = useModal();
@@ -15,25 +17,26 @@ function NewPlaylistModal({video}) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showForm, setShowForm] = useState(false)
-    const [selectedPlaylists, setSelectedPlaylists] = useState([])
+    const [selectedPlaylists, setSelectedPlaylists] = useState([]);
 
     console.log('video inside NewPlaylistModal', video)
     console.log('sessionUser inside NewPlaylistModal', sessionUser)
+    console.log('allPlaylistsArr inside of NewPlaylistModal', allPlaylistsArr)
 
-    const handlePlaylistSelection = (e) => {
+    const handlePlaylistSelection = (e, playlist) => {
         const playlistId = e.target.value
         if (sessionUser) {
             dispatch(addOrRemoveVideoFromPlaylistThunk(video.id, playlistId))
+            if (e.target.checked) {
+                setSelectedPlaylists((prevSelectedPlaylists) => [...prevSelectedPlaylists, playlistId]);
+                toast(`Video added to ${playlist.name}`);
+              } else {
+                setSelectedPlaylists((prevSelectedPlaylists) =>
+                  prevSelectedPlaylists.filter((id) => id !== playlistId)
+                );
+                toast(`Video removed from ${playlist.name}`);
+              }
         }
-
-        // console.log('playlistId', playlistId)
-        // const isChecked = e.target.checked
-
-        // if (isChecked) {
-        //     setSelectedPlaylists((prevSelectedPlaylists) => [...prevSelectedPlaylists, playlist])
-        // } else {
-        //     setSelectedPlaylists((prevSelectedPlaylists) => prevSelectedPlaylists.filter(currPlaylist => currPlaylist.id !== playlist.id))
-        // }
     }
 
     const handleSubmit = async (e) => {
@@ -47,13 +50,7 @@ function NewPlaylistModal({video}) {
         formData.append('name', playlistName.trim())
         formData.append('id', video.id)
 
-        // for (let key of formData.entries()) {
-        //     console.log('formData before dispatch', key[0] + '----->' + key[1]);
-        //   }
-
-        const data = await dispatch(createPlaylistThunk(formData))
-        console.log('playlist returned from backend', data)
-        console.log('playlist returned from backend with videos', data.videos)
+        await dispatch(createPlaylistThunk(formData))
 
         setPlaylistName('')
         setHasSubmitted(false)
@@ -70,33 +67,53 @@ function NewPlaylistModal({video}) {
     }, [playlistName])
 
     const showFormToggle = () => {
-        setShowForm(true)
+        showForm? setShowForm(false) : setShowForm(true)
     }
 
-    const userPlaylists = sessionUser.playlists.map(playlist => (
+    const sessionUserPlaylists = allPlaylistsArr.filter(playlist => playlist.userId === sessionUser.id)
+    console.log('sessionUserPlaylists', sessionUserPlaylists)
+
+    const filteredSessionUserPlaylists = sessionUserPlaylists.filter(playlist => {
+        return !playlist.videos.some(currVideo => currVideo.id === video.id)
+    })
+
+    // console.log('filteredSessionUserPlaylists', filteredSessionUserPlaylists)
+
+    const selectablePlaylists = filteredSessionUserPlaylists.map(playlist => (
         <div key={playlist.id} className={styles["user-playlists"]}>
             <label>
                 <input
                     type="checkbox"
                     name={playlist.name}
                     value={playlist.id}
-                    onChange={handlePlaylistSelection}
+                    onChange={(e) => handlePlaylistSelection(e, playlist)}
                 />
             {playlist.name}
             </label>
         </div>
     ))
 
-
     return (
         <div className={styles["new-playlist-form"]}>
-            <h4 className={styles["header"]}>Save to...</h4>
-            {userPlaylists}
-            <div className={styles["new-playlist-button-container"]}>
-                <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
-                <button onClick={showFormToggle} className={styles['new-playlist-button']}>
-                    Create New Playlist
-                </button>
+            <ToastContainer />
+            {selectablePlaylists.length? (
+                <>
+                    <h4 className={styles["header"]}>Save to...</h4>
+                        <div className={styles["playlists-container"]}>
+                            {selectablePlaylists}
+                        </div>
+                </>
+            ) : (
+                <h5 className={styles["no-playlists-message"]}>No playlists currently available</h5>
+            )
+            }
+            <div className={styles["buttons-container"]}>
+                <div onClick={showFormToggle} className={styles["new-playlist-button-container"]}>
+                    <i id={styles['playlist-plus']} className="fa-solid fa-plus"></i>
+                    <button className={styles['new-playlist-button']}>
+                        Create New Playlist
+                    </button>
+                </div>
                 {showForm &&
                     <form
                         onSubmit={(e) => handleSubmit(e)}
@@ -121,7 +138,6 @@ function NewPlaylistModal({video}) {
 
         </div>
     )
-
 }
 
 export default NewPlaylistModal

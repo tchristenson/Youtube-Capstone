@@ -66,10 +66,10 @@ function UserProfilePage() {
         </div>
     ))
 
-    const sessionUserPlaylists = sessionUser.playlists.map(playlist => (
-        <NavLink key={playlist.videos[0].id} to={`/users/${sessionUser.id}/playlists/${playlist.id}`}>
+    const sessionUserPlaylists = user.playlists.map(playlist => (
+        <NavLink key={playlist.id} to={`/users/${user.id}/playlists/${playlist.id}`}>
         <div className={styles["single-video"]}>
-            <img src={playlist.videos[0].thumbnail}/>
+            <img src={playlist.videos[0]?.thumbnail}/>
             <div className={styles["single-video-details"]}>
                     <h5>{playlist.name}</h5>
             </div>
@@ -129,21 +129,21 @@ function UserProfilePage() {
             </div>
 
             <div className={styles['section']}>
-                <h4 className={styles['section-header']}>Uploads</h4>
+                <h3 className={styles['section-header']}>Uploads</h3>
                 <div className={styles['profile-videos']}>
                     {sessionUserVideoList}
                 </div>
             </div>
 
             <div className={styles['section']}>
-                <h4 className={styles['section-header']}>Playlists</h4>
+                <h3 className={styles['section-header']}>Playlists</h3>
                 <div className={styles['playlist-videos']}>
                     {sessionUserPlaylists}
                 </div>
             </div>
 
             <div className={styles['section']}>
-                <h4 className={styles['section-header']}>Subscriptions</h4>
+                <h3 className={styles['section-header']}>Subscriptions</h3>
                 <div className={styles['subscribed-to-users']}>
                     {sessionUserSubscribedList}
                 </div>

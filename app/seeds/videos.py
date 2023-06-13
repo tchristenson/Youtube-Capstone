@@ -1,5 +1,7 @@
 from app.models import db, Video, environment, SCHEMA
 from sqlalchemy.sql import text
+from app.seeds.shared_data import shared_user_list
+import random
 
 def seed_videos():
     video1 = Video(
@@ -387,6 +389,13 @@ def seed_videos():
     db.session.add(video46)
     db.session.add(video47)
     db.session.add(video48)
+    db.session.commit()
+
+    video_list = [video1, video2, video3, video4, video5, video6, video7, video8, video9, video10, video11, video12, video13, video14, video15, video16, video17, video18, video19, video20, video21, video22, video23, video24, video25, video26, video27, video28, video29, video30, video31, video32, video33, video34, video35, video36, video37, video38, video39, video40, video41, video42, video43, video44, video45, video46, video47, video48]
+
+    for video in video_list:
+        users = random.sample(shared_user_list, k=random.randint(1, len(shared_user_list)))
+        video.user_likes.extend(users)
     db.session.commit()
 
 

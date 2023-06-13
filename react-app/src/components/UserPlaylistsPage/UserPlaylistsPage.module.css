@@ -2,17 +2,24 @@
     padding-bottom: 5px;
 }
 
+.name-icon-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
 .playlist-page-container {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr 3fr);
-    column-gap: 40px;
     margin: 20px;
+    display: flex;
+    column-gap: 40px;
 }
 
 .playlist-thumbnail {
     width: 300px;
-    height: auto;
+    height: 165px;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .playlist-name {
@@ -20,9 +27,10 @@
 }
 
 .playlist-video {
-    max-width: 100%;
-    height: 90px;
+
+    height: 110px;
     border-radius: 10px;
+    min-width: 200px;
     width: 200px;
     /* Object fit clips the images so they are not distorted */
     object-fit: cover;
