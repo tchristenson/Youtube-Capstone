@@ -69,7 +69,7 @@ function UserProfilePage() {
     const sessionUserPlaylists = user.playlists.map(playlist => (
         <NavLink key={playlist.id} to={`/users/${user.id}/playlists/${playlist.id}`}>
         <div className={styles["single-video"]}>
-            <img src={playlist.videos[0].thumbnail}/>
+            <img src={playlist.videos[0]?.thumbnail}/>
             <div className={styles["single-video-details"]}>
                     <h5>{playlist.name}</h5>
             </div>

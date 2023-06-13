@@ -45,7 +45,7 @@ function UserPlaylistsPage() {
     return (
         <div className={styles["playlist-page-container"]}>
             <div className={styles["playlist-thumbnail-container"]}>
-                <img className={styles["playlist-thumbnail"]} src={playlist?.videos[0].thumbnail}/>
+                <img className={styles["playlist-thumbnail"]} src={playlist?.videos[0]?.thumbnail}/>
                 <div className={styles["name-icon-container"]}>
                     <h3 className={styles["playlist-name"]}>{playlist?.name}</h3>
                     <OpenModalIcon className="fa-solid fa-ellipsis-vertical" modalComponent={<EditDeletePlaylistModal playlist={playlist}/>}></OpenModalIcon>
