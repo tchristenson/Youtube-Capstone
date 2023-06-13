@@ -17,15 +17,24 @@ function NewPlaylistModal({video}) {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [showForm, setShowForm] = useState(false)
+    const [selectedPlaylists, setSelectedPlaylists] = useState([]);
 
     console.log('video inside NewPlaylistModal', video)
     console.log('sessionUser inside NewPlaylistModal', sessionUser)
 
-    const handlePlaylistSelection = (e) => {
+    const handlePlaylistSelection = (e, playlist) => {
         const playlistId = e.target.value
         if (sessionUser) {
             dispatch(addOrRemoveVideoFromPlaylistThunk(video.id, playlistId))
-            toast("Wow so easy!");
+            if (e.target.checked) {
+                setSelectedPlaylists((prevSelectedPlaylists) => [...prevSelectedPlaylists, playlistId]);
+                toast(`Video added to ${playlist.name}`);
+              } else {
+                setSelectedPlaylists((prevSelectedPlaylists) =>
+                  prevSelectedPlaylists.filter((id) => id !== playlistId)
+                );
+                toast(`Video removed from ${playlist.name}`);
+              }
         }
     }
 
@@ -82,7 +91,7 @@ function NewPlaylistModal({video}) {
                     type="checkbox"
                     name={playlist.name}
                     value={playlist.id}
-                    onChange={handlePlaylistSelection}
+                    onChange={(e) => handlePlaylistSelection(e, playlist)}
                 />
             {playlist.name}
             </label>
