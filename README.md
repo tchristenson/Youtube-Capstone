@@ -10,8 +10,8 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
 * [Wireframes](https://github.com/tchristenson/Youtube-Capstone/wiki/YouTube-Wireframes-(combined))
 
 ### How to start the project locally:
-1. Clone the project repo into the desired location on your machine
-2. Create a **.env** file based on the example with proper settings for your development environment
+1. Clone the project repo into the desired location on your machine (https://github.com/tchristenson/Youtube-Capstone)
+2. Create a **.env** file based on the example with proper settings for your development environment. Review the *aws-s3-uploads-flask.md* file to set up your own AWS bucket and user
 3. cd into the react-app directory and run the command below to install all dependencies
       ```bash
       npm install
@@ -38,6 +38,13 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
 
 7. Browse the site and enjoy
 
+### Splash Page
+![Splash Page](/react-app/public/splash-page-capture.gif)
+### Single Video Page
+![Single Video Page](/react-app/public/single-video-page-capture.gif)
+### User Profile Page
+![User Profile Page](/react-app/public/user-profile-page-capture.gif)
+
 ### API Endpoints
 | HTTP Verbs | Endpoints | Action |
 | --- | --- | --- |
@@ -51,7 +58,7 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
 | POST | /api/users/:targetUserId/subscribe/:currentUserId | Queries for a target user, and subscribes/unsubscribes the current user from the target user |
 | POST | /api/videos/new | Allows a user to upload a new video |
 | GET | /api/videos/:videoId | Queries for a single video and returns that video as an object |
-| GET | /api/videos | Queries for all videos and return each video as an object inside an array |
+| GET | /api/videos | Queries for all videos and returns each video as an object inside an array |
 | PUT | /api/videos/:videoId/edit | Queries for a single video and applies the edits provided by the logged in user |
 | DELETE | /api/videos/:videoId/delete | Queries for and deletes a single video if the owner of the video is the logged in user |
 | POST | /api/videos/:videoId/likes/:userId | Queries for a video and user, and, if the user has not liked that video, adds the user's like. Otherwise, the user's like is removed from the video |
@@ -60,14 +67,10 @@ YoohooTube is a website clone, inspired by [Youtube](https://www.youtube.com/). 
 | GET | /api/comment/:videoId | Queries for all the comments belonging to a single video, and returns each comment as an object inside an array |
 | DELETE | /api/comment/:commentId/delete | Queries for and deletes a single comment if the owner of the comment is the logged in user |
 | PUT | /api/comments/:commentId/edit | Queries for a single comment and applies the edits provided by the logged in user |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
-| --- | --- | --- |
+| GET | /api/playlists/:playlistId | Retrieves a single playlist specified by ID |
+| GET | /api/playlists | Queries for all playlists and returns each playlist as an object inside an array |
+| PUT | /api/playlists/:playlistId/edit | Queries for a single playlist and applies the edits provided by the logged in user |
+| DELETE | /api/playlists/:playlistId/delete | Queries for and deletes a single playlist if the owner of the playlist is the logged in user |
 
 ### Technologies Used:
 * [Python](https://docs.python.org/3/)
