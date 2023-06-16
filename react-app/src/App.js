@@ -42,7 +42,7 @@ function App() {
             </Route>
         </Switch>
       )}
-      {/* <Footer isLoaded={isLoaded} /> */}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }
