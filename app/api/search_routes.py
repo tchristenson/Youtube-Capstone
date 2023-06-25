@@ -27,17 +27,12 @@ def search():
     query = request.json['query']
 
     # query = body['query']
-    # print('query printing here ========>>>>>>>>', query)
+    print('query printing here ========>>>>>>>>', query)
 
     videos = Video.query.filter(Video.name.ilike(f'%{query}%')).all()
     print('videos printing here ========>>>>>>>>', videos)
 
-
-    users = User.query.filter(User.alias.ilike(f'%{query}%')).all()
-    print('users printing here ========>>>>>>>>', users)
-
     search_results.extend([video.to_dict() for video in videos])
-    search_results.extend([user.to_dict() for user in users])
 
     print('search_results printing here ========>>>>>>>>', search_results)
 
