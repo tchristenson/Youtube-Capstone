@@ -20,7 +20,7 @@ const clearSearchResultsAction = (payload) => {
 // ----------------------------------------  THUNKS  ----------------------------------------
 export const searchVideosUsersThunk = (query) => async (dispatch) => {
     console.log('query inside thunk ------->', query)
-    const response = fetch('/api/search', {
+    const response = await fetch('/api/search', {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -30,7 +30,9 @@ export const searchVideosUsersThunk = (query) => async (dispatch) => {
         })
     })
     if (response.ok) {
+        console.log('response', response)
         const searchResults = await response.json()
+        console.log('checking if this is running in between response from backend and action')
         console.log('searchResults from backend after response.json ------->', searchResults)
         dispatch(searchVideosUsersAction(searchResults))
         return searchResults
