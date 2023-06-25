@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux"
 import { useState } from "react"
 import styles from './SearchBar.module.css'
-import { searchSongsAlbumsUsersThunk, clearSearchResultsThunk } from "../../store/search";
+import { searchVideosUsersThunk, clearSearchResultsThunk } from "../../store/search";
 import { useHistory } from "react-router-dom";
 
 function SearchBar() {
@@ -13,7 +13,7 @@ function SearchBar() {
     const handleSearch = async (e) => {
         e.preventDefault()
         await dispatch(clearSearchResultsThunk())
-        await dispatch(searchSongsAlbumsUsersThunk(query))
+        await dispatch(searchVideosUsersThunk(query))
         setQuery('')
         history.push('/search')
     }
@@ -29,6 +29,7 @@ function SearchBar() {
                 />
                 <div onClick={handleSearch} className={styles['search-button-container']}>
                     <div className={styles['search-button']}>Search</div>
+                    <i id='search-icon' className="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
 
