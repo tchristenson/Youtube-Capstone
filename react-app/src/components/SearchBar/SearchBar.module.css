@@ -15,18 +15,49 @@
     align-items: center;
 }
 
-.search-button-container {
+.search-bar-buttons {
     margin-left: 10px;
-    left: 355px;
-    position: absolute;
+    color: gray;
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-buttons:hover {
+    cursor: pointer;
+}
+
+.search-bar-buttons i {
+    cursor: pointer;
+    padding: 0;
+    /* left: 355px;
+    position: absolute; */
     color: gray;
 }
 
-.search-button-container:hover {
-    cursor: pointer;
+#search-icon:hover {
+    color: whitesmoke
+}
+
+#x-icon:hover {
     color: whitesmoke;
 }
 
 #search-icon {
-    padding: none;
+    position: absolute;
+    left: 370px
 }
+
+#x-icon {
+    color: gray;
+    position: absolute;
+    left: 350px;
+}
+
+
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

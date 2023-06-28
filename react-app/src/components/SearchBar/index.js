@@ -35,9 +35,15 @@ function SearchBar() {
                     placeholder="Search"
                     onKeyDown={handleKeyUp}
                 />
-                <div onClick={handleSearch} className={styles['search-button-container']}>
+                <div onClick={handleSearch} className={styles['search-bar-buttons']}>
                     {/* <div className={styles['search-button']}>Search</div> */}
-                    <i id='search-icon' className="fa-solid fa-magnifying-glass"></i>
+                    {query && <i
+                        onClick={e => {
+                            e.stopPropagation();
+                            setQuery('');
+                        }}
+                        id={styles['x-icon']} className="fa-solid fa-x"></i>}
+                    <i id={styles['search-icon']} className="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>
 
