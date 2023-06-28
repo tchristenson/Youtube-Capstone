@@ -28,7 +28,7 @@ function SearchBar() {
                     placeholder="Search"
                 />
                 <div onClick={handleSearch} className={styles['search-button-container']}>
-                    <div className={styles['search-button']}>Search</div>
+                    {/* <div className={styles['search-button']}>Search</div> */}
                     <i id='search-icon' className="fa-solid fa-magnifying-glass"></i>
                 </div>
             </div>

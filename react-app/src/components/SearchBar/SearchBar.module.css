@@ -12,17 +12,21 @@
     position: relative;
     width: 500px;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 
 .search-button-container {
     margin-left: 10px;
-    color: white;
-    font-weight: bold;
+    left: 355px;
+    position: absolute;
+    color: gray;
 }
 
 .search-button-container:hover {
     cursor: pointer;
-    color: rgb(201, 201, 201);
+    color: whitesmoke;
+}
+
+#search-icon {
+    padding: none;
 }
