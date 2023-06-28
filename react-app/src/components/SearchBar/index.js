@@ -18,6 +18,13 @@ function SearchBar() {
         history.push('/search')
     }
 
+    const handleKeyUp = async (e) => {
+        // console.log('handleKeyUp running')
+        if (e.key === 'Enter') {
+            await handleSearch(e)
+        }
+    }
+
     return (
             <div className={styles['search-bar-container']}>
                 <input
@@ -26,6 +33,7 @@ function SearchBar() {
                     onChange={e => setQuery(e.target.value)}
                     type='search'
                     placeholder="Search"
+                    onKeyDown={handleKeyUp}
                 />
                 <div onClick={handleSearch} className={styles['search-button-container']}>
                     {/* <div className={styles['search-button']}>Search</div> */}
