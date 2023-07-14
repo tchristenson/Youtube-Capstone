@@ -5,13 +5,15 @@ import videoReducer from './videos'
 import userReducer from './users';
 import commentReducer from './comments';
 import playlistReducer from './playlists';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
   videos: videoReducer,
   users: userReducer,
   comments: commentReducer,
-  playlists: playlistReducer
+  playlists: playlistReducer,
+  search: searchReducer
 });
 
 
