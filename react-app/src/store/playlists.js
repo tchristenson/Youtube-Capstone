@@ -58,7 +58,7 @@ export const createPlaylistThunk = (playlist) => async (dispatch) => {
 //     console.log('formData inside of the thunk', key[0] + '----->' + key[1]);
 //   }
     const videoId = parseInt(playlist.get('id'))
-    console.log('videoId', videoId)
+    // console.log('videoId', videoId)
     const response = await fetch(`/api/videos/${videoId}/playlists/new`, {
         method: 'POST',
         body: playlist
@@ -86,7 +86,7 @@ export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async 
     });
     if (response.ok) {
         const playlist = await response.json()
-        console.log('playlist result from thunk', playlist)
+        // console.log('playlist result from thunk', playlist)
         dispatch(addOrRemoveVideoFromPlaylistAction(playlist))
         return playlist
     }
@@ -94,7 +94,7 @@ export const addOrRemoveVideoFromPlaylistThunk = (videoId, playlistId) => async 
 
 export const editPlaylistThunk = playlist => async (dispatch) => {
     for (let key of playlist.entries()) {
-        console.log('formData inside thunk', key[0] + '----->' + key[1]);
+        // console.log('formData inside thunk', key[0] + '----->' + key[1]);
       }
     const playlistId = parseInt(playlist.get('id'))
     const response = await fetch(`/api/playlists/${playlistId}/edit`, {

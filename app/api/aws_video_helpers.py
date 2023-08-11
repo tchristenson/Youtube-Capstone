@@ -22,15 +22,15 @@ def get_unique_video_filename(filename):
 
 def upload_video_file_to_s3(file, acl="public-read"):
     try:
-        print('s3 ======>>>>>>>', s3)
-        print('S3_KEY ========>>>>>>>>>', os.environ.get("S3_KEY"))
-        print('S3_SECRET ========>>>>>>>>>', os.environ.get("S3_SECRET"))
-        print('file inside AWS upload function ========>>>>>>>>>', file)
-        print('type(file) inside AWS upload function ========>>>>>>>>>', type(file))
-        print('BUCKET_NAME inside AWS upload function ========>>>>>>>>>', BUCKET_NAME)
-        print('type(BUCKET_NAME) inside AWS upload function ========>>>>>>>>>', type(BUCKET_NAME))
-        print('file.filename inside AWS upload function ========>>>>>>>>>', file.filename)
-        print('type(file.filename) inside AWS upload function ========>>>>>>>>>', type(file.filename))
+        # print('s3 ======>>>>>>>', s3)
+        # print('S3_KEY ========>>>>>>>>>', os.environ.get("S3_KEY"))
+        # print('S3_SECRET ========>>>>>>>>>', os.environ.get("S3_SECRET"))
+        # print('file inside AWS upload function ========>>>>>>>>>', file)
+        # print('type(file) inside AWS upload function ========>>>>>>>>>', type(file))
+        # print('BUCKET_NAME inside AWS upload function ========>>>>>>>>>', BUCKET_NAME)
+        # print('type(BUCKET_NAME) inside AWS upload function ========>>>>>>>>>', type(BUCKET_NAME))
+        # print('file.filename inside AWS upload function ========>>>>>>>>>', file.filename)
+        # print('type(file.filename) inside AWS upload function ========>>>>>>>>>', type(file.filename))
         s3.upload_fileobj(
             file,
             BUCKET_NAME,
@@ -42,7 +42,7 @@ def upload_video_file_to_s3(file, acl="public-read"):
         )
     except Exception as e:
         # in case the our s3 upload fails
-        print("errors======>>>>>>>>>", str(e))
+        # print("errors======>>>>>>>>>", str(e))
         return {"errors": str(e)}
 
     return {"url": f"{S3_LOCATION}{file.filename}"}

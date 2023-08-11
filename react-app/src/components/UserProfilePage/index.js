@@ -41,16 +41,16 @@ function UserProfilePage() {
     if (!sessionUser) return null
     if (!user) return null
 
-    console.log('sessionUser ------->', sessionUser)
-    console.log('allUsers ------->', allUsers)
-    console.log('user ------>', user)
+    // console.log('sessionUser ------->', sessionUser)
+    // console.log('allUsers ------->', allUsers)
+    // console.log('user ------>', user)
     // console.log('allVideos', allVideos)
 
     const allVideosArr = Object.values(allVideos)
-    console.log('allVideosArr ------>', allVideosArr)
+    // console.log('allVideosArr ------>', allVideosArr)
     const sessionUserVideos = Object.values(allVideos).filter(video => video.userId === sessionUser.id)
     const sessionUserSubscribed = Object.values(allUsers).filter(user => sessionUser.subscribedIds.includes(user.id))
-    console.log('sessionUserSubscribed ------->', sessionUserSubscribed)
+    // console.log('sessionUserSubscribed ------->', sessionUserSubscribed)
 
     const sessionUserVideoList = sessionUserVideos.map(video => (
         <div key={video.id} className={styles["single-video"]}>
@@ -77,7 +77,7 @@ function UserProfilePage() {
         </NavLink>
     ))
 
-    console.log('sessionUserPlaylists', sessionUserPlaylists)
+    // console.log('sessionUserPlaylists', sessionUserPlaylists)
 
     const sessionUserSubscribedList = sessionUserSubscribed.map(user => (
         <div key={user.id} className={styles["single-subscribed"]}>

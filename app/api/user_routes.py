@@ -60,13 +60,13 @@ def subscribe_unsubscribe(target_user_id, curr_user_id):
 
     if has_subscribed:
         curr_user.subscribed.remove(target_user)
-        print('curr_user ======>>>>>>>', curr_user)
-        print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
+        # print('curr_user ======>>>>>>>', curr_user)
+        # print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()
     else:
         curr_user.subscribed.append(target_user)
-        print('curr_user ======>>>>>>>', curr_user)
-        print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
+        # print('curr_user ======>>>>>>>', curr_user)
+        # print('curr_user.to_dict() ======>>>>>>>', curr_user.to_dict())
         db.session.commit()
         return curr_user.to_dict()
