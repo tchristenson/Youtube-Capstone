@@ -32,13 +32,13 @@ function ChannelPage() {
         dispatch(subscribeUnsubscribeThunk(user.id, sessionUser.id))
     }
 
-    console.log('user ------->', user)
+    // console.log('user ------->', user)
 
     if (!user) return null
 
     // console.log('user', user)
     // console.log('allVideos', allVideos)
-    console.log('sessionUser ------>', sessionUser)
+    // console.log('sessionUser ------>', sessionUser)
 
     const channelVideos = Object.values(allVideos).filter(video => video.userId === channelId)
     // console.log('channelVideos', channelVideos)

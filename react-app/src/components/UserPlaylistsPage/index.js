@@ -19,7 +19,7 @@ function UserPlaylistsPage() {
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[userId])
     const playlist = useSelector(state => state.playlists[playlistId])
-    console.log('playlist', playlist)
+    // console.log('playlist', playlist)
 
     useEffect(() => {
         if (sessionUser && user && sessionUser.id !== user.id) {

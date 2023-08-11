@@ -20,14 +20,14 @@ def search():
     # print('videos printing here ========>>>>>>>>', videos)
 
     users = User.query.filter(User.username.ilike(f'%{query}%')).all()
-    print('users printing here ========>>>>>>>>', users)
+    # print('users printing here ========>>>>>>>>', users)
     for user in users:
         user_videos = Video.query.filter_by(user_id=user.id).all()
-        print('user_videos printing here ========>>>>>>>>', user_videos)
+        # print('user_videos printing here ========>>>>>>>>', user_videos)
         search_results.extend([video.to_dict() for video in user_videos])
 
     search_results.extend([video.to_dict() for video in videos])
 
-    print('search_results printing here ========>>>>>>>>', search_results)
+    # print('search_results printing here ========>>>>>>>>', search_results)
 
     return { 'searchResults': search_results }
