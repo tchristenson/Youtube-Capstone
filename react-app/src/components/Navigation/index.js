@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css'
+import SearchBar from '../SearchBar';
 
 function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
@@ -14,6 +15,9 @@ function Navigation({ isLoaded }){
                     <img src={process.env.PUBLIC_URL + '/logo.png'} alt='Logo' className='logo'/>
                 </NavLink>
 			</li>
+
+            <SearchBar />
+
 			{isLoaded && (
 				<li>
 					<ProfileButton user={sessionUser} />

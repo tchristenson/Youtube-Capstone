@@ -63,8 +63,8 @@ function SingleVideoPage() {
     // console.log('video inside SingleVideoPage', video)
     // console.log('sessionUser inside Single Video Page', sessionUser)
     // console.log('comments inside SingleVideoPage', comments)
-    console.log('allPlaylists inside SingleVideoPage', allPlaylists)
-    console.log('allPlaylistsArr inside SingleVideoPage', allPlaylistsArr)
+    // console.log('allPlaylists inside SingleVideoPage', allPlaylists)
+    // console.log('allPlaylistsArr inside SingleVideoPage', allPlaylistsArr)
 
     const sidebarVideos = filteredVideos.map(video => (
         <div key={video.id} className={styles['sidebar-video']}>

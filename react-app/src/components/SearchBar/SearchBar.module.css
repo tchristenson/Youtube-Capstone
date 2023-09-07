@@ -1,0 +1,63 @@
+.search-bar {
+    background-color: transparent;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid gray;
+    width: 80%;
+    padding: 5px 5px 5px 10px;
+    color: white;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-buttons {
+    margin-left: 10px;
+    color: gray;
+    /* position: relative; */
+    display: flex;
+    align-items: center;
+}
+
+.search-bar-buttons:hover {
+    cursor: pointer;
+}
+
+.search-bar-buttons i {
+    cursor: pointer;
+    padding: 0;
+    /* left: 355px;
+    position: absolute; */
+    color: gray;
+}
+
+#search-icon:hover {
+    color: whitesmoke
+}
+
+#x-icon:hover {
+    color: whitesmoke;
+}
+
+#search-icon {
+    position: absolute;
+    left: 370px
+}
+
+#x-icon {
+    color: gray;
+    position: absolute;
+    left: 350px;
+}
+
+
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

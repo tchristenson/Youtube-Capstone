@@ -14,7 +14,7 @@ function DeletePlaylistModal({playlist}) {
 
     const handleDelete = async (e) => {
         e.preventDefault()
-        console.log('handleDelete running')
+        // console.log('handleDelete running')
 
         const deletedPlaylist = await dispatch(deletePlaylistThunk(playlist.id))
         if (deletedPlaylist.message === 'delete successful') {

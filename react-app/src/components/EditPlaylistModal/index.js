@@ -18,7 +18,7 @@ function EditPlaylistModal({playlist}) {
     const [validationErrors, setValidationErrors] = useState([]);
 
     const handleSubmit = async (e) => {
-        console.log('handleSubmit running')
+        // console.log('handleSubmit running')
         e.preventDefault();
 
         setHasSubmitted(true)
@@ -30,7 +30,7 @@ function EditPlaylistModal({playlist}) {
         formData.append('id', playlist.id)
 
         for (let key of formData.entries()) {
-            console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
+            // console.log('formData before dispatching thunk', key[0] + '----->' + key[1]);
           }
 
         await dispatch(editPlaylistThunk(formData))

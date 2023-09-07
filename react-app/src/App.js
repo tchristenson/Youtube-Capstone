@@ -9,6 +9,7 @@ import UserProfilePage from "./components/UserProfilePage";
 import ChannelPage from "./components/ChannelPage";
 import Footer from "./components/Footer";
 import UserPlaylistsPage from "./components/UserPlaylistsPage";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,12 +38,15 @@ function App() {
             <Route exact path="/">
               <SplashPage />
             </Route>
+            <Route exact path="/search">
+              <SearchResults />
+            </Route>
             <Route>
               Page Not Found
             </Route>
         </Switch>
       )}
-      {/* <Footer isLoaded={isLoaded} /> */}
+      <Footer isLoaded={isLoaded} />
     </>
   );
 }

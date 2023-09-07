@@ -1,0 +1,53 @@
+import { useDispatch } from "react-redux"
+import { useState } from "react"
+import styles from './SearchBar.module.css'
+import { searchVideosUsersThunk, clearSearchResultsThunk } from "../../store/search";
+import { useHistory } from "react-router-dom";
+
+function SearchBar() {
+
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const [query, setQuery] = useState('')
+
+    const handleSearch = async (e) => {
+        e.preventDefault()
+        await dispatch(clearSearchResultsThunk())
+        await dispatch(searchVideosUsersThunk(query))
+        setQuery('')
+        history.push('/search')
+    }
+
+    const handleKeyUp = async (e) => {
+        // console.log('handleKeyUp running')
+        if (e.key === 'Enter') {
+            await handleSearch(e)
+        }
+    }
+
+    return (
+            <div className={styles['search-bar-container']}>
+                <input
+                    className={styles['search-bar']}
+                    value={query}
+                    onChange={e => setQuery(e.target.value)}
+                    type='search'
+                    placeholder="Search"
+                    onKeyDown={handleKeyUp}
+                />
+                <div onClick={handleSearch} className={styles['search-bar-buttons']}>
+                    {/* <div className={styles['search-button']}>Search</div> */}
+                    {query && <i
+                        onClick={e => {
+                            e.stopPropagation();
+                            setQuery('');
+                        }}
+                        id={styles['x-icon']} className="fa-solid fa-x"></i>}
+                    <i id={styles['search-icon']} className="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+
+    )
+}
+
+export default SearchBar

@@ -147,10 +147,10 @@ def like_video(id, user_id):
     )
 
     result = db.session.execute(query)
-    print('result =============>>>>>>>>>>>>>>', result)
+    # print('result =============>>>>>>>>>>>>>>', result)
 
     has_liked = result.fetchone() is not None
-    print('has_liked =============>>>>>>>>>>>>>>', has_liked)
+    # print('has_liked =============>>>>>>>>>>>>>>', has_liked)
 
     if has_liked:
         video.user_likes.remove(user)
@@ -182,10 +182,10 @@ def add_remove_from_playlist(video_id, playlist_id):
     )
 
     result = db.session.execute(query)
-    print('result =============>>>>>>>>>>>>>>', result)
+    # print('result =============>>>>>>>>>>>>>>', result)
 
     video_included = result.fetchone() is not None
-    print('video_included =============>>>>>>>>>>>>>>', video_included)
+    # print('video_included =============>>>>>>>>>>>>>>', video_included)
 
     if video_included:
         playlist.videos.remove(video)
@@ -206,13 +206,13 @@ def create_playlist(id):
 
     form = NewPlaylist()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('form.data ========>>>>>>>>', form.data)
+    # print('form.data ========>>>>>>>>', form.data)
 
     video = Video.query.get(id)
     if not video:
         return {'error': 'video not found'}
 
-    print('video ========>>>>>>>>', video.to_dict())
+    # print('video ========>>>>>>>>', video.to_dict())
 
 
     if form.validate_on_submit():
@@ -224,7 +224,7 @@ def create_playlist(id):
 
         db.session.add(playlist)
         db.session.commit()
-        print('playlist ========>>>>>>>>', playlist.to_dict())
+        # print('playlist ========>>>>>>>>', playlist.to_dict())
 
         video.playlists.append(playlist)
 

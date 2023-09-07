@@ -54,7 +54,7 @@ function SplashPage() {
 
     return (
         <div className={styles['splash-page-container']}>
-            <div className={styles['search-bar-container']}>
+            {/* <div className={styles['search-bar-container']}>
                 <input
                     className={styles['search-bar']}
                     value={query}
@@ -62,7 +62,7 @@ function SplashPage() {
                     type='search'
                     placeholder="Search"
                 />
-            </div>
+            </div> */}
             <div className={styles['all-videos-container']}>
                 {videoList}
             </div>
